@@ -1,0 +1,38 @@
+<!-- Reservation Modal -->
+<div class="modal fade" id="reservationModal" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="channelcastModal">Request Attendance</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        <div class="info-div">
+          <p><strong>NOTE: You must have a CONFIRMATION NUMBER (sent to you from Channelchek) to attend. Only registered users of Channelchek may attend (including a guest you may wish to accompany you).</strong></p>
+        </div>
+        <form [formGroup]="reservationForm">
+          <input type="hidden" id="seats" class="form-control" formControlName="seats" value="1"/>
+          <!--<div class="form-group">-->
+            <!--<label for="seats">How many seats do you want to reserve?</label>-->
+            <!--<input type="number" id="seats" class="form-control" formControlName="seats" required/>-->
+            <!--<div *ngIf="seats.invalid && (seats.dirty || seats.touched)" class="alert alert-danger">-->
+              <!--<div *ngIf="seats.errors.max">-->
+                <!--Exceeded number of available seats.-->
+              <!--</div>-->
+              <!--<div *ngIf="seats.errors.min || seats.errors.required">-->
+                <!--Invalid input-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="onReserve(reservationForm)">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

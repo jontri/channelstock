@@ -1,0 +1,10 @@
+<div class="card rounded-0" [ngClass]="{'border-0': isMobile}">
+  <h6 class="large card-header text-white font-weight-normal py-2 {{isMobile?'pl-2 pr-4 mb-0':'pr-2'}} rounded-0 {{romBgHeader}}">
+    <span *ngIf="romTitle" [innerHTML]="romTitle"></span>
+    <ng-content select=".rom-box-header-title"></ng-content>
+  </h6>
+
+  <div class="card-body p-0 flex-fill d-flex flex-column" [style.overflow-y]="alwaysScroll ? 'scroll' : 'auto'">
+    <ng-content select=".rom-box-header-body"></ng-content>
+  </div>
+</div>

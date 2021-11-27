@@ -1,0 +1,45 @@
+@import "~styles/variables";
+
+.share-social{
+  padding-bottom: 0px;
+  // height: 1vw;
+  ul{
+    display:table;
+    margin: 0;
+
+    li{
+      display: table-cell;
+      padding: 0 0.35vw;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      vertical-align: middle;
+      a{
+        img{
+          // width:1.3vw;
+        }
+      }
+    }
+  }
+}
+
+
+.fa-share-square-o {
+  position: relative;
+  top:.15vw;
+  font-size: 1.5vw;
+}
+
+li.fb {
+  // position:relative;
+  // top:-3px;
+}
+
+li.email {
+  // position: relative;
+  // top: -3px;
+  // left: -5px;
+}
+
+.social-icon {
+  height: 1.3vw;
+}

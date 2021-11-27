@@ -1,0 +1,4 @@
+<span (click)="onClick()">
+  <ng-content></ng-content>
+  <i class="fa" *ngIf="isActive" class="fa" [ngClass]="{'fa-chevron-up': isAsc, 'fa-chevron-down': !isAsc}"></i>
+</span>

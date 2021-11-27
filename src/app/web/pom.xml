@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.seecago.rome.ui</groupId>
+        <artifactId>rome-ui</artifactId>
+        <version>1.2.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.seecago.rome.ui</groupId>
+    <name>Rome :: Web Application</name>
+    <artifactId>web</artifactId>
+    <packaging>bundle</packaging>
+
+    <properties>
+        <buildnumber-maven-plugin.version>1.0</buildnumber-maven-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.4</version>
+
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v8.11.1</nodeVersion>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+			<!--
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>${buildnumber-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-buildnumber</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                        <configuration>
+                            <buildNumberPropertyName>buildRevision</buildNumberPropertyName>
+                            <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                            <useLastCommittedRevision>false</useLastCommittedRevision>
+                            <scmDirectory>${basedir}</scmDirectory>
+                            <shortRevisionLength>7</shortRevisionLength>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-timestamp</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                        <configuration>
+                            <buildNumberPropertyName>buildDateTime</buildNumberPropertyName>
+                            <format>{0,date,yyyyMMdd-HHmm}</format>
+                            <items>
+                                <item>timestamp</item>
+                            </items>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			-->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>3.3.0</version>
+                <inherited>true</inherited>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Web-ContextPath>/</Web-ContextPath>
+                        <Private-Package>*</Private-Package>
+                        <Include-Resource>./dist</Include-Resource>
+                        <Bundle-Version>${project.version}_${buildDateTime}</Bundle-Version>
+                        <Bundle-Vendor>Seecago, Inc.</Bundle-Vendor>
+                    </instructions>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <configuration>
+                        <directory>dist</directory>
+                        <directory>target</directory>
+                        <directory>node_modules</directory>
+                        <directory>node</directory>
+                        <filesets>
+                            <fileset>
+                              <directory>${project.basedir}</directory>
+                              <includes>
+                                <include>**/node_modules/**</include>
+                              </includes>
+                              <followSymlinks>false</followSymlinks>
+                            </fileset>x
+                            <fileset>
+                              <directory>node</directory>
+                            </fileset>
+                      </filesets>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

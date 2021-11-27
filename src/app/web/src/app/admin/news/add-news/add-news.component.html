@@ -1,0 +1,278 @@
+<div class="header-div">
+  <h5 class="content-header">Add News</h5>
+  <button class="btn btn-secondary" (click)="back()">< Back</button>
+</div>
+<hr>
+
+<form class="form-horizontal" [formGroup]="newsForm" *ngIf="!showPreview">
+
+  <!-- NewsItemType-->
+  <div class="col-md-3">
+    <div class="form-group">
+
+      <label>News Item Type:</label>
+
+      <div class="input-group inner-addon left-addon">
+
+        <select class="form-control" formControlName="newsItemType">
+          <!-- <option value="" selected disabled></option> -->
+          <option value="News" selected>News</option>
+          <option value="Research">Research</option>
+          <option value="Podcast">Podcast</option>
+          <option value="Video">Video</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!--Title-->
+  <div class="col-md-12">
+    <div class="form-group">
+
+      <label>Title:</label>
+
+      <input type="text" class="form-control" formControlName="title">
+      <div *ngIf="newsForm.controls['title'].errors && !newsForm.controls['title'].pristine" class="error-message">
+        <div class="error" [hidden]="!newsForm.controls['title'].errors.required">Title is required.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Content-->
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Content:</label>
+
+      <!--<input type="text" class="form-control" formControlName="content">-->
+      <rom-textboxio name="content" id="content" required=false [(value)]="news.content"></rom-textboxio>
+
+      <div *ngIf="newsForm.controls['content'].errors && !newsForm.controls['content'].pristine" class="error-message">
+
+        <div class="error" [hidden]="!newsForm.controls['content'].errors.required">Content is required.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Category-->
+  <div class="col-md-3">
+    <div class="form-group">
+
+      <label>Category:</label>
+
+      <div class="input-group inner-addon left-addon">
+
+        <select class="form-control" formControlName="category">
+          <option value="" selected disabled></option>
+          <option value="Economy">Economy</option>
+          <option value="Politics">Politics</option>
+          <option value="Markets">Markets</option>
+          <option value="Business">Business</option>
+          <option value="Aerospace and Defense">&nbsp;&nbsp;&nbsp;Aerospace and Defense</option>
+          <option value="Energy">&nbsp;&nbsp;&nbsp;Energy</option>
+          <option value="Financial Services">&nbsp;&nbsp;&nbsp;Financial Services</option>
+          <option value="Food and Services">&nbsp;&nbsp;&nbsp;Food and Services</option>
+          <option value="Health">&nbsp;&nbsp;&nbsp;Health</option>
+          <option value="Industrials">&nbsp;&nbsp;&nbsp;Industrials</option>
+          <option value="Media and Marketing">&nbsp;&nbsp;&nbsp;Media and Marketing</option>
+          <option value="Natural Resources">&nbsp;&nbsp;&nbsp;Natural Resources</option>
+          <option value="Retail and Consumer">&nbsp;&nbsp;&nbsp;Retail and Consumer</option>
+          <option value="Tech">&nbsp;&nbsp;&nbsp;Tech</option>
+          <option value="Telecoms">&nbsp;&nbsp;&nbsp;Telecoms</option>
+          <option value="Transportation">&nbsp;&nbsp;&nbsp;Transportation</option>
+          <option value="Opinion">Opinion</option>
+          <option value="Opinion">Report Release</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!--Header Title-->
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Header Title:</label>
+      <input type="text" class="form-control" formControlName="headerTitle">
+    </div>
+  </div>
+
+  <!--Banner Title-->
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Banner Title:</label>
+      <input type="text" class="form-control" formControlName="bannerTitle">
+    </div>
+  </div>
+
+  <!--Banner URL-->
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Banner URL:</label>
+      <input type="file" id="bannerUrl" class="form-control" accept="image/*" (change)="readUrl($event)">
+    </div>
+  </div>
+
+  <!--Related Companies-->
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Related Companies:</label>
+      <input type="text" class="form-control" formControlName="relatedCompanies">
+    </div>
+  </div>
+
+
+
+  <!--Date-->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>Publish Date:</label>
+      <div class="input-group inner-addon left-addon">
+        <input formControlName="date" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" class="form-control" #date>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary" (click)="d.toggle()">
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="newsForm.controls['date'].errors && !newsForm.controls['date'].pristine" class="error-message">
+        <div class="error" [hidden]="!newsForm.controls['time'].errors.required">Date is required.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-3">
+    <div class="col-md-12 mb-3 border">
+      <div class="row item-background-bulls"></div>
+      <div class="form-group" *ngFor="let bull of news.bull; let i = index; let first = first">
+        <label class="d-flex justify-content-between align-items-center">&nbsp;
+          <button class="btn btn-danger" *ngIf="!first" (click)="removeItem('bull', i)"><i class="fa fa-times"></i>
+          </button>
+        </label>
+        <rom-textboxio name="bullContent" idx="{{i}}" required=false [(value)]="bull.content" ></rom-textboxio>
+
+      </div>
+      <button class="btn btn-secondary mb-3" type="button" (click)="addItem('bull')">Add</button>
+    </div>
+
+    <div class="col-md-12 mb-3 border">
+      <div class="row item-background-bears"></div>
+      <div class="form-group" *ngFor="let bear of news.bear; let i = index; let first = first">
+        <label class="d-flex justify-content-between align-items-center">&nbsp;
+          <button class="btn btn-danger" *ngIf="!first" (click)="removeItem('bear', i)"><i class="fa fa-times"></i>
+          </button>
+        </label>
+        <rom-textboxio name="bearContent" idx="{{i}}" required=false [(value)]="bear.content" ></rom-textboxio>
+
+      </div>
+      <button class="btn btn-secondary mb-3" type="button" (click)="addItem('bear')">Add</button>
+    </div>
+
+    <div class="col-md-12 mb-3 border">
+      <div class="row item-background-balanced"></div>
+      <div class="form-group" *ngFor="let balanced of news.balanced; let i = index; let first = first">
+        <label class="d-flex justify-content-between align-items-center">
+          <button class="btn btn-danger" *ngIf="!first" (click)="removeItem('balanced', i)"><i class="fa fa-times"></i>
+          </button>
+        </label>
+        <rom-textboxio name="balancedContent" required=false [(value)]="balanced.content" ></rom-textboxio>
+
+      </div>
+      <!--<button class="btn btn-secondary mb-3" type="button" (click)="addItem('balanced')">Add</button>-->
+    </div>
+  </div>
+
+  <!-- Publish News -->
+  <div class="col-md-12 ">
+    <div class="form-group pull-right mr-2">
+      <label class="float-right "> Publish </label>
+      <div class="float-right pr-2 pt-2">
+        <input type="checkbox" class="form-check" formControlName="visible">
+      </div>
+    </div>
+  </div>
+
+  <!-- Make Item Featured-->
+  <div class="col-md-12 ">
+    <div class="form-group pull-right mr-2">
+      <label class="float-right "> Featured </label>
+      <div class="float-right pr-2 pt-2">
+        <input type="checkbox" class="form-check" formControlName="featured">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12 d-flex justify-content-end">
+    <button class="btn btn-secondary mr-1" (click)="back()">Cancel</button>
+    <!--<button class="btn btn-secondary btn-success ml-1" (click)="toPreview()">Preview</button>-->
+    <button class="btn btn-secondary btn-success ml-1" (click)="onSubmit(newsForm.value)">Save</button>
+  </div>
+
+  <br/>
+  <!-- END .col-md-12 -->
+
+</form>
+
+<!--<div class="container-fluid rom-box-header-body mb-5 preview" *ngIf="showPreview">-->
+
+  <!--<div *ngIf="news.bannerUrl; else showBannerTitle" class="row">-->
+    <!--<img src="{{ news.bannerUrl }}" class="header-img"/>-->
+  <!--</div>-->
+
+  <!--<ng-template #showBannerTitle>-->
+    <!--<div *ngIf="news.bannerTitle" class="row">-->
+      <!--<div class="header-title px-5 vcenter py-5">-->
+        <!--{{ news.bannerTitle }}-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</ng-template>-->
+
+  <!--<p></p>-->
+
+  <!--<div class="row container-fluid">-->
+    <!--<div class="d-flex flex-column">-->
+      <!--<div [innerHTML]="news.content"></div>-->
+    <!--</div>-->
+    <!--<p></p>-->
+  <!--</div>-->
+
+  <!--<div *ngIf="news.bull.length>0" class="row item-background-bulls"></div>-->
+  <!--<p *ngIf="news.bull.length>0"></p>-->
+  <!--<div *ngIf="news.bull.length>0" class="row container-fluid">-->
+    <!--<rom-expand-collapse [collapseHeight]="collapseHeightBulls" [expandHeight]="expandHeightBulls">-->
+      <!--<span #newsProfile *ngFor="let bull of news.bull;" class="inline-text" [innerHTML]="bull.content"></span>-->
+    <!--</rom-expand-collapse>-->
+    <!--<br/>-->
+  <!--</div>-->
+
+
+  <!--<div *ngIf="news.bear.length>0" class="row item-background-bears"></div>-->
+  <!--<p *ngIf="news.bear.length>0"></p>-->
+  <!--<div *ngIf="news.bear.length>0" class="row container-fluid">-->
+    <!--<rom-expand-collapse [collapseHeight]="collapseHeightBulls" [expandHeight]="expandHeightBulls">-->
+      <!--<span #newsProfile *ngFor="let bear of news.bear;" class="inline-text" [innerHTML]="bear.content"></span>-->
+    <!--</rom-expand-collapse>-->
+    <!--<br/>-->
+  <!--</div>-->
+
+  <!--<div *ngIf="news.balanced.length>0" class="row item-background-balance"></div>-->
+  <!--<p *ngIf="news.balanced.length>0"></p>-->
+  <!--<div *ngIf="news.balanced.length>0" class="row container-fluid">-->
+    <!--<rom-expand-collapse [collapseHeight]="collapseHeightBulls" [expandHeight]="expandHeightBulls">-->
+      <!--<span #newsProfile *ngFor="let balanced of news.balanced;" [innerHTML]="balanced.content"></span>-->
+    <!--</rom-expand-collapse>-->
+  <!--</div>-->
+
+  <!--<br/>-->
+
+
+
+  <!--<div class="col-md-12 d-flex justify-content-end">-->
+    <!--<button class="btn btn-secondary mr-1" (click)="backToForm()">Back</button>-->
+    <!--<button class="btn btn-secondary btn-success ml-1" (click)="onSubmit(newsForm.value)">Save</button>-->
+  <!--</div>-->
+<!--</div>-->
+

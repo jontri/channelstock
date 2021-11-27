@@ -1,0 +1,87 @@
+@import "~styles/variables";
+
+.modal-header {
+  display: inline !important;
+
+  .channelcheck_logo {
+    width: 8vw;
+  }
+
+  .modal-title {
+    color: $rom-silver-chalice;
+    font-weight: normal;
+  }
+}
+
+.item-div {
+  transition: 0.2s all linear;
+  background: #969696;
+  color: white;
+  padding: 0.2vw 1vw 0.2vw 1vw;
+  margin-top: 1vw;
+  display: flex;
+  align-self: center;
+
+  i {
+    font-size: 1.5vw;
+  }
+
+  &:hover {
+    transition: 0.2s all linear;
+    cursor: pointer;
+    background: $rom-minsk;
+  }
+}
+
+.qmod-container {
+  padding: 2.5%;
+  height: 100%;
+
+  rom-qmod {
+    background-color: white;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .channel-logo {
+    width: 15%;
+  }
+
+  .company-name {
+    width: 25%;
+  }
+
+  .channel-header {
+    height: 7vw;
+    border-bottom: .18vw solid $rom-rolling-stone;
+  }
+
+  .nav {
+    .nav-link {
+      color: white;
+      padding: 0;
+
+      &.active, &:focus, &:hover {
+        color: darkblue;
+        text-decoration: underline;
+      }
+
+      &:not(:first-child):not(:last-child) {
+        padding-left: .4vw;
+        padding-right: .4vw;
+      }
+
+      &:not(:first-child) {
+        border-left: .1vw solid $rom-rolling-stone;
+      }
+
+      &:first-child {
+        padding-right: .4vw;
+      }
+
+      &:last-child {
+        padding-left: .4vw;
+      }
+    }
+  }
+}

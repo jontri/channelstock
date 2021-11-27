@@ -1,0 +1,15 @@
+@import "~styles/mixins";
+
+:host {
+  display: block;
+  overflow: hidden;
+  width: 58vw;
+  height: 44.5vw;
+}
+
+iframe {
+  width: 116vw;
+  height: 89vw;
+  @include transform(scale(0.5));
+  @include transform-origin(0 0);
+}

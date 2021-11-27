@@ -1,0 +1,48 @@
+<h4>News</h4>
+<div class="content-div" *ngIf="!isLoading">
+    <div class="table-actions row">
+        <!-- <div class="form-group">
+      <label for="firstName">Filter users</label>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...">
+    </div> -->
+        <button class="btn btn-primary" (click)="toAddNews()">Add News</button>
+    </div>
+    <div class="row content-header">
+        <!-- <div class="col">Company</div> -->
+        <div class="col">Title</div>
+        <!-- <div class="col">Content</div> -->
+        <!--<div class="col">Category</div>-->
+        <div class="col">Banner Title</div>
+        <div class="col">Banner URL</div>
+        <!--<div class="col">Date</div>-->
+        <div class="col">Actions</div>
+    </div>
+
+    <div *ngIf="news && news.length !== 0; else noDataDiv">
+        <div class="row content-body" *ngFor="let newscast of news;">
+            <!-- <div class="col">{{newscast?.companyId}}</div> -->
+            <div class="col  text-truncate">{{newscast?.title}}</div>
+            <!-- <div class="col">{{newscast?.content}}</div> -->
+            <!--<div class="col">{{newscast?.category}}</div>-->
+            <div class="col">{{newscast?.bannerTitle}}</div>
+            <div class="col text-truncate ">{{newscast?.bannerUrl ? newscast.bannerUrl : 'N/A'}}</div>
+            <div class="col">
+              <button class="btn btn-secondary rounded" (click)="toEditNews(newscast.id)">Edit</button>
+              <span>&nbsp;</span>
+              <!--<button class="btn btn-danger rounded" (click)="toDeleteNews(newscast.id)">Delete</button>-->
+              <button class="btn btn-danger rounded" (click)="openConfirmationDialog(newscast.id, newscast.title)">Delete</button>
+
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noData>
+        <p class="text-center">No Data Found</p>
+    </ng-template>
+</div>
+
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading" id="loading">
+    <fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

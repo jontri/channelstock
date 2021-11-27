@@ -1,0 +1,30 @@
+.d-flex {
+  & > div {
+    position: relative;
+    //width: 23.5%;
+
+    &:not(:last-child) {
+      margin-right: 2%;
+    }
+
+    & > img, & > div {
+      width: 98%;
+      height: 98%;
+    }
+
+    & > div {
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  };
+  max-width:10vw;
+  max-height:1.8vw;
+
+}
+
+
+.img-chk {
+  max-width:500%;
+}

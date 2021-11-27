@@ -1,0 +1,9 @@
+<div class="expand-container" [ngClass]="{'expanded': isExpanded}">
+  <div class="inner-container" [ngClass]="{'expanded': isExpanded}">
+    <ng-content></ng-content>
+    <div class="px-2 icon-container" (click)="toggle()" [ngClass]="{'expanded xx-large': isExpanded}">
+      <i class="fa" [ngClass]="'text-white ' + (isExpanded ? openedIcon : closedIcon)" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>
+<div class="expand-overlay" [ngClass]="{'expanded': isExpanded}"></div>

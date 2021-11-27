@@ -1,0 +1,47 @@
+.routes{
+    margin-bottom: 0 !important;
+
+    li{
+        text-align: center;
+        padding: 0.5vw;
+        margin-bottom: 1vw;
+        border: 1px solid #4379b1;
+        border-radius: 4px;
+        color: #4379b1;
+
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    li:hover{
+        cursor: pointer;
+        // border: 1px solid #2e2f81;
+        border-radius: 4px;
+        padding: 0.5vw;
+        background: #4378b194;
+        border: 1px solid #4378b194;
+
+        a {
+            color: white;
+        }
+    }
+    
+    .active {
+        // border: 1px solid #2e2f81;
+        background: #4379b1;
+        color: white;
+        border-radius: 4px;
+        padding: 0.5vw;
+    }
+
+}
+
+* {
+    transition: 0.3s all linear;
+}
+
+.action-tab {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

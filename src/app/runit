@@ -1,0 +1,3 @@
+cd karaf.distro/target/assembly
+bin/karaf 
+

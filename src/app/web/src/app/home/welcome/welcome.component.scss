@@ -1,0 +1,88 @@
+@import "~styles/mixins";
+
+.frame-container {
+  &.not-expanded {
+    width: 58vw;
+    height: 27vw;
+    overflow: hidden;
+  }
+
+  &.expanded {
+    // padding: 2.5%;
+  }
+
+  iframe {
+    &.not-expanded {
+      width: 174vw;
+      height: 81vw;
+      @include transform(scale(0.333));
+      @include transform-origin(0 0);
+    }
+  }
+
+  &, iframe {
+    &.expanded {
+      width: 100%;
+      height: 85vh;
+    }
+  }
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+
+  .fa-expand {
+    display: none !important;
+  }
+}
+
+//CAROUSEL
+.carousel-indicators .active {
+  width: 13px;
+  height: 13px;
+  background-color: #000000;
+}
+
+.carousel-indicators li {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  text-indent: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #989797;
+}
+
+.carousel-indicators {
+  bottom: -50px;
+}
+
+.carousel-control {
+  color: #bada55;
+}
+
+.carousel-control-prev-icon {
+  height: 100px;
+  width: 40px;
+  display: inline-block;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23989797' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+.carousel-control-next-icon {
+  height: 100px;
+  width: 40px;
+  display: inline-block;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23989797' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-prev {
+  width: 5%;
+  height: auto;
+  background:none;
+}
+.carousel-control-next {
+  width: 5%;
+  height: auto;   
+  background:none;
+}

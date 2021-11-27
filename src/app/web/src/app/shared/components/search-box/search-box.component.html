@@ -1,0 +1,26 @@
+<form class="form-inline" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="!showCCIcon" #overlayOrigin class="input-group input-group-sm flex-fill rounded">
+    <input type="text" class="form-control rom-bg-silver-chalice border-0 text-white px-2" placeholder="{{searchProps[type].placeholder}}" aria-label="Search" formControlName="search">
+    <button class="input-group-append rom-bg-silver-chalice p-1 rounded-right border-0" type="submit">
+      <i class="fa fa-search text-white" aria-hidden="true" ></i>
+    </button>
+  </div>
+
+  <div *ngIf="showCCIcon" #overlayOrigin class="input-group input-group-sm flex-fill rounded">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">
+        <!--<i class="fa fa-search text-white" aria-hidden="true"></i>-->
+        <img src="assets/images/cc_icon.png" height="20"/>
+      </span>
+    </div>
+    <input type="text" 
+      size="30" 
+      class="form-control cc-icon border-0 px-2" 
+      title="{{searchProps[type].hoverText}}" 
+      placeholder="{{searchProps[type].placeholder}}" 
+      aria-label="Search" 
+      formControlName="search" 
+      aria-describedby="inputGroup-sizing-md">
+  </div>
+</form>
+

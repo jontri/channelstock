@@ -1,0 +1,130 @@
+<ng-container *ngIf="!isMobile; else mobileRegistration">
+  <ng-container *ngIf="!isModal; else modalRegistration">
+    <ng-container *ngTemplateOutlet="registrationInputs"></ng-container>
+  </ng-container>
+  <ng-template #registrationInputs>
+    <p class="font-weight-normal my-3 large-letter-spacing x-large text-white" [ngClass]="{'px-3': !isModal}">Conditions of Use</p>
+    <p class="text-white large line-height-medium" [ngClass]="{'px-3': !isModal}">
+      To continue, you must agree to the Channelchek
+      <a class="text-white" href="#termsofuse" (click)="showDialog=!showDialog"><u>Terms of Use</u></a> and
+      <a class="text-white" href="#privacypolicy" (click)= "showDialog=!showDialog"><u>Privacy Policy</u></a>
+      and that you
+      understand that Channelchek uses
+      <a class="text-white" href="#cookies" (click)= "showDialog=!showDialog"><u>Cookies</u></a> for
+      functional and analytical purposes.
+    </p>
+
+    <span class="form-control-feedback" *ngIf="errorOccured">
+      <div *ngIf="errorOccured" class="text-danger">{{ errorMsg }}</div>
+    </span>
+
+    <div [ngClass]="{'px-3 mb-5': !isModal}">
+      <form [formGroup]="registrationForm" #registrationFormDir="ngForm" (submit)="onRegisterUser()">
+        <div class="form-group">
+          <div class="text-danger" *ngIf="registrationForm.invalid && registrationFormDir.submitted">
+            <span
+              *ngIf="registrationForm.controls['firstName'].hasError('required') || registrationForm.controls['firstName'].hasError('blank') ||
+                registrationForm.controls['lastName'].hasError('required') || registrationForm.controls['lastName'].hasError('blank')">
+              First and last name are required.
+            </span>
+            {{ loginFailedMsg }}
+          </div>
+          <label style="color:#fff;">First Name*</label>
+          <input type="text" class="form-control form-control-sm" placeholder=""
+                  id="firstName" name="firstName" formControlName="firstName" required #input>
+        </div>
+
+        <div>
+          <label style="color:#fff;">Last Name*</label>
+          <input type="text" class="form-control form-control-sm" placeholder=""
+                id="lastName" name="lastName" formControlName="lastName" required #input>
+
+          <ng-template #spacerName>
+            <div class="mb-4"></div>
+          </ng-template>
+        </div>
+        <br />
+        <div class="row justify-content-center">
+          <div class="mr-2">
+            <button (click)="onCancel()" type="button" class="btn btn-secondary" style="min-width: 6vw" [ngClass]="{'btn-sm': isModal}">
+              CANCEL
+            </button>
+          </div>
+          <div class="ml-2">
+              <button type="submit" class="btn btn-secondary" style="min-width: 6vw" [ngClass]="{'btn-sm': isModal}">
+                ACCEPT
+                <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i>
+              </button>
+          </div>
+        </div>
+      </form>
+
+      <!--<span class="text-light x-small" >&nbsp; A verification email will be sent to you.</span>-->
+    </div>
+  </ng-template>
+  <ng-template #modalRegistration>
+    <div class="row">
+      <div class="w-100 small">
+        <ng-container *ngTemplateOutlet="registrationInputs"></ng-container>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+<ng-template #mobileRegistration>
+  <div class="row mb-3">
+    <div class="col-12">
+      <h5 class="pt-3 rom-text-navy-blue">Conditions of Use</h5>
+    </div>
+    <div class="col-12">
+      <p class="rom-text-rolling-stone">
+        To continue, you must agree to the Channelchek
+        <a class="rom-text-rolling-stone" href="#termsofuse">Terms of Use</a> and
+        <a class="rom-text-rolling-stone" href="#privacypolicy">Privacy Policy</a>
+        and that you
+        understand that Channelchek uses <u>Cookies</u> for
+        functional and analytical purposes.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <span class="form-control-feedback" *ngIf="errorOccured">
+        <div *ngIf="errorOccured" class="text-danger">{{ errorMsg }}</div>
+      </span>
+      <form [formGroup]="registrationForm" #registrationFormDir="ngForm" (submit)="onRegisterUser()" class="pr-3">
+        <div class="form-group">
+          <input type="text"
+            class="form-control form-control-sm dark-input"
+            placeholder="First Name*"
+            id="firstName"
+            name="firstName"
+            formControlName="firstName"
+            required #input>
+        </div>
+        <div class="form-group">
+          <input type="text"
+            class="form-control form-control-sm dark-input"
+            placeholder="Last Name*"
+            id="lastName"
+            name="lastName"
+            formControlName="lastName"
+            required #input>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="button" (click)="onCancel()" class="btn btn-secondary btn-sm rom-bg-japanese-laurel border-0 shadow line-height-xm-small" style="width: 23vw;">
+              CANCEL
+            </button>
+          </div>
+          <div class="col-12 mt-2">
+            <button type="submit" class="btn btn-secondary btn-sm rom-bg-japanese-laurel border-0 shadow line-height-xm-small" style="width: 23vw;">
+              ACCEPT
+              <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+<rom-disclosure-popup [isExcess]='true' [(visible)]="showDialog"></rom-disclosure-popup>

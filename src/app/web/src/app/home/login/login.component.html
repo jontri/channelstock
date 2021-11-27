@@ -1,0 +1,107 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;" *ngIf="!responsiveService.isMobile; else mobileLogin">
+  <rom-initial-tree class="rom-box-header-body">
+
+    <div class="align-items-center h-70 rom-tree-body row">
+      <div class="col">
+
+        <div class="text-left x-large py-4 text-light">
+          {{headerDescription}}
+        </div>
+
+        <rom-login-inputs></rom-login-inputs>
+      </div>
+    </div>
+  </rom-initial-tree>
+</rom-box-header>
+
+<ng-template #mobileLogin>
+  <div class="row mb-3">
+    <div class="col">
+      <h5 class="pt-3 rom-text-navy-blue">{{headerDescription}}</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <rom-login-inputs [isMobile]="true"></rom-login-inputs>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <rom-initial-tree></rom-initial-tree>
+    </div>
+  </div>
+</ng-template>
+
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal"
+        data-target="#userExistUnverifiedModal" #userExistUnverifiedTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal"
+        data-target="#userExistVerifiedModal" #userExistVerifiedTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal"
+        data-target="#errorMsgModal" #errorMsgTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal"
+        data-target="#errorMsgModal" #tokenInvalidTrigger></button>
+
+<!-- Modals -->
+<div class="modal fade" id="userExistUnverifiedModal" role="dialog" aria-labelledby="userExistUnverifiedModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>Email address is already registered. <br>Please check your email to verify your
+            account.</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resendVerification()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="userExistVerifiedModal" role="dialog" aria-labelledby="userExistVerifiedModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>Email address is already registered and verified.<br>Please use your email address
+            to login.</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="errorMsgModal" role="dialog" aria-labelledby="errorMsgModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>{{ errorMsg }}</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<rom-box-header romBgHeader="rom-bg-caribbean-green" romTitle="SPEAKER DETAILS / COMPANY OVERVIEW">
+  <div class="rom-box-header-body">
+    <div class="row">
+      <div class="col-md-3">
+        <img *ngIf="!speaker.presenterMugshotURL != null" class="img-thumbnail" src="{{speaker.presenterMugshotURL}}" />
+      </div>
+      <div class="col-md-9">
+        <div class="col-md-12" style="margin-top: 15px;">
+          <span class="h3" style="color: #bbbbbb; font-weight: normal;">{{speaker.presenterName}}</span>
+
+      	  <button class="btn btn-secondary pull-right" (click)="back()">< Back</button>
+          <hr style="border: 1px solid #776e7f;margin-top: 15px;margin-bottom: 5px;">
+          <p class="text-justify">{{speaker.presenterBio}}</p>
+        </div>
+      </div>
+      <div class="col p-3  mt-4 mr-4 ml-4 mb-2">
+        <h5>{{speaker?.companyName}}</h5>
+        <hr/>
+        <div class="row pl-3 pr-3 pt-0">
+          <p>{{speaker?.companyOverview}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</rom-box-header>
+

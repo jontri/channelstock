@@ -1,0 +1,81 @@
+.center_div{
+  margin: 0 auto;
+  width:100%
+}
+
+.bgcolor-purple{
+  background-color: #2f3280;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.text-centered{
+  text-align: center;
+}
+
+#username:focus {
+  background-color: #eeee6c;
+}
+
+.btn-checkin {
+  transition: 0.2s all linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: red;
+  position: absolute;
+  right: 0.5vw;
+  margin-top: -5vw;
+  z-index: 200;
+  i {
+    font-size: 1.5vw;
+  }
+
+  &:hover {
+    background: rgb(189, 1, 1);
+    transition: 0.2s all linear;
+  }
+}
+
+label{
+  color:#fff;
+}
+
+
+.h4{
+  font-size:5vw;
+}
+
+.vl {
+  border-left: 3px solid rgb(167, 165, 165);
+  height: 30px;
+
+}
+
+.col{
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.border-between > [class*='col-']:before{
+  background: #e3e3e3;
+  bottom: 0;
+  content: " ";
+  left: 0;
+
+  position: absolute;
+  width: .15vw;
+  top: 0;
+}
+.border-between > [class*='col-']:before {
+  left: 0;
+
+}
+
+.border-between > [class*='col-']:first-child:before{
+  display: none;
+}

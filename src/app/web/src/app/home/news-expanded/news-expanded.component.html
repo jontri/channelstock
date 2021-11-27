@@ -1,0 +1,27 @@
+<rom-box-header romBgHeader="rom-bg-blaze-orange" romTitle="NEWS Channel">
+  <div class="container-fluid rom-box-header-body x-small">
+    <button class="btn btn-expand" (click)="expand(false)">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="container-fluid">
+      <div class="row table-wrapper">
+        <div class="col">
+          <table class="table table-hover rome-table">
+            <thead class="text-left">
+              <tr>
+                <th scope="col" class="w-100">Title</th>
+                <th scope="col" class="text-nowrap">Date/Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let n of news" (click)="doRedirect(n.id)">
+                <td class="w-100">{{ n.title }}</td>
+                <td class="text-nowrap">{{ n.date | date : "MMM dd/hh:mm aa" }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</rom-box-header>

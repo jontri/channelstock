@@ -1,0 +1,102 @@
+<div class="d-block">
+  <div class="mt-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h4>Certification</h4>
+      <!-- <button type="button" class="btn btn-primary mb-0" (click)="save()">Save</button> -->
+    </div>
+    <hr/>
+    <div class="col">
+      <div class="text-center p-2 mb-2"><h5>IMPORTANT MESSAGE</h5><p><b>If errors are found in this report after publication, it will only be released for corrective editing the SAME DAY as publication. By certifying this report, you are stating that you have fully reviewed the text and it is free of errors.</b></p></div>
+      <form>
+        <div class="form-group">
+          <label class="main-label">1. Indepedence of View</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="independenceCheck" value="1">
+            <label class="form-check-label" for="independenceCheck">
+              All views expressed in this report accurately reflect my personal views about the subject securities or issuers.
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="main-label">2. Receipt of Compensation</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="compensationRadio" id="compensationRadio1" value="1">
+            <label class="form-check-label" for="compensationRadio1">
+              No part of my compensation was, is, or will be directly or indirectly related to any specific recommendations or views expressed in the public appearance and/or research report.
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="compensationRadio" id="compensationRadio2" value="2">
+            <label class="form-check-label" for="compensationRadio2">
+              All part of my compensation was, is, or will be directly or indirectly relate to the specific recommendations or views in the research report.
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="main-label">3. Ownership and Material Conflicts of Interest</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="receiptRadio" id="conflictRadio1" value="1">
+            <label class="form-check-label" for="conflictRadio1">
+              Neither I nor anybody in my household has a financial interest in the securities of the subject company or any other company mentioned in this report
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="conflictRadio" id="conflictRadio2" value="2">
+            <label class="form-check-label" for="conflictRadio2">
+             I nor anybody in my household has a financial interest in the securities of the subject company or any other company mentioned in this report. This interest has been documented and made known to the Research Supervisor and Compliance
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="main-label">4. Client Transactions</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="clientTransactionsCheck" value="1">
+            <label class="form-check-label" for="clientTransactionsCheck">
+              One or more of my clients has traded/will trade the security mentioned in this report in a manner contrary to my opinion within 30 days of this report's publication.
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="main-label">5. Speciality Report Date</label>
+          <div class="input-group inner-addon left-addon">
+            <input placeholder="yyyy-mm-dd"
+              ngbDatepicker #d="ngbDatepicker" class="form-control" #date>
+
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-secondary"
+                (click)="d.toggle()">
+                <fa name="calendar"></fa>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="main-label">6. Is this a time-sensitive, actionable item?</label>
+          <select class="form-control" (change)="listenForCertificationType($event.target.value)">
+            <option value="yes">Yes</option>
+            <option value="no" selected>No</option>
+          </select>
+        </div>
+        <div *ngIf="timeSensitive === 'yes'">
+          <div class="form-group">
+            <label class="main-label">7. What is the catalyst?</label>
+            <textarea class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="main-label">8. Keypoints?</label>
+            <textarea class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="main-label">9. Summarize action to take now:</label>
+            <textarea class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

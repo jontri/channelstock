@@ -1,0 +1,154 @@
+<div class="d-block">
+  <div class="d-flex justify-content-between mt-3 align-items-center">
+    <h4>Publication: Key Stats</h4>
+    <button type="button" class="btn btn-primary mb-0" (click)="save()">Save</button>
+  </div>
+  <hr/>
+  <div class="container-fluid">
+    <div class="row">
+      <form class="col-6">
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Industry:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Stock Exchange:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Date:</label>
+          <div class="col-6">
+            <div class="input-group inner-addon left-addon">
+              <input placeholder="yyyy-mm-dd"
+                ngbDatepicker #d="ngbDatepicker" class="form-control" #date>
+
+              <div class="input-group-append">
+                <button type="button" class="btn btn-outline-secondary"
+                  (click)="d.toggle()">
+                  <fa name="calendar"></fa>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Time:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Open:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Last:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Change:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">High:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Low:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Volume:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">52-Week Low:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">52-Week High:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+      </form>
+      <form class="col-6">
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Average 90-Day Volume:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Market Cap:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Shares Outstanding:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Float:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Institutional Holdings (%):</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">50-Day Moving Average:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">200-Day Moving Average:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Fiscal Year Ends:</label>
+          <div class="col-6">
+            <input type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-6 col-form-label">Last Update:</label>
+          <div class="col-6">
+            <input type="number" class="form-control" readonly>
+          </div>
+        </div>
+        <div class="form-group row justify-content-center align-items-center">
+          <button class="btn btn-primary">Fetch Key Stats</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

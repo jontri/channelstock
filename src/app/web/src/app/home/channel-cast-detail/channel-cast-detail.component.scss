@@ -1,0 +1,29 @@
+@import "~styles/mixins";
+
+.frame-container {
+  &.not-expanded {
+    width: 58vw;
+    height: 27vw;
+    overflow: hidden;
+  }
+
+  &.expanded {
+    padding: 2.5%;
+  }
+
+  iframe {
+    &.not-expanded {
+      width: 174vw;
+      height: 81vw;
+      @include transform(scale(0.333));
+      @include transform-origin(0 0);
+    }
+  }
+
+  &, iframe {
+    &.expanded {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

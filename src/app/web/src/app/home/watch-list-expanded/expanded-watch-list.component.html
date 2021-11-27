@@ -1,0 +1,142 @@
+<rom-box-header romBgHeader="rom-bg-blue-marguerite">
+  <div class="rom-box-header-title d-flex align-items-center">
+    <div class="flex-fill">My Favorites</div>
+    <button class="btn btn-expand" (click)="expand(false)"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="rom-box-header-body d-flex flex-column">
+
+    <div *ngIf="!loginService.isAuthenticated">
+      <rom-my-favorites-blocker></rom-my-favorites-blocker>
+    </div>
+
+    <div *ngIf="loginService.isAuthenticated" class="companies-header container-fluid">
+      <div class="row xl-small">
+        <div class="col-2 px-2 f1 text-center sortable" (click)="setOrder('company.companyName')">
+          Company
+          <span *ngIf="order === 'company.companyName'">
+              <i class="fa" class="fa" [ngClass]="{'fa-chevron-up': reverse, 'fa-chevron-down': !reverse}"></i>
+            </span>
+        </div>
+        <div class="px-2 f1 text-center sortable" (click)="setOrder('company.symbol')">
+          Ticker
+          <span *ngIf="order === 'company.symbol'">
+              <i class="fa" class="fa" [ngClass]="{'fa-chevron-up': reverse, 'fa-chevron-down': !reverse}"></i>
+            </span>
+        </div>
+        <div class="px2 f1 text-center sortable" (click)="setOrder('company.currentPrice')">
+          Price
+          <span *ngIf="order === 'company.currentPrice'">
+              <i class="fa" class="fa" [ngClass]="{'fa-chevron-up': reverse, 'fa-chevron-down': !reverse}"></i>
+            </span>
+        </div>
+        <div class="col f1 text-center sortable" (click)="setOrder('company.previousPrice')">
+          Previous
+          <span *ngIf="order === 'company.previousPrice'">
+              <i class="fa" class="fa" [ngClass]="{'fa-chevron-up': reverse, 'fa-chevron-down': !reverse}"></i>
+            </span>
+        </div>
+        <div class="px-2 f1 text-center sortable" (click)="setOrder('company.marketCap')">
+          Mkt Cap
+          <span *ngIf="order === 'company.marketCap'">
+              <i class="fa" class="fa" [ngClass]="{'fa-chevron-up': reverse, 'fa-chevron-down': !reverse}"></i>
+            </span>
+        </div>
+        <div class="px-2 f1 text-center sortable" (click)="setOrder('company.averageVolume')">
+          Volume
+          <span *ngIf="order === 'company.averageVolume'">
+              <i class="fa" class="fa" [ngClass]="{'fa-chevron-up': reverse, 'fa-chevron-down': !reverse}"></i>
+            </span>
+        </div>
+        <div class="col f1 text-center sortable" (click)="setOrder('company.yearRange.lower')">
+          52wk Range
+          <span *ngIf="order === 'company.yearRange.lower'">
+              <i class="fa" class="fa" [ngClass]="{'fa-chevron-up': reverse, 'fa-chevron-down': !reverse}"></i>
+            </span>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <ng-container *ngFor="let item of list; index as idx;">
+        <div class="row" id="divCompanyItem"
+             romContextMenu [data]="menuItems[idx]" [component]="dropdownMenuComponent" [events]="['contextmenu']"
+             (click)="goToCompany(item?.company?.symbol)">
+          <div class="col companies-body">
+            <div class="row">
+              <div class="col-2 rom-bg-minsk text-white align-middle pb-1 px-2 pt-1 text-truncate"
+                   title="{{item?.company?.companyName}}">
+                {{item?.company?.companyName}}
+              </div>
+              <div class="rom-bg-minsk text-white align-middle pb-1 px-2 pt-1 text-truncate"
+                   title="{{item?.company?.symbol}} ({{item?.company?.exchange}})">
+                {{item?.company?.symbol}} ({{item?.company?.exchange}})
+              </div>
+              <div class="rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{item?.company?.currentPrice |  shortNum:true}}</div>
+              <div class="col rom-bg-aquamarine text-center pb-1 px-2 pt-1 text-truncate"
+                   *ngIf="item?.company?.currentPrice; let currPrice">
+                    <span *ngIf="item?.company?.previousPrice; let prevPrice">
+                      {{prevPrice | currency}} ({{currPrice > prevPrice ? '+' : ''}}{{utilsService.changePercent(currPrice, prevPrice) | percent:'0.2-2'}})
+                    </span>
+              </div>
+              <div class="rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{item?.company?.marketCap | shortNum:true}}
+              </div>
+              <div class="rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{item?.company?.averageVolume | shortNum}}
+              </div>
+              <div class="col rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{item?.company?.yearRange?.lower |  shortNum:true}} - {{item?.company?.yearRange?.upper |  shortNum:true}}
+              </div>
+            </div>
+            <div class="row x-small align-items-center mb-4" *ngIf="item?.company?.participationLevel === 'Discover'">
+              <div class="col-md-3 px-2">
+                <img class="discover-logo" src="assets/images/discover-logo.png"/>
+              </div>
+              <div class="col-auto float-left px-2 ml-5">Fundamental Analysis</div>
+              <rom-rating class="col-auto px-0 mr-1" [value]="item?.company?.fundamentalAnalysis"></rom-rating>
+              <div class="col-auto px-2">
+                Rating
+                <span class="rating py-2">{{ getCompanyRating(item?.company?.rating) }} &nbsp;</span>
+              </div>
+
+
+              <div class="col px-2 pull-right">
+                <button class="btn btn-market-data rom-bg-gigas pull-right" (click)="goToMarketData(item?.company, 2)">
+                  <i class="rom-text-silver-chalice rome-ico-play"></i> ADVANCED MARKET DATA
+                </button>
+              </div>
+            </div>
+
+            <div class="row x-small align-items-center mb-4" *ngIf="item?.company?.participationLevel === 'Probe'">
+              <div class="col px-2">
+                <img class="probe-logo" src="assets/images/probe-logo.png"/>
+              </div>
+              <div class="col-auto px-2">
+                <button class="btn btn-market-data rom-bg-gigas" (click)="goToMarketData(item?.company, 2)"><i
+                  class="rom-text-silver-chalice rome-ico-play"></i> ADVANCED MARKET DATA
+                </button>
+              </div>
+            </div>
+            <div class="row x-small align-items-center mb-4" *ngIf="item?.company?.participationLevel === 'Explore'">
+              <div class="col px-2">
+                <img class="explore-logo" src="assets/images/explore-logo.png"/>
+              </div>
+              <div class="col-auto px-2 py-1 ">
+                <button class="btn btn-market-data rom-bg-gigas" (click)="goToMarketData(item?.company, 2)"><i
+                  class="rom-text-silver-chalice rome-ico-play"></i> ADVANCED MARKET DATA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+
+    <!-- Modal Trigger -->
+    <button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal"
+            data-target="#marketDataModal"
+            #marketDataTrigger></button>
+
+    <!-- Market Data Modal -->
+    <rom-advanced-market-data-modal [company]="company"  [marketDataTrigger]="marketDataTrigger"></rom-advanced-market-data-modal>
+
+
+  </div>
+</rom-box-header>

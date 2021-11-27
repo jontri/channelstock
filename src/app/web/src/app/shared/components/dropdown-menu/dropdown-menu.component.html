@@ -1,0 +1,5 @@
+<div class="dropdown-menu p-0 rounded-0 shadow-sm">
+  <a href="javascript:void(0)" class="dropdown-item small" *ngFor="let item of data" (click)="item.action($event)" title="{{item.label}}">
+    {{item.label}}
+  </a>
+</div>

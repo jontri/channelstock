@@ -1,0 +1,15 @@
+<div class="d-flex">
+  <ng-container *ngIf="loginService.isAuthenticated; else checkLoggedIn">
+    <div *ngFor="let percent of checks">
+      <img class="d-block img-chk" src="assets/images/chekmark{{percent === 100 ? '-' : '-gray-'}}logo.png" />
+      <div *ngIf="percent > 0 && percent < 100" style.width="{{percent + '%'}}">
+        <img class="d-block img-chk" src="assets/images/chekmark-logo.png" style.width="{{ (10000 / percent) + '%' }}" />
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #checkLoggedIn>
+    <a class="d-block" href="javascript:void()" (click)="login($event)">
+      <img class="img-fluid" src="assets/images/chekmark-login.png" />
+    </a>
+  </ng-template>
+</div>

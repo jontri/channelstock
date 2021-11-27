@@ -1,0 +1,19 @@
+@import "~styles/variables";
+
+:host {
+  & > div.d-flex:last-child {
+    height: .9rem;
+
+    & > div {
+      & > a {
+        text-decoration: underline;
+        color: $rom-minsk;
+        text-transform: uppercase;
+      }
+
+      &:not(:last-child) {
+        border-right: 1px solid;
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<rom-box-header romBgHeader="rom-bg-japanese-laurel" romTitle="Movers">
+  <div class="rom-box-header-body">
+    <rom-tabs [items]="items" tabId="moversTab" color="tab-japanese-laurel" class="rom-box-header-body">
+      <ng-template let-content="content">
+        <button class="btn btn-expand" (click)="expand(false)">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="container-fluid">
+          <div class="row table-wrapper" *ngIf="content.name === 'actives'; else defaultTable">
+            <div class="col">
+              <table class="table table-hover rome-table">
+                <thead class="text-left">
+                  <tr>
+                    <th scope="col" class="w-75">Stock Name</th>
+                    <th scope="col" class="text-nowrap w-25">Ticker</th>
+                    <th scope="col" class="text-nowrap w-25">Share Vol</th>
+                    <th scope="col" class="text-nowrap w-25">Avg Vol</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of content">
+                    <td class="w-75" title="{{item.stockName}}">{{item.stockName}}</td>
+                    <td class="w-25">{{item.ticker }}</td>
+                    <td class="w-25">{{item.shareVolume | shortNum}}</td>
+                    <td class="w-25">{{item.avgShareVolume | shortNum}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #defaultTable>
+          <div class="row table-wrapper">
+            <div class="col">
+              <table class="table table-hover rome-table">
+                <thead class="text-left">
+                  <tr>
+                    <th scope="col" class="w-75">Stock Name</th>
+                    <th scope="col" class="text-nowrap w-25">Ticker</th>
+                    <th scope="col" class="text-nowrap w-25">Price $</th>
+                    <th scope="col" class="text-nowrap w-25">+/- %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of content">
+                    <td class="w-75" title="{{item.stockName}}">{{item.stockName}}</td>
+                    <td class="w-25">{{item.ticker }}</td>
+                    <td class="w-25">{{item.newPrice | number:'1.2-2' | romAbs}}</td>
+                    <td class="w-25" [ngClass]="{'text-success': item.percentMove > 0, 'text-danger': item.percentMove < 0}">{{item.percentMove | number:'1.2-2' | romAbs}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+    </rom-tabs>
+  </div>
+</rom-box-header>

@@ -1,0 +1,202 @@
+@import "~styles/variables";
+
+.overview-header {
+  border-bottom: .12vw solid $rom-kimberly;
+}
+
+.left-col {
+  width: 31%;
+}
+
+.actions {
+  a {
+    text-decoration: underline;
+  }
+}
+
+.get-report {
+  width: 35%;
+  margin-right: 2vw;
+  position: relative;
+}
+
+*{
+    transition: 0.3s all linear;
+}
+
+.text-purple {
+    color: #2f3280 !important;
+}
+
+.btn-reserve {
+    background-color: #9bc604;
+    border: 0;
+    margin-bottom: 15px;
+    background-repeat: no-repeat;
+    background-position-y: 5px;
+    padding-left: 20px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-top: -5px;
+}
+
+.btn-reserve:hover {
+    background-color: #6e8b04;
+    cursor: pointer;
+}
+
+.btn-feedback {
+    background-color: #db6a02;
+    border: 0;
+    margin-bottom: 15px;
+    margin-top: -5px;
+    padding: 5px 15px !important;
+    cursor: pointer;
+}
+
+.btn-feedback:hover {
+    background-color: #9c4d04;
+}
+
+.btn-remove-watchlist {
+    padding-left: 20px !important;
+    background-repeat: no-repeat;
+    background-position-y: 12px;
+    position: absolute;
+    border: 0;
+    // top: 55px;
+    right: 50px;
+    margin-top: -20px;
+    background-position-x: 2px;
+    cursor: pointer;
+}
+
+.btn-remove-watchlist:hover {
+    background-color: #ba4f07 !important;
+}
+
+.btn-add-watchlist {
+    padding-left: 20px !important;
+    background-repeat: no-repeat;
+    background-position-y: 12px;
+    position: absolute;
+    border: 0;
+    // top: 55px;
+    right: 50px;
+    margin-top: -20px;
+    background-position-x: 2px;
+    cursor: pointer;
+}
+
+.btn-add-watchlist:hover {
+    background-color: #2e2e82 !important;
+}
+
+.cursor-point{
+  cursor: pointer;
+}
+
+
+.address-content {
+
+    margin-left: 5px;
+
+    p {
+        padding: 0;
+        margin: 0;
+        line-height: 1.5;
+        color: #bbbbbb;
+    }
+
+    a {
+        color: #bbbbbb;
+    }
+}
+
+.past-report-history {
+    li {
+        margin-bottom: 15px;
+        background-image: url('/assets/images/arrow-right.png');
+        background-repeat: no-repeat;
+        padding-left: 25px;
+        background-position-y: 5px;
+
+        a {
+            color: #000;
+        }
+    }
+}
+
+.company-value-summary tr {
+
+    td {
+        border-top: none;
+        margin: 0;
+
+        hr {
+            border:none;
+            border-top:3px dotted #fff;
+            color:#fff;
+            background-color:#fff;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .value {
+        text-align: center;
+    }
+}
+
+.company-img {
+    cursor: pointer;
+}
+
+agm-map {
+    height: 300px;
+}
+
+.pdf-backdrop {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: #48484863;
+    height: 95vw;
+    overflow: auto;
+}
+
+.pdf-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1vw;
+
+    .btn-danger {
+        position: fixed;
+        top: 3vw;
+        right: 15vw;
+        z-index: 1001;
+    }
+}
+.home-image-wrap{
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.rating {
+  font-weight: bold;
+  font-size: 15px;
+  color: #28a745;
+  margin-top:5px;
+}
+
+.left-col {
+  width: 31%;
+
+  rom-rating {
+    width: 68%;
+  }
+}

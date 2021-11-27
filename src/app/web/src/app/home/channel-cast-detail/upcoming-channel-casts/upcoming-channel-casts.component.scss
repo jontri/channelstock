@@ -1,0 +1,18 @@
+.item-div {
+    margin-bottom: 10px; 
+
+    .item-count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #dbdbdb;
+    }
+
+    .item-content {
+        h4 {
+            margin-top: 1vw;
+            margin-bottom: 0;
+        }
+        background: #ececec;
+    }
+}

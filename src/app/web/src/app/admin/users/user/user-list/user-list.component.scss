@@ -1,0 +1,39 @@
+.content-body {
+    margin-bottom: 10px;
+
+    div {
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.content-header {
+    border-bottom: 1px solid #ccc;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    div {
+        font-weight: bold;
+    }
+}
+
+.content-div {
+    margin-top: 20px;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#loading {
+    text-align: center;
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

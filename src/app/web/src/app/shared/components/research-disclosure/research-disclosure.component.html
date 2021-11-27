@@ -1,0 +1,461 @@
+<div class="container-fluid rom-box-header-body p-0" id="research-disclaimer">
+
+    <div>
+
+      <p>
+        <b>GENERAL DISCLAIMERS</b><br/>
+            All statements or opinions contained herein that include the words "we", "us", or "our" are solely the responsibility of Noble Capital Markets, Inc. ("Noble") and do not necessarily reflect statements or opinions expressed by any person or party affiliated with the company mentioned in this report. Any opinions expressed herein are subject to change without notice. All information provided herein is based on public and non-public information believed to be accurate and reliable, but is not necessarily complete and cannot be guaranteed. No judgment is hereby expressed or should be implied as to the suitability of any security described herein for any specific investor or any specific investment portfolio. The decision to undertake any investment regarding the security mentioned herein should be made by each reader of this publication based on its own appraisal of the implications and risks of such decision.
+      </p>
+      <p>
+          <span>
+              This publication is intended for information purposes only and shall not constitute an offer to buy/sell or the solicitation of an offer to buy/sell any security mentioned in this report, nor shall there be any sale of the security herein in any state or domicile in which said offer, solicitation or sale would be unlawful prior to registration or qualification under the securities laws of any such state or domicile. This publication and all information, comments, statements or opinions contained or expressed herein are applicable only as of the date of this publication and subject to change without prior notice. Past performance is not indicative of future results.
+          </span>
+      </p>
+      <p>
+          <span>
+              Noble accepts no liability for loss arising from the use of the material in this report, except that this exclusion of liability does not apply to the extent that such liability arises under specific statutes or regulations applicable to Noble. This report is not to be relied upon as a substitute for the exercising of independent judgement. Noble may have published, and may in the future publish, other research reports that are inconsistent with, and reach different conclusions from, the information provided in this report. Noble is under no obligation to bring to the attention of any recipient of this report, any past or future reports. Investors should only consider this report as single factor in making an investment decision.
+          </span>
+      </p>
+    </div>
+
+    <div id="disclosures">
+      <p>
+        <b>IMPORTANT DISCLOSURES</b><br/>
+        <span>
+          This publication is confidential for the information of the addressee only and may not be reproduced in whole or in part, copies circulated, or discussed to another party, without the written consent of Noble Capital Markets, Inc. ("Noble"). Noble seeks to update its research as appropriate, but may be unable to do so based upon various regulatory constraints. Research reports are not published at regular intervals; publication times and dates are based upon the analyst's judgement. Noble professionals including traders, salespeople and investment bankers may provide written or oral market commentary, or discuss trading strategies to Noble clients and the Noble proprietary trading desk that reflect opinions that are contrary to the opinions expressed in this research report.
+        </span>
+      </p>
+      <p>
+        <span>
+          The majority of companies that Noble follows are emerging growth companies. Securities in these companies involve a higher degree of risk and more volatility than the securities of more established companies. The securities discussed in Noble research reports may not be suitable for some investors and as such, investors must take extra care and make their own determination of the appropriateness of an investment based upon risk tolerance, investment objectives and financial status.
+        </span>
+      </p>
+
+
+      <p>
+        <b>Company Specific Disclosures </b><br/>
+        <span *ngIf="company?.participationLevel == 'Discover'">
+                The following disclosures relate to relationships between Noble and the company (the "Company") covered by the Noble Research Division and referred to in this research report.
+        </span>
+        <span *ngIf="company?.participationLevel == 'Probe'" >
+                The  following  disclosures  relate  to  relationships  between  Noble  and  the  company  (the  "Company")  covered  by  the  Noble  Research  Division  and  referred to in this Probe report.
+        </span>
+      </p>
+      <p>
+        <span [innerHTML]="report?.companyResearchDisclosure">
+        </span>
+      </p>
+      <p>
+        <span [innerHTML]="report?.marketMakingDisclaimer">
+        </span>
+      </p>
+
+      <ng-container  *ngIf="company?.participationLevel == 'Discover'">
+
+        <p>
+          <b>FUNDAMENTAL ASSESSMENT</b><br/>
+              <span>
+                      The fundamental assessment rating system is designed to provide insights on the company's fundamentals both on a macro level, which incorporates a company's market opportunity and competitive position, and on a micro/company specific level. The micro/company specific attributes include operating &amp; financial leverage, and corporate governance/management. The number of check marks that a company receives is designed to provide a quick reference and easy determination of the company's fundamentals based upon the following five attributes of the company (weighting reflects the importance of each attribute in the overall scoring of company’s fundamental analysis):
+              </span>
+        </p>
+
+        <div style="align:center; margin-bottom:1vw">
+          <table cellspacing="0" cellpadding="0" border="1" width="98%">
+            <tbody>
+            <tr>
+              <td valign="middle" align="center">
+                <b>Attribute</b>
+              </td>
+              <td valign="middle" align="center">
+                <b>Weighting</b>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center">
+                Corporate Governance/Management
+              </td>
+              <td valign="middle" align="center">
+                20%
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center">
+                Market Opportunity Analysis
+              </td>
+              <td valign="middle" align="center">
+                20%
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center">
+                Competitive Position
+              </td>
+              <td valign="middle" align="center">
+                20%
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center">
+                Operating Leverage
+              </td>
+              <td valign="middle" align="center">
+                20%
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center">
+                Financial Leverage
+              </td>
+              <td valign="middle" align="center">
+                20%
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          <span>
+                  For each attribute, the analysts score the company from a low of zero to a high of ten based upon the analysis described below. The final rating and resulting check marks is a result of dividing the overall score (out of 100%) by ten.
+          </span>
+        </p>
+
+        <div style="align:center; margin-bottom:1vw">
+          <table cellspacing="0" cellpadding="0" border="1" width="98%">
+            <tbody>
+            <tr>
+              <td valign="middle" align="center">
+
+                          <span>
+                              <b>Rating</b>
+                          </span>
+
+              </td>
+              <td valign="middle" align="center">
+                <span><b>Score</b></span>
+              </td>
+              <td valign="middle" align="center">
+                <span><b>Checks</b></span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Superior</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>9.1 to 10</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>Five Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Superior</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>8.1 to 9</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>Four &amp; A Half Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Above Average</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>7.1 to 8</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>Four Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Above Average</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>6.1 to 7</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>Three &amp; A Half Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Average</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>5.1 to 6</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>Three Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Average</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>4 to 5</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>Two &amp; A Half Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Below Average</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>3 to 3.9</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>Two Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Below Average</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>2 to 2.9</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>One &amp; A Half Checks</span>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                <span>Low Quality</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>0 to 1.9</span>
+              </td>
+              <td valign="middle" align="center">
+                <span>One Check</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          <span>
+              While these are the attributes currently used for the analyst's fundamental analysis, the attributes and weighting may be reviewed, updated with additional attributes, and/or changed in the future based on discussions with the analysts and recommendations from the Director of Research.
+          </span>
+        </p>
+        <p>
+          <span>
+                  Following is the description of each attribute in the fundamental analysis.
+          </span>
+        </p>
+
+        <p>
+          <b>Corporate Governance/Management</b><br/>
+            <span>
+                    We believe that a review of corporate governance and assessment of the senior management are important tools to determine investment merit. Good corporate governance aligns management with the interests of stakeholders. As such, analysts are to rank the company on the basis of good corporate governance principles that may include rules and procedures, board composition and staggered term limits, rights and responsibilities, corporate objectives, monitoring of actions and policies, and accountability. In addition, analysts will assess issues with controlling shareholders and whether decisions have been made in the past that were in the interests of all shareholders. In addition, management will be assessed based on industry experience, expertise, and/or track record.
+            </span>
+        </p>
+        <p>
+            <span>
+                    High ranking example: Board and management that is aligned with the interests of shareholders with incentives based on stock price appreciation and with an experienced management team known for exceptional shareholder returns.<br>
+                    Low ranking example: Concentrated ownership without independent directors that do not necessarily align with all shareholders' interests.
+            </span>
+        </p>
+
+        <p>
+          <b>The Market Opportunity Analysis</b><br>
+          <span>
+                  In this review, the analyst assesses the company's macro environment as a measure of understanding the industry. Factors considered include the size and growth potential of the industry under various economic conditions, the emerging demands in the market, technological benefits/disruptions, competition, geographical opportunities, and customer demands/needs, and an assessment of supply and distribution channels. In addition, the analyst will review legal and regulatory trends, as well as potential shifts in consumer or social behavior and natural environment changes.
+          </span>
+        </p>
+        <p>
+          <span>
+                  High rank example: A company in an industry that is growing revenues well above GDP rates (which are on average 2% plus) and/or may have unmet or under-served needs in a rapidly growing market opportunity. <br>
+                  Low rank example: A mature industry that is in secular decline and likely to grow below GDP rates.
+          </span>
+        </p>
+
+        <p>
+          <b>Competitive Position</b><br/>
+            The evaluation of the company's competitive position is another macro environment attribute designed to measure
+            the relevance, market share, position and value proposition, and sustainable differentiations of the company and
+            its products/services within its industry. Ease of entry into the industry and the ability of other well-funded
+            players to potentially enter the market would be determined. As such, the assessment would consider the
+            company's
+            strengths and advantages of its products/services against weaknesses and limitations. This may include the
+            company's current brand awareness, pricing and cost structure, current market strategies and geographic
+            penetration that may affect demand for its products/services. In addition, the company's competitors would be
+            evaluated.
+        </p>
+        <p>
+            <span>
+                    High rank example: An analyst would consider the company's product to be superior to its competitors and that should allow the company to gain market share.<br>
+                    Low rank example: A company with a "me-too" product that does not have any significant technology advantages in an industry that has low barriers to entry.
+            </span>
+        </p>
+
+        <p>
+          <b>Operating Leverage</b><br>
+          <span>
+                  Simplistically, operating leverage is determined by the operating income relative to changes in revenue. The analyst will calculate the impact on sensitivity on gross margins and variable costs to determine operating leverage. The analyst will take into account the ability of the company to cut fixed and variable costs in a challenged revenue environment and technological changes that may impact operating expenses. In addition, the analyst is to assess corporate strategies that include capital investment, which may be required for sustainable revenue growth, marketing expenses, and the company's ability to attract and retain talent and/or employees. The analyst should focus on the revenue opportunity and determine the price elasticity of demand for the company's products or services. In other words, the analyst is to rank the company based on improved operating margins going forward on an absolute and relative basis.
+          </span>
+        </p>
+        <p>
+          <span>
+                  High rank example: A company that has improving margins for the foreseeable future, with significant price elasticity. <br>
+                  Low rank example: A company that is in a challenged revenue environment with a fixed cost structure and limited ability to cut costs, indicating an outlook for declining margins.
+          </span>
+        </p>
+
+        <p>
+          <b>Financial Leverage</b><br/>
+          <span>
+                  A strict definition of financial leverage is total debt divided by total shareholder's equity. Financial leverage analysis is to determine the company's ability to improve shareholder value by means of utilizing its balance sheet to grow organically or to acquire assets. Analysts may look at the company's debt to cash flow leverage ratio, interest coverage ratios, or debt to equity ratios. In addition, the interest rate environment and the outlook for interest rates are a factor in determining the company's ability to manage financial leverage. Finally, the analyst is expected to determine the ability to service the debt given the industry and/or company profile, such as cyclicality, barriers to entry, history of bankruptcy, consistency in revenue and profit growth, or predictability in sales and profits and large cash reserves. The analyst is expected to take into account capital intensity of the company and the anticipated of capital allocation decisions.
+          </span>
+        </p>
+        <p>
+          <span>
+            High rank example: A company with predictable and growing revenue and cash flow with modest debt levels. This may indicate that the company could improve shareholder value through growth investments, including acquisitions, using debt financing. <br>
+                Low rank example: A company in a cyclical industry in a late stage economic cycle that has above average debt leverage and is in an industry that has a history of financial challenges, including bankruptcies.
+          </span>
+        </p>
+      </ng-container>
+
+      <p style="color:gray">
+
+      </p>
+      <p>
+          <b>ANALYST CREDENTIALS, PROFESSIONAL DESIGNATIONS, AND EXPERIENCE</b><br/>
+          <span [innerHTML]="report?.analystCredentials">
+          </span>
+      </p>
+
+
+      <p *ngIf="company?.participationLevel == 'Discover'">
+        <b>CONTINUING COVERAGE</b><br/>
+            <span>
+                    Unless  otherwise  noted  through  the  dropping  of  coverage  or  change  in  analyst,  the  analyst  who  wrote  this  research  report  will  provide  continuing  coverage  on  this  company  through  the  publishing  of  research  available  through  Noble  Capital  Market's  distribution  lists,  website,  third  party  distribution partners, and through Noble’s affiliated website, channelchek.com.
+            </span>
+      </p>
+
+
+      <p>
+        <b>WARNING</b><br>
+            <span>
+                    This report is intended to provide general securities advice, and does not purport to make any recommendation that any securities transaction is appropriate for any recipient particular investment objectives, financial situation or particular needs. Prior to making any investment decision, recipients should assess, or seek advice from their advisors, on whether any relevant part of this report is appropriate to their individual circumstances. If a recipient was referred to Noble Capital Markets, Inc. by an investment advisor, that advisor may receive a benefit in respect of transactions effected on the recipients behalf, details of which will be available on request in regard to a transaction that involves a personalized securities recommendation. Additional risks associated with the security mentioned in this report that might impede achievement of the target can be found in its initial report issued by Noble Capital Markets, Inc.. This report may not be reproduced, distributed or published for any purpose unless authorized by Noble Capital Markets, Inc..
+            </span>
+      </p>
+
+      <p>
+        <b>
+          RESEARCH ANALYST CERTIFICATION
+        </b>
+      </p>
+      <p>
+        <b>Independence Of View</b><br>
+        <span [innerHTML]="report?.certifyIndependenceOfView">
+        </span>
+      </p>
+      <p>
+        <b>Receipt of Compensation</b><br>
+        <span [innerHTML]="report?.certifyReceiptOfCompensation">
+        </span>
+      </p>
+      <p>
+        <b>Ownership and Material Conflicts of Interest</b><br>
+        <span [innerHTML]="report?.certifyOwnership">
+        </span>
+      </p>
+
+      <ng-container *ngIf="company?.participationLevel == 'Discover'">
+        <div style="align:center; margin-bottom:1vw">
+          <table cellspacing="0" cellpadding="0" border="1" width="98%">
+            <tbody>
+            <tr>
+              <td valign="middle" align="center">
+                <b>NOBLE RATINGS DEFINITIONS</b>
+              </td>
+              <td valign="middle" align="center">
+                <b>% OF SECURITIES COVERED</b>
+              </td>
+              <td valign="middle" align="center">
+                <b>% IB CLIENTS</b>
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                Outperform: potential return is &gt;15% above the current price
+              </td>
+              <td valign="middle" align="center">
+                {{report?.outperformPercentOfSecurities}}%
+              </td>
+              <td valign="middle" align="center">
+                {{report?.outperformPercentOfIBClients}}%
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                Market Perform: potential return is -15% to 15% of the current price
+              </td>
+              <td valign="middle" align="center">
+                {{report?.marketPerformPercentOfSecurities}}%
+              </td>
+              <td valign="middle" align="center">
+                {{report?.marketPerformPercentOfIBClients}}%
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle">
+                Underperform: potential return is &gt;15% below the current price
+              </td>
+              <td valign="middle" align="center">
+                {{report?.underperformPercentOfSecurities}}%
+              </td>
+              <td valign="middle" align="center">
+                {{report?.underperformPercentOfIBClients}}%
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+            <b>NOTE: </b>On August 20, 2018, Noble Capital Markets, Inc. changed the terminology of its ratings (as shown
+            above)
+            from "Buy" to "Outperform", from "Hold" to "Market Perform" and from "Sell" to "Underperform." The percentage
+            relationships, as compared to current price (definitions), have remained the same.
+        </p>
+      </ng-container>
+
+      <p>
+          Additional information is available upon request. Any recipient of this report that wishes further information
+          regarding the subject company or the disclosure information mentioned herein, should contact Noble Capital
+          Markets,
+          Inc. by mail or phone.
+      </p>
+
+      <p>
+        <span>
+          Noble Capital Markets, Inc.<br>
+          225 NE Mizner Blvd. Suite 150<br>
+          Boca Raton, FL 33432 <br>
+          561-994-1191 <br>
+        </span>
+      </p>
+      <p>
+        <span>
+          Noble Capital Markets, Inc. is a FINRA (Financial Industry Regulatory Authority) registered broker/dealer. <br>
+          Noble Capital Markets, Inc. is an MSRB (Municipal Securities Rulemaking Board) registered broker/dealer. <br>
+          Member - SIPC (Securities Investor Protection Corporation) <br>
+        </span>
+      </p>
+      <p>
+        <span>
+          Report ID: {{report?.legacyId}}
+        </span>
+      </p>
+    </div>
+  </div>

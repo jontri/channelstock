@@ -1,0 +1,57 @@
+.content-body {
+    margin-bottom: 10px;
+
+    div {
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.content-header {
+    border-bottom: 1px solid #ccc;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    div {
+        font-weight: bold;
+    }
+}
+
+.content-div {
+    margin-top: 20px;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#loading {
+    background: white;
+    text-align: center;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    opacity: 0.8;
+    /* flex-direction: column; */
+    z-index: 600;
+    padding-top: 15vw;
+}
+
+::ng-deep { 
+    .rom-pagination {
+        li {
+            font-size: 1.3vw;
+        }
+        i {
+            color: black;
+        }
+    }
+}

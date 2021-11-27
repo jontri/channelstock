@@ -1,0 +1,85 @@
+.rom-box-header-body {
+  background-image: url('/assets/images/tree.png');
+  background-repeat: no-repeat;
+  background-size: 29vw;
+  background-position: 25.5vw 1vw;
+
+  &.mobile-tree {
+    background-image: url('/assets/images/mobile_apple.png');
+    background-size: 60vw;
+    background-position: top;
+    padding-top: 40vw;
+
+    // h1 {
+    //   background-color: rgba(255,255,255,0.7);
+    //   box-shadow: 0 0vw 5vw 1vw #fff;
+    // }
+  }
+
+  .row {
+    &:last-child h1 {
+      letter-spacing: .15rem;
+      font-size: 350%;
+    }
+
+    &:first-child > div {
+      height: 33.5vw;
+      position: relative;
+
+      & > div:last-child {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+    &:first-child > div, &:nth-child(2) > div {
+      width: 25vw;
+    }
+
+    &:nth-child(2) {
+      margin-top: .35vw;
+    }
+  }
+}
+.intro-text{
+  width:30vw;
+  position:absolute;
+  z-index:99;
+  bottom:16.5vw;
+  right:1vw;
+  font-size: 1.2vw;
+  text-align:center;
+  color: #6f6f7e;
+}
+
+.notice-text {
+  margin-top: 5vw;
+  margin-left: 20vw;
+}
+
+.rom-box-header-body-mobile {
+  background-image: url('/assets/images/mobile_apple.png');
+  background-repeat: no-repeat;
+  background-size: 23vw;
+  background-position: 15vw 15vw;
+
+  .row {
+    &:last-child h1 {
+      letter-spacing: .15rem;
+      font-size: 350%;
+    }
+
+    &:first-child > div {
+      height: 33.5vw;
+    }
+
+    &:first-child > div, &:nth-child(2) > div {
+      width: 25vw;
+    }
+
+    &:nth-child(2) {
+      margin-top: .35vw;
+    }
+  }
+}

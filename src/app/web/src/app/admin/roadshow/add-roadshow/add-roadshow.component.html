@@ -1,0 +1,269 @@
+
+<div class="header-div">
+	<h5 class="content-header">Add Road Show</h5>
+	<button class="btn btn-secondary" (click)="back()">< Back</button>
+</div>
+<hr> 
+
+<form *ngIf="companies" class="form-horizontal"
+	[formGroup]="roadShowForm">
+	<div class="row mb-2">
+		<!-- Issuer -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="issuer">Issuer:</label>
+
+				<div class="input-group inner-addon left-addon">
+
+					<select class="form-control" formControlName="company">
+						<option value="" selected disabled>Select Issuer</option>
+						<option *ngFor="let c of companies" [ngValue]="c.id">{{
+							c.companyName }}</option>
+					</select>
+
+				</div>
+				<!-- END .input-group -->
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col-md-12 -->
+
+		<!-- Date -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="date">Date:</label>
+
+				<div class="input-group inner-addon left-addon">
+					<input formControlName="date" placeholder="yyyy-mm-dd"
+						ngbDatepicker #d="ngbDatepicker" class="form-control" #date>
+
+					<div class="input-group-append">
+						<button type="button" class="btn btn-outline-secondary"
+							(click)="d.toggle()">
+							<fa name="calendar"></fa>
+						</button>
+					</div>
+					<!-- END .input-group-append -->
+				</div>
+				<!-- END .input-group -->
+
+				<div
+					*ngIf="roadShowForm.controls['date'].errors && !roadShowForm.controls['date'].pristine"
+					class="error-message">
+
+					<div class="error"
+						[hidden]="!roadShowForm.controls['time'].errors.required">Date
+						is required.</div>
+				</div>
+				<!--End .error-message-->
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col -->
+
+
+		<!-- Time -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="time">Time:</label>
+				<div class="input-group inner-addon left-addon">
+					<ngb-timepicker formControlName="time" #time></ngb-timepicker>
+				</div>
+				<!-- END .input-group -->
+
+				<div
+					*ngIf="roadShowForm.controls['time'].errors && !roadShowForm.controls['time'].pristine"
+					class="error-message">
+
+					<div class="error"
+						[hidden]="!roadShowForm.controls['time'].errors.required">Time
+						is required</div>
+				</div>
+				<!--End .error-message-->
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col -->
+
+	</div>
+	<!-- END .row -->
+
+
+	<div class="row">
+		<!-- Location -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="location">Location:</label>
+
+				<div class="input-group inner-addon left-addon">
+
+					<select class="form-control" formControlName="location"
+						(change)="updateSeats($event.target.value)">
+						<option value="" selected disabled>Select location</option>
+						<option *ngFor="let r of roadShowLocations; let i = index;"
+							[value]="r.id">{{ r.locationName }}</option>
+					</select>
+					<!--(change)="updateSeats(location.value)"-->
+				</div>
+				<!-- END .input-group -->
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col -->
+
+
+		<!-- Seats -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="seats">Number of seats available:</label> <input
+					type="text" class="form-control" formControlName="seats">
+
+				<div
+					*ngIf="roadShowForm.controls['seats'].errors && !roadShowForm.controls['overview'].pristine"
+					class="error-message">
+
+					<div class="error"
+						[hidden]="!roadShowForm.controls['seats'].errors.required">Number
+						of seats are required.</div>
+				</div>
+				<!--End .error-message-->
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col -->
+
+
+		<!-- Registrations -->
+		<div class="col-md-12">
+			<div class="form-group">
+
+				<label for="overview">Overview:</label>
+
+				<textarea type="text" class="form-control" rows="3"
+					placeholder="Enter Overview" formControlName="overview"></textarea>
+
+				<div
+					*ngIf="roadShowForm.controls['overview'].errors && !roadShowForm.controls['overview'].pristine"
+					class="error-message">
+
+					<div class="error"
+						[hidden]="!roadShowForm.controls['overview'].errors.required">Registrations
+						are required.</div>
+
+				</div>
+				<!--End .error-message-->
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col-md-12 -->
+
+	</div>
+	<!-- END .row -->
+
+	<div class="row">
+		<!-- Menu -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="menu">Menu:</label> 
+				<input type="file" id="menu"
+					class="form-control"  accept="application/pdf" (change)="readMenuUrl($event)">
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col -->
+	</div>
+
+	<div class="row">
+		
+
+		<!-- Speaker Name -->
+		<div class="col">
+			<label for="seats">Presenter Name:</label> 
+				<input type="text" class="form-control" formControlName="presenterName">
+
+			<!-- <div
+				*ngIf="roadShowForm.controls['presenterName'].errors && !roadShowForm.controls['presenterName'].pristine"
+				class="error-message">
+
+				<div class="error"
+					[hidden]="!roadShowForm.controls['presenterName'].errors.required">Presenter name is required.</div>
+				</div> -->
+		</div>
+		<!-- END .col -->
+	</div>
+	<!-- END .row -->
+	<div class="row">
+		<!-- Presenter Bio -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="menu">Presenter Bio:</label> 
+				<textarea type="text" id="presenterBio" rows="3"
+					class="form-control" formControlName="presenterBio"></textarea>
+
+			</div>
+			<!-- END .form-group -->
+		</div>
+		<!-- END .col -->
+
+	</div>
+	<!-- END .row -->
+	
+	<div class="row">
+	<!-- Speaker Mugshot -->
+		<div class="col">
+			<div class="form-group">
+
+				<label for="speaker_photo">Speaker Photo:</label> 
+				<input type="file"
+					id="speaker_photo" class="form-control" accept="image/*"
+					(change)="readUrl($event)">
+					
+				<!-- <img [src]="speaker_photo" alt="Invalid URL" class="w-100 h-auto mb-4 mt-4" > -->	
+				<br/>
+				<!-- <label for="img_url">Speaker Photo URL:</label>
+				<input
+				type="text" class="form-control" placeholder="Image URL" [readonly]="isNewlyUploaded" [(ngModel)]="speaker_photo" formControlName="presenterMugshotURL"> -->
+
+			</div>
+			<!-- END .form-group -->
+			<!-- <div *ngIf="speaker_photo" class="image-div">
+				<button class="btn btn-danger btn-remove" (click)="removePhoto()">Remove</button>
+				
+			</div> -->
+		</div>
+		<!-- END .col -->
+
+	</div>
+	<!-- END .row -->
+
+	<div class="col-md-12">
+		<div class="form-group">
+			<button class="btn btn-primary" [disabled]="!roadShowForm.valid"
+				(click)="onSubmit(roadShowForm.value)">Submit</button>
+		</div>
+		<!-- END .form-control -->
+	</div>
+	<br />
+	<!-- END .col-->
+
+</form>
+
+
+<!-- Loading Cog -->
+<div *ngIf="!companies" id="loading">
+	<fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

@@ -1,0 +1,11 @@
+<div [@dialog] *ngIf="visible" class="disclosure-container" [ngClass]="{'mobile-disclosure': responsiveService.isMobile, 'excess-disclosure': isExcess}" >
+  <div class="dialog d-flex flex-column">
+    <div class="flex-fill d-flex flex-column">
+      <div class="flex-fill content disclosure-scroll" style="overflow-y: scroll;" [innerHtml]="htmldata"></div>
+    </div>
+
+    <div class="text-center mt-2">
+      <button *ngIf="visible" class="btn btn-secondary" (click)="close()" aria-label="Close">Close</button>
+    </div>
+  </div>
+</div>

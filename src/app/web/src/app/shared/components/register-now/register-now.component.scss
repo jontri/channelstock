@@ -1,0 +1,15 @@
+.modal-dialog {
+  width: 20vw;
+
+  .modal-content {
+    height: 34vw;
+
+    .modal-body {
+      .fa.fa-close {
+        top: .5vw;
+        right: .5vw;
+        cursor: pointer;
+      }
+    }
+  }
+}

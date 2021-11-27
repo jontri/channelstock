@@ -1,0 +1,190 @@
+<div class="header-div">
+    <h5 class="content-header">Edit Road Show Location</h5>
+    <button class="btn btn-secondary" (click)="back()">< Back</button>
+</div>
+<hr>
+
+<form *ngIf="location" class="form-horizontal" [formGroup]="locationForm">
+
+   <!-- Timezone -->
+   <div class="col-md-12">
+    <div class="form-group">
+
+        <label for="name">Timezone:</label>
+
+        <div class="container">
+
+        <p>
+          <select (change)="selectTimezoneHandler($event)" id="timezonesList" class="js-Selector" formControlName="timezoneControl">
+
+            <option *ngFor="let timezone of timezones" [value]=timezone.value>{{timezone.name}}</option>
+
+          </select>
+        </p>
+
+
+      </div>
+
+      </div>
+    </div>
+
+    <!--Name-->
+    <div class="col-md-12">
+        <div class="form-group">
+
+            <label for="name">Name:</label>
+
+            <input type="text" class="form-control" placeholder="Name for Roadshow Location" formControlName="locationName">
+
+            <div *ngIf="locationForm.controls['locationName'].errors && !locationForm.controls['locationName'].pristine" class="error-message">
+
+                <div class="error" [hidden]="!locationForm.controls['locationName'].errors.required">Name is required.</div>
+            </div>
+            <!--End .error-message-->
+
+        </div><!-- END .form-group -->
+    </div>
+    <!--End .col-md-12 -->
+
+    <!--Adress-->
+    <div class="col-md-12">
+
+        <label for="name">Address:</label>
+
+        <div class="form-group form-control" id="address">
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Street" formControlName="address1">
+
+                    <div *ngIf="locationForm.controls['address1'].errors && !locationForm.controls['address1'].pristine" class="error-message">
+
+                        <div class="error" [hidden]="!locationForm.controls['address1'].errors.required">Street is required.</div>
+                    </div>
+                    <!--End .error-message-->
+                </div>
+                <!--End .col-md-4-->
+
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="City" formControlName="cityOrLocality">
+
+                    <div *ngIf="locationForm.controls['cityOrLocality'].errors && !locationForm.controls['cityOrLocality'].pristine" class="error-message">
+
+                        <div class="error" [hidden]="!locationForm.controls['cityOrLocality'].errors.required">City is required.</div>
+
+                    </div>
+                    <!--End .error-message-->
+
+                </div>
+                <!--End .col-md-4-->
+
+                <div class="col-md-2">
+                  <input  type="text" class="form-control" placeholder="State" formControlName="stateUS">
+
+                  <div *ngIf="locationForm.controls['stateUS'].errors && !locationForm.controls['stateUS'].pristine" class="error-message">
+
+                    <div class="error" [hidden]="!locationForm.controls['stateUS'].errors.required">State is required.</div>
+                </div>
+
+              </div>
+              <!--End .col-md-4-->
+
+                <div class="col-md-2">
+
+                    <input type="text" class="form-control" placeholder="Zip" formControlName="postalCode">
+
+                    <div *ngIf="locationForm.controls['postalCode'].errors && !locationForm.controls['postalCode'].pristine" class="error-message">
+
+                        <div class="error" [hidden]="!locationForm.controls['postalCode'].errors.required">Zipcode is required.</div>
+                        <div class="error" [hidden]="!locationForm.controls['postalCode'].errors.pattern">Invalid input</div>
+
+                    </div>
+                    <!--End .error-message-->
+
+                </div>
+                <!--End .col-md-4-->
+
+            </div><!-- End .row -->
+        </div>
+        <!--End .form-group-->
+    </div>
+    <!--End .col-md-12-->
+    <br>
+    <!--Contact Person -->
+    <div class="col-md-12">
+        <div class="form-group">
+
+            <label for="name">Contact Person:</label>
+
+            <input type="text" class="form-control" placeholder="Contact Person" formControlName="contact">
+
+            <div *ngIf="locationForm.controls['contact'].errors && !locationForm.controls['contact'].pristine" class="error-message">
+
+                <div class="error" [hidden]="!locationForm.controls['contact'].errors.required">Contact Person is required.</div>
+
+            </div>
+            <!--End .error-message-->
+
+        </div><!-- END .form-group -->
+    </div>
+    <!--End .col-md-12 -->
+
+    <!--Email -->
+    <div class="col-md-12">
+        <div class="form-group">
+
+            <label for="email">Email Address:</label>
+
+            <input type="text" class="form-control" placeholder="Enter Contact Person Email Address" formControlName="email">
+
+            <div *ngIf="locationForm.controls['email'].errors && !locationForm.controls['email'].pristine" class="error-message">
+
+                <div class="error" [hidden]="!locationForm.controls['contactEmail'].errors.required">Email is required.</div>
+
+            </div>
+            <!--End .error-message-->
+
+        </div><!-- END .form-group -->
+    </div>
+    <!--End .col-md-12 -->
+
+    <!--Seats -->
+    <div class="col-md-12">
+        <div class="form-group">
+
+            <label for="maxSeats">Number of Seats:</label>
+
+            <input type="text" class="form-control" placeholder="Enter Number of Seats Available" formControlName="maxSeats" required>
+
+            <div *ngIf="locationForm.controls['maxSeats'].errors && !locationForm.controls['maxSeats'].pristine" class="error-message">
+
+                <div class="error" [hidden]="!locationForm.controls['maxSeats'].errors.required">Seats are required.</div>
+                <div class="error" [hidden]="!locationForm.controls['maxSeats'].errors.pattern">Invalid input</div>
+
+            </div>
+            <!--End .error-message-->
+
+        </div><!-- END .form-group -->
+    </div>
+    <!--End .col-md-12 -->
+
+    <!-- Location Image -->
+    <div class="col-md-12">
+        <div class="form-group">
+
+          <label for="locationImage">Location Image: <a target="_blank" href="/{{location.locationImageUrl}}"> {{location.locationImageUrl}}</a></label>
+            <input type="file" id="locationImage" class="form-control" formControlName="locationImage" accept="image/*" (change)="readUrl($event)">
+            <br/>
+
+        </div><!-- END .form-group -->
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <button class="btn btn-primary" [disabled]="locationForm.invalid" (click)="onSubmit(locationForm.value)">Submit</button>
+        </div><!-- END .form-control -->
+    </div><br/>
+    <!-- END .col-md-12 -->
+
+</form>

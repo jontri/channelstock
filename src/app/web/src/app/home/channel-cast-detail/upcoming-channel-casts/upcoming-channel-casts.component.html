@@ -1,0 +1,32 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="">
+  <div class="rom-box-header-title d-flex align-items-center">
+    <div class="flex-fill">
+      <span class="rom-box-header-title"  id="topPage" #topPage>
+        {{company?.companyName}} - ChannelCASTs
+      </span>
+    </div>
+    <all-share class="row mr-0 py-0 my-0"></all-share>
+  </div>
+  <div class="rom-box-header-body">
+    <div class="col-md-12 mt-2 mb-2 d-flex justify-content-end">
+      <button class="btn btn-secondary" (click)="back()">< Back</button>
+    </div>
+    <div *ngIf="upcomingChannelCasts.length === 0" class="no-data-div">
+      <p>No ChannelCASTs</p>
+    </div>
+    <div *ngIf="upcomingChannelCasts.length !== 0">
+      <div class="item-div row" *ngFor="let item of upcomingChannelCasts; let i = index">
+        <div class="col-2 item-count">
+          <h5>{{i+1}}</h5>
+        </div>
+        <div class="col-10 item-content">
+          <p class="category-text">{{item.category}}</p>
+          <hr>
+          <h4><a routerLink="/channelcast-detail/{{item.id}}">{{item.subject}}</a></h4>
+          <p>{{item.companyName}}</p>
+          <p>{{item.date | date: 'long'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</rom-box-header>

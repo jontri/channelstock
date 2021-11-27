@@ -1,0 +1,19 @@
+
+.home-image {
+  display: table;
+  height: 10vw;
+  margin-bottom: 1vw !important;
+  width: 100%;
+}
+.home-image-wrap {
+  display: flex;
+  height: 10vw;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

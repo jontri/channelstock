@@ -1,0 +1,60 @@
+@import "~styles/variables";
+@import "~styles/mixins";
+
+form {
+  position: relative;
+
+  .input-group {
+    @include box-shadow(-1px -1px 1px 0px $rom-rolling-stone);
+
+    .form-control {
+      padding-top: 0;
+      padding-bottom: .1vw;
+
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &::-webkit-input-placeholder, &::placeholder {
+        color: white;
+      }
+
+      &:-moz-placeholder, &::-moz-placeholder {
+        color: white;
+        opacity: 1;
+      }
+
+      &:-ms-input-placeholder, &::-ms-input-placeholder {
+        color: white;
+      }
+
+    }
+
+    .cc-icon {
+      background-color: #E8ECEF;
+      color: #8d8989;
+
+      &::-webkit-input-placeholder, &::placeholder {
+        color: #8d8989;
+      }
+
+      &:-moz-placeholder, &::-moz-placeholder {
+        color: #8d8989;
+        opacity: 1;
+      }
+
+      &:-ms-input-placeholder, &::-ms-input-placeholder {
+        color: #8d8989;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      font-size: 1.1vw;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}

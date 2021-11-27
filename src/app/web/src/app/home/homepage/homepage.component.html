@@ -1,0 +1,22 @@
+<rom-box-header romBgHeader="rom-bg-bondi-blue" romTitle="Channelchek-in">
+
+    <!-- Need to show this image at the top. -->
+    <div class="container-fluid rom-box-header-body mb-2">
+      <div class="d-flex flex-column">
+        <img src="/assets/images/realSimple.png" class="img-fluid"/>
+      </div>
+    </div>
+
+    <div class="container-fluid rom-box-header-body">
+      <div class="d-flex flex-column">
+        <rom-news class="mt-1" [hideExpandClose]="true" [isHome]="true"></rom-news>
+      </div>
+    </div>
+
+    <div class="container-fluid rom-box-header-body mb-3">
+        <div class="cont">
+          <rom-qmod type="marketsummary" [isOpen]="true" [noCompany]="true"></rom-qmod>
+        </div>
+    </div>
+
+</rom-box-header>

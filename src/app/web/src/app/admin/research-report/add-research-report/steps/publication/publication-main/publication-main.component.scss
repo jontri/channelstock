@@ -1,0 +1,17 @@
+.btn-primary {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+        font-size: 1.5vw;
+        margin-right: 0.5vw;
+    }
+}
+
+.btn-twitter {
+    i {
+        font-size: 1.7vw;
+    }
+}

@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "mixins";
+@import "background";
+@import "font";
+@import "icons";
+@import "tables";
+@import "forms";
+@import "overlay";
+@import "scrollbar";
+/* Bootstrap needs to be imported last to overwrite bootstrap variables */
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
+@import "~@angular/cdk/overlay-prebuilt";
+@import "main";
+@import "mobile";
+
+.content-header {
+    margin-bottom: 20px;
+}
+.modal-sm {
+    max-width: 25vw !important;
+}
+.content-outlet {
+    :disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+    
+    form {
+        .btn-primary {
+            float: right;
+            margin-bottom: 20px;
+        }
+
+        .image-div {
+            button {
+                float: right;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.no-data-div {
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ngb-tp-input-container[_ngcontent-c11] {
+    width: 72px !important;
+    height: 15px !important;
+}
+.chevron[_ngcontent-c11]::before { display: none !important; }
+
+.ngb-tp { margin-top: 4px; }

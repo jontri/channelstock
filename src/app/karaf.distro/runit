@@ -1,0 +1,3 @@
+cd target/assembly
+bin/karaf debug
+

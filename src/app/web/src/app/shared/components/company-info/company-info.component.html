@@ -1,0 +1,122 @@
+
+<div class="d-flex flex-column" id="companyInfo" #companyInfo >
+  <div class="d-flex mt-3">
+    <div class="col-3 d-flex flex-column left-col pl-3">
+      <rom-company-img [company]="company"></rom-company-img>
+      <ng-container *ngIf="company">
+        <rom-ticker-info-table [company]="company"></rom-ticker-info-table>
+        <ng-container *ngIf="company?.participationLevel === 'Discover'">
+          <span  #topSection class="mt-1 ml-2">
+            FUNDAMENTALS
+            <a href="#fundamental" class="rom-text-gray-suit xm-small" (click)="showDialog=!showDialog"><u>DETAIL</u></a>
+          </span>
+          <rom-rating class="ml-2" [value]="company?.fundamentalAnalysis"></rom-rating>
+          <span class="mt-2 ml-2">
+            RATING
+            <a href="#ratings" class="rom-text-gray-suit xm-small" (click)="showDialog=!showDialog"><u>DETAIL</u></a>
+          </span>
+          <span class="rating pl-2" [ngClass]="{'xl-small': !loginService.isAuthenticated}">
+            {{ getCompanyRating(company?.rating) }}
+          </span>
+        </ng-container>
+        <div class="address-content rom-text-gray-suit small font-weight-bold mt-2">
+          <p>{{ company?.address?.address1 }}
+            <!--570 Granville Street-->
+          </p>
+          <p>{{ company?.address?.address2 }}
+            <!--Suite 900-->
+          </p>
+          <p>{{ company?.address?.cityOrLocality }}, {{ company?.address?.stateUS }} {{ company?.address?.postalCode }}
+            <!--Vancouver, BC V6C 3P1-->
+          </p>
+          <p>{{ company?.address?.country }}
+            <!--Canada-->
+          </p>
+          <p>{{ company?.telephone }}</p>
+          <p>
+            <a (click)="openDialog(company?.website)" target="_blank" class="rom-text-gray-suit" style="text-decoration: underline; cursor: pointer;">{{ company?.website }}</a>
+          </p>
+        </div>
+      </ng-container>
+    </div>
+
+
+    <div class="col-9 container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <h5 class="pb-3 rom-text-gray-suit overview-header">Overview</h5>
+        </div>
+        <ng-container [ngSwitch]="company?.isAddedToWatchList">
+          <div *ngSwitchCase="undefined"></div>
+
+          <ng-container *ngIf="company?.participationLevel=='Explore'">
+            <button *ngSwitchCase="false" class="btn btn-sm text-white p-2 rounded rom-bg-purple btn-add-watchlist-explore"
+              (click)="addItemToWatchList()"><i class="rome-ico-play"></i> Add to My Favorites</button>
+            <button *ngSwitchCase="true" class="btn btn-sm text-white p-2 rounded rom-bg-blaze-orange btn-remove-watchlist-explore"
+              (click)="removeItemFromWatchList()"><i class="rome-ico-play"></i> Remove from My Favorites</button>
+          </ng-container>
+
+          <ng-container *ngIf="!(company?.participationLevel=='Explore')">
+            <button *ngSwitchCase="false" class="btn btn-sm text-white p-2 rounded rom-bg-purple btn-add-watchlist"
+              (click)="addItemToWatchList()"><i class="rome-ico-play"></i> Add to My Favorites</button>
+            <button *ngSwitchCase="true" class="btn btn-sm text-white p-2 rounded rom-bg-blaze-orange btn-remove-watchlist"
+              (click)="removeItemFromWatchList()"><i class="rome-ico-play"></i> Remove from My Favorites</button>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <rom-expand-collapse [collapseHeight]="collapseHeight" [expandHeight]="expandHeight">
+                <p #companyProfile class="small font-weight-bold m-0">
+                  <span *ngIf="company?.alternateProfile; else originalProfile" >{{ company?.alternateProfile }}</span>
+                  <ng-template #originalProfile>
+                    <span>{{ company?.companyProfile }}</span>
+                  </ng-template>
+                </p>
+              </rom-expand-collapse>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" *ngIf="company?.participationLevel !== 'Explore'; else spacer">
+        <div class="col-md-12">
+          <span class="large rom-text-gray-suit">Research Reports</span>
+        </div>
+      </div>
+      <ng-template #spacer>
+        <div class="mt-3"></div>
+      </ng-template>
+      <div class="d-flex align-items-center" [ngSwitch]="company?.participationLevel">
+        <rom-recent-news [company]="company" class="d-flex flex-column w-50 mr-2 explore" *ngSwitchCase="'Explore'"></rom-recent-news>
+        <ng-container *ngSwitchDefault>
+          <div class="get-report align-self-start" *ngIf="latestReport;else noReport">
+            <img *ngIf="company?.participationLevel == 'Discover'" src="assets/images/get-research-report.png" class="img-fluid" (click)="gotoReport()" />
+            <img *ngIf="company?.participationLevel == 'Probe'" src="assets/images/get-profile-report.png" class="img-fluid" (click)="gotoReport()"/>
+          </div>
+
+          <ng-template #noReport>
+            <div>
+              There are no available Reports
+            </div>
+          </ng-template>
+
+          <div *ngIf="latestReport" class="mr-3">
+            <rom-research-report-ext [researchReports]="researchReports" [ticker]="company?.symbol"></rom-research-report-ext>
+          </div>
+        </ng-container>
+
+        <rom-company-links [companyId]="company?.id" [company]="company" [upcomingRoadShows]="upcomingRoadShows" [upcomingChannelCasts]="upcomingChannelCasts"></rom-company-links>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="company?.participationLevel === 'Explore'">
+    <div class="mx-0 mt-3  row related-companies-header py0 my0"></div>
+    <rom-company-list class="d-flex flex-column"></rom-company-list>
+  </div>
+</div>
+<rom-disclosure-popup [(visible)]="showDialog"></rom-disclosure-popup>

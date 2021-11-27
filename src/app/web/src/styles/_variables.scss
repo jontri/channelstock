@@ -1,0 +1,238 @@
+/* Colors 
+ * Prefixing with rom to prevent unintentinal overwrite of bootstrap variables
+ * http://chir.ag/projects/name-that-color
+ */
+
+$black: #000;
+$white: #fff;
+$rom-silver-chalice: #b2b2b2;
+$rom-silver: #c0c0c0;
+$rom-alto: #e0e0e0;
+$rom-rolling-stone: #72787e;
+$rom-minsk: #2e2e82;
+$rom-blue-marguerite: #6262c8;
+$rom-caribbean-green: #00cc85;
+$rom-japanese-laurel: #008000;
+$rom-aquamarine: #99ffcc;
+$rom-aquamarine-2: #56FFDF;
+$rom-pistachio: #99CC00;
+$rom-blaze-orange: #ff6600;
+$rom-cyan: #00ccff;
+$rom-dark-orchid: #4e3483;
+$rom-san-marino: #3b73af;
+$rom-dark-purple: #2f3280;
+$rom-purple: #6365c5;
+$rom-australian-mint: #f8ffc2;
+$rom-gray-suit: #b9b8c8;
+$rom-kimberly: #666698;
+$rom-mischka: #CDCCDE;
+$rom-venice-blue: #0b4a7d;
+$rom-lightning-yellow: #ffc31d;
+$rom-sea-buckthorn: #F79534;
+$rom-scampi: #5a579c;
+$rom-navy-blue: #010066;
+$rom-jordy-blue: #9ab0f7;
+$rom-gigas: #4646A5;
+$rom-bermuda-gray: #7493AF;
+$rom-bondi-blue: #0094B3;
+
+$rom-colors: (
+  silver-chalice: $rom-silver-chalice,
+  silver: $rom-silver,
+  alto: $rom-alto,
+  rolling-stone: $rom-rolling-stone,
+  minsk: $rom-minsk,
+  blue-marguerite: $rom-blue-marguerite,
+  caribbean-green: $rom-caribbean-green,
+  japanese-laurel: $rom-japanese-laurel,
+  aquamarine: $rom-aquamarine,
+  aquamarine-2: $rom-aquamarine-2,
+  pistachio: $rom-pistachio,
+  blaze-orange: $rom-blaze-orange,
+  cyan: $rom-cyan,
+  dark-orchid: $rom-dark-orchid,
+  san-marino: $rom-san-marino,
+  dark-purple: $rom-dark-purple,
+  purple: $rom-purple,
+  australian-mint: $rom-australian-mint,
+  gray-suit: $rom-gray-suit,
+  kimberly: $rom-kimberly,
+  mischka: $rom-mischka,
+  venice-blue: $rom-venice-blue,
+  lightning-yellow: $rom-lightning-yellow,
+  white: $white,
+  black: $black,
+  sea-buckthorn: $rom-sea-buckthorn,
+  scampi: $rom-scampi,
+  navy-blue: $rom-navy-blue,
+  jordy-blue: $rom-jordy-blue,
+  gigas: $rom-gigas,
+  bermuda-gray: $rom-bermuda-gray,
+  bondi-blue: $rom-bondi-blue
+);
+
+$rom-scrollbar-width: 10px;
+$rom-scrollbar-height: 10px;
+
+$spacer: 1vw;
+
+$paragraph-margin-bottom: 1vw;
+
+$border-radius:               .25vw;
+$border-radius-lg:            .3vw;
+$border-radius-sm:            .2vw;
+
+$box-shadow-sm:               0 .125vw .25vw rgba($black, .075);
+$box-shadow:                  0 .5vw 1vw rgba($black, .15);
+$box-shadow-lg:               0 1vw 3vw rgba($black, .175);
+
+$font-size-base: 1vw;
+
+$display1-size:               6vw;
+$display2-size:               5.5vw;
+$display3-size:               4.5vw;
+$display4-size:               3.5vw;
+
+$list-inline-padding:         .5vw;
+
+$table-cell-padding:          .75vw;
+$table-cell-padding-sm:       .3vw;
+
+$input-btn-padding-y:         .375vw;
+$input-btn-padding-x:         .75vw;
+$input-btn-focus-width:       .2vw;
+$input-btn-padding-y-sm:      .25vw;
+$input-btn-padding-x-sm:      .5vw;
+$input-btn-padding-y-lg:      .5vw;
+$input-btn-padding-x-lg:      1vw;
+
+$btn-block-spacing-y:         .5vw;
+
+$label-margin-bottom:                   .5vw;
+
+$form-text-margin-top:                  .25vw;
+
+$form-check-input-gutter:               1.25vw;
+$form-check-input-margin-y:             .3vw;
+$form-check-input-margin-x:             .25vw;
+
+$form-check-inline-margin-x:            .75vw;
+$form-check-inline-input-margin-x:      .3125vw;
+
+$form-group-margin-bottom:              1vw;
+
+$custom-control-gutter:                 1.5vw;
+$custom-control-spacer-x:               1vw;
+
+$custom-control-indicator-size:         1vw;
+$custom-control-indicator-box-shadow:   inset 0 .25vw .25vw rgba($black, .1);
+
+$custom-select-padding-y:           .375vw;
+$custom-select-padding-x:           .75vw;
+$custom-select-indicator-padding:   1vw;
+
+$custom-range-track-height:         .5vw;
+$custom-range-track-border-radius:  1vw;
+$custom-range-track-box-shadow:     inset 0 .25vw .25vw rgba($black, .1);
+
+$custom-range-thumb-width:            1vw;
+$custom-range-thumb-border-radius:    1vw;
+$custom-range-thumb-box-shadow:       0 .1vw .25vw rgba($black, .1);
+
+$dropdown-min-width:                10vw;
+$dropdown-padding-y:                .5vw;
+$dropdown-spacer:                   .125vw;
+$dropdown-box-shadow:               0 .5vw 1vw rgba($black, .175);
+$dropdown-item-padding-y:           .25vw;
+$dropdown-item-padding-x:           1.5vw;
+
+$nav-link-padding-y:                .5vw;
+$nav-link-padding-x:                1vw;
+$navbar-nav-link-padding-x:         .5vw;
+$navbar-toggler-padding-y:          .25vw;
+$navbar-toggler-padding-x:          .75vw;
+
+$pagination-padding-y:              .5vw;
+$pagination-padding-x:              .75vw;
+$pagination-padding-y-sm:           .25vw;
+$pagination-padding-x-sm:           .5vw;
+$pagination-padding-y-lg:           .75vw;
+$pagination-padding-x-lg:           1.5vw;
+
+$jumbotron-padding:                 2vw;
+
+$card-spacer-y:                     .75vw;
+$card-spacer-x:                     1.25vw;
+$card-img-overlay-padding:          1.25vw;
+$card-columns-gap:                  1.25vw;
+
+$tooltip-padding-y:                 .25vw;
+$tooltip-padding-x:                 .5vw;
+$tooltip-arrow-width:               .8vw;
+$tooltip-arrow-height:              .4vw;
+
+$popover-box-shadow:                0 .25vw .5vw rgba($black, .2);
+$popover-header-padding-y:          .5vw;
+$popover-header-padding-x:          .75vw;
+$popover-arrow-width:               1vw;
+$popover-arrow-height:              .5vw;
+$badge-padding-y:                   .25vw;
+$badge-padding-x:                   .4vw;
+
+$badge-pill-padding-x:              .6vw;
+$badge-pill-border-radius:          10vw;
+
+$modal-inner-padding:               1vw;
+
+$modal-dialog-margin:               .5vw;
+$modal-dialog-margin-y-sm-up:       1.75vw;
+$modal-content-box-shadow-xs:       0 .25vw .5vw rgba($black, .5);
+$modal-content-box-shadow-sm-up:    0 .5vw 1vw rgba($black, .5);
+$modal-header-padding:              1vw;
+
+$alert-padding-y:                   .75vw;
+$alert-padding-x:                   1.25vw;
+$alert-margin-bottom:               1vw;
+
+$progress-height:                   1vw;
+$progress-box-shadow:               inset 0 .1vw .1vw rgba($black, .1);
+
+$list-group-item-padding-y:         .75vw;
+$list-group-item-padding-x:         1.25vw;
+
+$thumbnail-padding:                 .25vw;
+
+$breadcrumb-padding-y:              .75vw;
+$breadcrumb-padding-x:              1vw;
+$breadcrumb-item-padding:           .5vw;
+$breadcrumb-margin-bottom:          1vw;
+
+$grid-gutter-width: 2.08vw;
+
+// Bootstrap already has $small-font-size: 80% ;
+$xx-small-font-size: 50%;
+$xm-small-font-size: 60%;
+$x-small-font-size: 70%;
+$xl-small-font-size: 90%;
+$xs-large-font-size: 110%;
+$large-font-size: 120%;
+$xm-large-font-size: 130%;
+$x-large-font-size: 140%;
+$xx-large-font-size: 160%;
+
+// Letter spacing
+$large-letter-spacing: .05vw;
+
+// Overwrite font-awesome font path to point to correct path
+$fa-font-path: "~font-awesome/fonts";
+
+$rome-font-path: "~/../src/assets/fonts";
+
+$rome-ico-cog: "\e900";
+$rome-ico-check: "\e901";
+$rome-ico-question: "\e902";
+$rome-ico-check-9: "\e903";
+$rome-ico-play: "\ea1c";
+$rome-ico-pause: "\e904";
+
+$mobile-multiplier: 4;

@@ -1,0 +1,127 @@
+<h5 class="content-header">Edit User</h5>
+<!-- <hr> -->
+<div style="text-align:center">    
+  <div class="row center_div">
+    <div class="col-12 col-centered">
+    <span class="text-danger">{{ accountFailedMsg }}</span>
+    <p>&nbsp;</p>    
+    </div>
+  </div>
+</div>
+
+<form class="form-horizontal" (ngSubmit)="onSubmit()" [formGroup]="userForm">
+  <div class="row">
+    <div class="col">
+      <div class="form-group" [ngClass]="displayFieldCss('firstName')">
+        <label for="firstName" class="control-label required">First Name:</label>
+        <input type="text" class="form-control" #firstName formControlName="firstName" [(ngModel)]="userProfile.firstName" placeholder="Enter First Name" maxlength="100">
+        <rom-field-error-display [displayError]="isFieldValid('firstName')" errorMsg="First Name is Required"></rom-field-error-display>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group" [ngClass]="displayFieldCss('lastName')">
+        <label for="lastName" class="control-label required">Last Name:</label>
+        <input type="text" class="form-control" #lastName formControlName="lastName" [(ngModel)]="userProfile.lastName" placeholder="Enter Last Name" maxlength="100">
+        <rom-field-error-display [displayError]="isFieldValid('lastName')" errorMsg="Last Name is Required"></rom-field-error-display>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+        <div class="form-group" [ngClass]="displayFieldCss('role')">
+          <label for="role" class="control-label required">Role:</label>
+
+          <select [(ngModel)]="userProfile.role" class="form-control" formControlName="role">
+              <option [ngValue]="null" disabled>Choose your Role</option>
+              <option [ngValue]="ctr.code" *ngFor="let ctr of roles" >
+                  {{ ctr.description }}
+              </option>
+          </select>
+
+          <rom-field-error-display [displayError]="isFieldValid('role')" errorMsg="Role is Required"></rom-field-error-display>
+
+        </div>
+    </div>
+    <div class="col">
+      <div class="form-group" [ngClass]="displayFieldCss('emailAddress')">
+          <label for="emailAddress" class="control-label required">Email Address:</label>
+          <input type="email" class="form-control" #emailAddress [(ngModel)]="userProfile.emailAddress" placeholder="Enter Email Address" formControlName="emailAddress" readonly>
+          <rom-field-error-display [displayError]="isFieldValid('emailAddress')" errorMsg="Email Address is Required / Email Address Invalid format"></rom-field-error-display>
+        </div>
+    </div>    
+  </div>    
+
+  <div class="form-group" [ngClass]="displayFieldCss('address1')">
+    <label for="address1" class="control-label required">Address Line 1:</label>
+    <input type="text" class="form-control" #address1 [(ngModel)]="userProfile.address1" placeholder="Enter Address Line 1" formControlName="address1" maxlength="200">
+    <rom-field-error-display [displayError]="isFieldValid('address1')" errorMsg="Address1 is Required"></rom-field-error-display>
+  </div>
+
+  <div class="form-group">
+    <label for="address2" class="control-label required">Address Line 2:</label>
+    <input type="text" class="form-control" #address2 [(ngModel)]="userProfile.address2" placeholder="Enter Address Line 2" formControlName="address2" maxlength="200">
+  </div>
+
+  <div class="row">
+    <div class="col">  
+        <div class="form-group" [ngClass]="displayFieldCss('city')">
+          <label for="city" class="control-label required">City:</label>
+          <input type="text" class="form-control" #city [(ngModel)]="userProfile.city" placeholder="Enter City Name" formControlName="city" maxlength="100">
+          <rom-field-error-display [displayError]="isFieldValid('city')" errorMsg="City is Required"></rom-field-error-display>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group" [ngClass]="displayFieldCss('zipCode')">
+            <label for="zipCode" class="control-label required">Zip Code:</label>
+            <input type="text" class="form-control" #zipCode [(ngModel)]="userProfile.zipCode" placeholder="Enter Zip Code" formControlName="zipCode" maxlength="50" >
+            <rom-field-error-display [displayError]="isFieldValid('zipCode')" errorMsg="Zip Code is Required"></rom-field-error-display>
+        </div>      
+    </div>
+  </div>
+  <div class="row">
+      <div class="col">                
+        <div class="form-group" [ngClass]="displayFieldCss('state')">
+            <label for="state" class="control-label required">State:</label>
+            
+            <input type="text" class="form-control" #state [(ngModel)]="userProfile.state" placeholder="Enter State Name" formControlName="state" maxlength="200">
+            
+            <!--
+            <select class="form-control" #state [(ngModel)]="userProfile.state"  id="state" formControlName="state">
+              <option [ngValue]="N/A">Not Applicable</option>
+              <option [ngValue]="state.code" *ngFor="let state of usstates" >
+                    {{ state.description }}
+              </option>
+            </select>
+            -->
+            <rom-field-error-display [displayError]="isFieldValid('state')" errorMsg="State is Required"></rom-field-error-display>
+          </div>
+      </div>
+      <div class="col">
+        <div class="form-group" [ngClass]="displayFieldCss('country')">
+          <label for="country" class="control-label required">Country:</label>
+          <!--          
+          <input type="text" class="form-control" #country [(ngModel)]="userProfile.country" placeholder="Enter Country Name" formControlName="country" required>
+          -->
+          <select [(ngModel)]="userProfile.country" class="form-control" formControlName="country">
+              <option [ngValue]="null" disabled>Choose your Country</option>
+              <option [ngValue]="ctr.code" *ngFor="let ctr of countries" >
+                  {{ ctr.description }}
+              </option>
+          </select>
+
+          <rom-field-error-display [displayError]="isFieldValid('country')" errorMsg="Country is Required"></rom-field-error-display>
+
+        </div>
+    </div>
+  </div>
+  <div class="row">
+
+      <div class="col">&nbsp;</div>
+      <div class="col">&nbsp;</div>
+  </div>      
+  <div class="col-md-7 text-center"> 
+      <div>
+        <button type="submit" [disabled]="!userForm.dirty" class="btn btn-primary btn-space">Save</button>
+      </div>
+  </div>
+</form>

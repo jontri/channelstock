@@ -1,0 +1,51 @@
+<rom-box-header romBgHeader="rom-bg-blue-marguerite" romTitle="My Favorites">
+
+
+  <div *ngIf="loginService.isAuthenticated; else loggedOut" class="rom-box-header-body rome-table hover pointer">
+    <div class="container-fluid x-small rome-table-header">
+      <a class="btn btn-expand" [routerLink]="['/aux', {outlets: {expanded: 'watch-list'}}]"
+         [replaceUrl]="aux.hasEntered" data-toggle="tooltip" data-placement="top" title="Expand"><i
+        class="fa fa-expand"></i></a>
+
+      <div class="row px-3">
+        <div class="col-4">Stock Name</div>
+        <div class="col">Ticker</div>
+        <div class="col text-nowrap">Price $</div>
+        <div class="col">+/- %</div>
+      </div>
+    </div>
+    <div class="container-fluid x-small rome-table-body">
+      <div class="row px-3" id="divCompanyMyFavItem" *ngFor="let r of watchListService.watchList; index as index"
+           romContextMenu [events]="['contextmenu']" [data]="menuItems[index]" [component]="dropdownMenuComponent"
+           routerLink="/company/{{r.company.symbol}}">
+        <div class="col-4 text-truncate" title="{{ r.company.companyName }}">
+          {{ r.company.companyName }}
+        </div>
+        <div class="col">{{ r.company.symbol }}</div>
+        <div class="col">{{ r.company.currentPrice | romAbs | shortNum }}</div>
+        <div class="col" [ngClass]="{'text-success': r.percentChange > 0, 'text-danger': r.percentChange < 0}">{{
+          (r.company.currentPrice - r.company.previousPrice)/r.company.previousPrice * 100 |  romAbs | shortNum}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loggedOut>
+     <div class="">
+      <div class="container-fluid x-small rome-table-header">
+        <button *ngIf="!isExpanded" class="btn btn-expand"
+                [routerLink]="['/aux', {outlets: {expanded: 'watch-list'}}]" [replaceUrl]="aux.hasEntered"
+                data-toggle="tooltip" data-placement="top" title="Expand">
+          <i class="fa fa-expand"></i>
+        </button>
+        <button *ngIf="isExpanded" class="btn btn-expand" (click)="location.back()">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="container-fluid x-small rome-table-body px-2 py-2">
+        <img class="img-fluid px-3" src="assets/images/watch-list.png" [routerLink]="['/aux', {outlets: {expanded: 'watch-list'}}]"/>
+      </div>
+
+    </div>
+  </ng-template>
+
+</rom-box-header>

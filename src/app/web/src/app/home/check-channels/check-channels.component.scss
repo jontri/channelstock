@@ -1,0 +1,56 @@
+.menu {
+  color: #8d8989;
+
+  &:hover {
+    background-color: #EEE;
+    cursor: pointer;
+    color: #607d8b;
+    display: block;
+    text-decoration: none;
+  }
+
+  &.active {
+    color: black;
+    font-weight: bold;
+  }
+
+  &:focus {
+    color: black;
+    font-weight: bold;
+  }
+}
+
+.sub-menus {
+  overflow-y: hidden;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  top: 100;
+  left: 0;
+  right: 10;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.btn-expand {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  padding: 1px;
+  color: white;
+  background: transparent;
+}
+
+div.search{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  //padding: 5px;
+  font-size: 20px;
+}
+

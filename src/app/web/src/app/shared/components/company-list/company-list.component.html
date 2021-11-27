@@ -1,0 +1,107 @@
+<div class="companies-header container-fluid">
+  <div class="row xl-small">
+    <rom-sort class="col-2 px-2 f1 text-center" [isActive]="sortHash['COMPANYNAME'][0]" [isAsc]="sortHash['COMPANYNAME'][1]" (action)="sortCompanies('COMPANYNAME')">
+      Company
+    </rom-sort>
+    <rom-sort class="px-2 f1 text-center" [isActive]="sortHash['SYMBOL'][0]" [isAsc]="sortHash['SYMBOL'][1]" (action)="sortCompanies('SYMBOL')">
+      Ticker
+    </rom-sort>
+    <rom-sort class="px-2 f1 text-center" [isActive]="sortHash['CURRENTPRICE'][0]" [isAsc]="sortHash['CURRENTPRICE'][1]" (action)="sortCompanies('CURRENTPRICE')">
+      Price
+    </rom-sort>
+    <rom-sort class="col f1 text-center" [isActive]="sortHash['PREVIOUSPRICE'][0]" [isAsc]="sortHash['PREVIOUSPRICE'][1]" (action)="sortCompanies('PREVIOUSPRICE')">
+      Previous
+    </rom-sort>
+    <rom-sort class="px-2 f1 text-center" [isActive]="sortHash['MARKETCAP'][0]" [isAsc]="sortHash['MARKETCAP'][1]" (action)="sortCompanies('MARKETCAP')">
+      Mkt Cap
+    </rom-sort>
+    <rom-sort class="px-2 f1 text-center" [isActive]="sortHash['SHAREVOLUME'][0]" [isAsc]="sortHash['SHAREVOLUME'][1]" (action)="sortCompanies('SHAREVOLUME')">
+      Volume
+    </rom-sort>
+    <rom-sort class="col f1 text-center" [isActive]="sortHash['YEARRANGE'][0]" [isAsc]="sortHash['YEARRANGE'][1]" (action)="sortCompanies('YEARRANGE')">
+      52wk Range
+    </rom-sort>
+  </div>
+</div>
+<div class="container-fluid company-list" >
+  <ng-container *ngFor="let company of companyService.companies; index as idx;">
+    <div class="row" id="divCompanyItem" *ngIf="!participationLevel || company.participationLevel === participationLevel"
+      romContextMenu [data]="menuItems[idx]" [component]="dropdownMenuComponent" [events]="['contextmenu']" [romDisabled]="!loginService.isAuthenticated"
+      (click)="goToCompany(company, 1)">
+      <div class="col companies-body">
+        <div class="row">
+          <div class="col-2 rom-bg-minsk text-white align-middle pb-1 px-2 pt-1 text-truncate" title="{{company?.companyName}}">
+            {{company?.companyName}}
+          </div>
+          <div class="rom-bg-minsk text-white align-middle pb-1 px-2 pt-1 text-truncate" title="{{company?.symbol}} ({{company?.exchange}})">
+            {{company?.symbol}} ({{company?.exchange}})
+          </div>
+          <div class="rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{company?.currentPrice |  shortNum:true }}</div>
+          <div class="col rom-bg-aquamarine text-center pb-1 px-2 pt-1 text-truncate" *ngIf="company.currentPrice; let currPrice">
+            <span *ngIf="company.previousPrice; let prevPrice">
+              {{prevPrice | shortNum:true}} ({{currPrice > prevPrice ? '+' : ''}}{{utilsService.changePercent(currPrice, prevPrice) | percent:'0.2-2'}})
+            </span>
+          </div>
+          <div class="rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{company?.marketCap | shortNum:true}}</div>
+          <div class="rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{company?.shareVolume | shortNum}}</div>
+          <div class="col rom-bg-aquamarine text-center pb-1 px-2 pt-1">{{company?.yearRange?.lower | shortNum:true}} - {{company?.yearRange?.upper | shortNum:true}}</div>
+        </div>
+        <div class="row x-small align-items-center mb-4" *ngIf="company?.participationLevel === 'Discover'">
+          <div class="col-md-3 px-2">
+            <img class="discover-logo" src="assets/images/discover-logo.png" />
+          </div>
+          <div class="col-auto  px-2 ml-5">Fundamental Analysis </div>
+          <rom-rating class="col-auto px-0 mr-1" [value]="company?.fundamentalAnalysis"></rom-rating>
+          <div class="col-auto px-2">
+            Rating
+            <span class="rating py-2">{{ getCompanyRating(company?.rating) }}</span>
+          </div>
+
+
+          <div class="col pl-0 pr-2 pull-right" >
+            <button class="btn btn-market-data rom-bg-gigas pull-right"  (click)="goToCompany(company, 2, $event)"><i class="rom-text-silver-chalice rome-ico-play"></i> ADVANCED MARKET DATA</button>
+          </div>
+        </div>
+        <div class="row x-small align-items-center mb-4" *ngIf="company?.participationLevel === 'Probe'">
+          <div class="col px-2">
+            <img class="probe-logo" src="assets/images/probe-logo.png" />
+          </div>
+          <div class="col-auto px-2">
+            <button class="btn btn-market-data rom-bg-gigas" (click)="goToCompany(company, 2, $event)"><i class="rom-text-silver-chalice rome-ico-play"></i> ADVANCED MARKET DATA</button>
+          </div>
+        </div>
+        <div class="row x-small align-items-center mb-4" *ngIf="company?.participationLevel === 'Explore'">
+          <div class="col px-2">
+            <img class="explore-logo" src="assets/images/explore-logo.png" />
+          </div>
+          <div class="col-auto px-2 py-1 ">
+            <button class="btn btn-market-data rom-bg-gigas" (click)="goToCompany(company, 2, $event)"><i class="rom-text-silver-chalice rome-ico-play"></i> ADVANCED MARKET DATA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="py-1">
+    <rom-pagination (prev)="goPrev()" (next)="goNext()" (submit)="onSubmit($event)" [pages]="companyService.numOfPages" [currPage]="currPageNum">
+      <i class="fa fa-angle-double-left prev-ico pt-1" aria-hidden="true"></i>
+      <i class="fa fa-angle-double-right next-ico pt-1" aria-hidden="true"></i>
+    </rom-pagination>
+  </div>
+  <div class="pagination justify-content-center selectdiv">
+    <select class="form-control" (change)="onChange($event)">
+      <option [value]="10" [selected]="_size==10">10 Per Page</option>
+      <option [value]="20" [selected]="_size==20">20 Per Page</option>
+      <option [value]="30" [selected]="_size==30">30 Per Page</option>
+      <option [value]="40" [selected]="_size==40">40 Per Page</option>
+      <option [value]="50" [selected]="_size==50">50 Per Page</option>
+    </select>
+  </div>
+  <div class="pagination justify-content-center" style="height:20px;width:100%">&nbsp;</div>
+</div>
+
+<!-- Modal Trigger -->
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#marketDataModal"
+  #marketDataTrigger></button>
+
+<!-- Market Data Modal -->
+<rom-advanced-market-data-modal [company]="company" [marketDataTrigger]="marketDataTrigger"></rom-advanced-market-data-modal>

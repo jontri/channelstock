@@ -1,0 +1,126 @@
+<div class="d-block">
+  <div class="d-flex justify-content-between mt-3 align-items-center">
+    <h4>Revenue</h4>
+    <button type="button" class="btn btn-primary mb-0" (click)="save()">Save</button>
+  </div>
+  <hr/>
+  <form [formGroup]="revenueForm">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-center">Period</label>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p1"
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p2"
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p3"
+        class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-center">1st Quarter</label>
+      <div class="col-3">
+        <input type="number"
+        formControlName = "p1q1" 
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p2q1" 
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p3q1" 
+        class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-center">2nd Quarter</label>
+      <div class="col-3">
+        <input type="number"
+        formControlName = "p1q2"  
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p2q2"  
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p3q2"  
+        class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-center">3rd Quarter</label>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p1q3"  
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p2q3"  
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p3q3"  
+        class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-center">4th Quarter</label>
+      <div class="col-3">
+        <input type="number"
+        formControlName = "p1q4"   
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p2q4"   
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p3q4"   
+        class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-center">Total</label>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p1total"   
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p2total"   
+        class="form-control">
+      </div>
+      <div class="col-3">
+        <input type="number" 
+        formControlName = "p3total"   
+        class="form-control">
+      </div>
+    </div>
+    <br/>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-center">Revenue Status</label>
+      <div class="col-3">
+        <select class="form-control" formControlName="note">
+          <option></option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>

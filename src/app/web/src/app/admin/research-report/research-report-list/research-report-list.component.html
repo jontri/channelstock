@@ -1,0 +1,42 @@
+<h4>Research Reports</h4>
+<div class="content-div" *ngIf="!isLoading">
+  <div class="table-actions row">
+    <!-- <div class="form-group">
+      <label for="firstName">Filter users</label>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...">
+    </div> -->
+    <button class="btn btn-primary" (click)="toAddReport()">Add Report</button>
+  </div>
+  <div class="row content-header">
+    <!-- <div class="col">Company</div> -->
+    <div class="col">Report Title</div>
+    <div class="col">Price Value</div>
+    <!-- <div class="col">EPS</div> -->
+    <div class="col">Rating</div>
+    <div class="col">Actions</div>
+  </div>
+  <div *ngIf="reports.length !== 0; else noData">
+    <div class="row content-body" *ngFor="let report of reports;">
+      <div class="col"><p>{{report?.reportData?.title}}</p></div>
+      <div class="col">{{report?.priceValue}}</div>
+      <div class="col">{{report?.rating}}
+        <!--/ {{report?.reportData?.historicalPricesGraphURL|replace:':':'\/'}} / {{report?.reportData?.analystCredentials}} /-->
+        <!--{{report?.reportData?.analyst}} / {{report?.reportData?.associateAnalyst}} / {{report?.reportData?.certifyReceiptOfCompensation}} /-->
+        <!--{{report?.reportData?.certifyOwnership}} / {{report?.reportData?.rating}}-->
+      </div>
+      <div class="col">
+          <button class="btn btn-secondary rounded">Edit</button> &nbsp;&nbsp;
+        <button class="btn btn-danger rounded" (click)="openConfirmationDialog(report.id, report?.reportData?.title)">Delete</button>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="text-center">No Data Found</p>
+  </ng-template>
+</div>
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading"
+     id="loading">
+  <fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

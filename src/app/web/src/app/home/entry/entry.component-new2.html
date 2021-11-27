@@ -1,0 +1,42 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;">
+    <rom-initial-tree class="rom-box-header-body">
+
+      <div class="align-items-center h-70 rom-tree-body row">
+        <div class="col">
+
+          <div class="text-left x-large py-4 text-light" >
+            The Universe is emerging.XY
+          </div>
+
+          <div class="text-danger" *ngIf="entryForm.controls.frmUsername.errors && entryFormDir.submitted">
+            <span *ngIf="entryForm.controls['frmUsername'].hasError('required') || entryForm.controls['frmUsername'].hasError('blank')">Email address is required.</span>
+            <span *ngIf="entryForm.controls['frmUsername'].hasError('customEmail')">Email address format is not valid!</span>
+          </div>
+          <form [formGroup]="entryForm" #entryFormDir="ngForm" (submit)=redirectUser($event)>
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                id="username"
+                name="username"
+                formControlName="frmUsername"
+                required #input>
+            </div>
+            <br/>
+            <div class="row justify-content-center">
+              <div class="col-4">
+                  <button type="submit" class="btn btn-secondary" style="min-width: 6vw">
+                    ENTER
+                  </button>
+              </div>
+            </div>
+           </form>
+        </div>
+
+      </div>
+    </rom-initial-tree>
+  </rom-box-header>
+
+

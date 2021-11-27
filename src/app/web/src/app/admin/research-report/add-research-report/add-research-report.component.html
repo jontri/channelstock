@@ -1,0 +1,112 @@
+<div class="header-div">
+  <h5 class="content-header">Add Research Report</h5>
+  <button class="btn btn-secondary" (click)="back()">< Back</button>
+</div>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="main-content container-fluid mb-3">
+        <div class="action-tab p-2">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-3">
+                  <label for="time_sensitive">Time Sensitive?</label>
+                  <select class="form-control">
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                </div>
+                <!-- end of time sensitive -->
+                <div class="form-group col-3">
+                  <label for="prev_rating">Previous Rating</label>
+                  <select class="form-control">
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                </div>
+                <!-- end of previous rating -->
+                <div class="form-group col-3">
+                  <label for="current_rating">Current Rating</label>
+                  <select class="form-control">
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                </div>
+                <!-- end of current rating -->
+                <div class="form-group col-3">
+                  <label for="exampleInputEmail1">Price Targe</label>
+                  <input type="tel" class="form-control"/>
+                </div>
+                <!-- end of price range -->
+                <div class="form-group col-4">
+                  <label for="exampleInputEmail1">Primary Analyst</label>
+                  <select class="form-control">
+                    <option></option>
+                  </select>
+                </div>
+                <!-- end of primary analyst -->
+                <div class="form-group col-4">
+                  <label for="exampleInputEmail1">Associate Analyst</label>
+                  <select class="form-control">
+                    <option></option>
+                  </select>
+                </div>
+                <!-- end of associate analyst -->
+                <div class="form-group col-4">
+                  <label for="exampleInputEmail1">2nd Associate Analyst</label>
+                  <select class="form-control">
+                    <option></option>
+                  </select>
+                </div>
+                <!-- end of 2nd associate analyst -->
+              </div>
+            </form>
+          </div>
+          
+    </div>
+    <div class="col-9 p-3 main-content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-3 pr-0">
+      <rom-action-tab></rom-action-tab>
+    </div>
+  </div>
+</div>
+<!--   
+<form [formGroup]="researchReportForm">
+  <div class="form-group col-3">
+    <label for="reportTitle">Report Title</label>
+    <input id="reportTitle" type="text" class="form-control" formControlName="reportTitle">
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="priceValue">Price Value</label>
+      <input id="priceValue" type="number" class="form-control" formControlName="priceValue">
+    </div>
+    <div class="form-group col">
+      <label for="eps">EPS</label>
+      <input id="eps" type="number" class="form-control" formControlName="eps">
+    </div>
+    <div class="form-group col">
+      <label for="rating">Rating</label>
+      <select id="rating" class="form-control" formControlName="rating">
+        <option value="BUY">BUY</option>
+        <option value="SELL">SELL</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group col-3">
+    <label>Body</label>
+    <rom-textboxio [(value)]="textboxioContents.body" name="body"></rom-textboxio>
+  </div>
+  <div class="form-group col-3" *ngFor="let bulletpoint of textboxioContents.bulletpoints; index as idx">
+    <label>Bulletpoint {{idx + 1}}
+      <a href="javascript:void(0)" class="text-dark" (click)="removeBulletpoint(idx)" *ngIf="idx"><i class="fa fa-trash"></i></a>
+    </label>
+    <rom-textboxio [(value)]="textboxioContents.bulletpoints[idx]" name="bulletpoint{{idx}}"></rom-textboxio>
+  </div>
+  <div class="form-row">
+    <button type="button" class="col-2 btn btn-secondary" (click)="addBulletpoint()" *ngIf="textboxioContents.bulletpoints.length < 5">Add Bulletpoint</button>
+    <button type="button" class="col-1 ml-4 btn btn-primary" (click)="save()">Save</button>
+  </div>
+</form> -->

@@ -1,0 +1,38 @@
+<h4>Email Templates</h4>
+<div class="content-div" *ngIf="!isLoading">
+  <div class="table-actions row">
+    <!-- <div class="form-group">
+      <label for="firstName">Filter users</label>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...">
+    </div> -->
+    <button class="btn btn-primary" (click)="toAddTemplate()">Add Email Template</button>
+  </div>
+  <div class="row content-header">
+    <div class="col">Name</div>
+    <div class="col">Subject</div>
+    <!--<div class="col">Company</div>-->
+    <div class="col">Actions</div>
+  </div>
+  <div *ngIf="emailTemplates.length > 0; else noData">
+    <div class="row content-body" *ngFor="let template of emailTemplates;">
+      <div class="col">{{template?.templateName}}</div>
+      <div class="col">{{template?.emailSubject}}</div>
+      <!--<div class="col">{{template?.companyName}}</div>-->
+      <div class="col d-flex">
+        <button class="btn btn-secondary rounded mr-2" (click)="toEditTemplate(template.id)">Edit</button>
+        <button class="btn btn-danger rounded" (click)="deleteTemplate(template.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="text-center">No Data Found</p>
+  </ng-template>
+</div>
+
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading"
+     id="loading">
+  <fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

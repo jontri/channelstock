@@ -1,0 +1,31 @@
+<!-- Register Now Trigger -->
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="false" data-toggle="modal"
+  data-target="#registerNowModal" #registerNowTrigger></button>
+
+<!-- Modals -->
+<div class="modal fade" id="registerNowModal" role="dialog" aria-labelledby="registerNowModalLabel"
+  aria-hidden="true" #registerNowModal>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content rom-bg-dark-purple rounded-0 border-0">
+      <div class="modal-body pt-4 d-flex flex-column position-relative">
+        <i class="fa fa-close position-absolute text-white" (click)="close()" data-dismiss="modal"></i>
+        <div class="container-fluid flex-fill">
+          <div class="row">
+            <div>
+              <img class="img-fluid" src="assets/images/channelchek_light_logo.png" />
+            </div>
+          </div>
+          <rom-entry-inputs *ngIf="currStep === 'entry'" [shouldNavigate]="false" [isModal]="true" (romChange)="onChange($event)" ></rom-entry-inputs>
+          <rom-login-inputs *ngIf="currStep === 'login'" [shouldNavigate]="false" [isModal]="true" (romChange)="onChange($event)" (romClose)="onClose($event)"></rom-login-inputs>
+          <rom-registration-inputs *ngIf="currStep === 'registration'" [shouldNavigate]="false" [isModal]="true" (romChange)="onChange($event)"></rom-registration-inputs>
+        </div>
+        <div class="text-white text-center large font-weight-light">
+          No cost or obligation.
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Ok</button>
+      </div> -->
+    </div>
+  </div>
+</div>

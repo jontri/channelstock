@@ -1,0 +1,77 @@
+<ng-container *ngIf="!responsiveService.isMobile; else mobileNav">
+  <nav #nav class="navbar navbar-expand justify-content-between align-items-stretch navbar-light border-bottom py-0 px-4 bg-white"
+    [class.admin-nav]="adminView">
+    <div class="py-3 my-1">
+      <rom-search-box class="d-block" type="profile_long" [options]="{offsetWidth: 50}" [showCCIcon]="true"></rom-search-box>
+    </div>
+    <a class="navbar-brand my-1 py-3 mx-0" [routerLink]="'/'">
+      <img class="logo-main mr-2" src="assets/images/channelchek_logo.png" #logo>
+      <img class="logo-beta" src="assets/images/beta3.png">
+    </a>
+    <div class="d-flex align-items-start">
+      <div class="navbar-nav middle-logo" *ngIf="!adminView">
+      </div>
+      <div class="d-flex align-items-center right-header">
+        <span class="d-inline-block border-dark pr-2" *ngIf="loginService.isAuthenticated && authService.loggedUserFirstName; else loginLink">
+          <span class="channelName"><span class="channelUserName">{{authService.loggedUserFirstName}}</span>'s Channel</span>
+        </span>
+        <ng-template #loginLink>
+          <a href="javascript:void(0)" class="d-inline-block pr-1 text-dark" (click)="toggleLoggedIn($event)">Log In / Register</a>
+        </ng-template>
+        <rom-switch [value]="loginService.isAuthenticated" class="d-flex" (click)="toggleLoggedIn($event)"></rom-switch>
+        <div  class="collapse navbar-collapse"  id="navbarSupportedContent">
+          <ul  class="navbar-nav mr-auto">
+              <li  class="nav-item dropdown">
+                  <a  class="nav-link dropdown-toggle"  href="#"  id="navbarDropdown"  role="button"  data-toggle="dropdown"  aria-haspopup="true"  aria-expanded="false">
+                      <span class="d-inline-block pl-2 rom-text-rolling-stone x-large" >
+                          <i class="rome-ico-cog ico-action" aria-hidden="true"></i>
+                      </span>
+                  </a>
+                  <div  class="dropdown-menu"  aria-labelledby="navbarDropdown" *ngIf="loginService.isAuthenticated">
+                      <a *ngIf="loginService.isAdmin" class="dropdown-item" [routerLink]="'/admin'">Administration</a>
+                      <!-- <a  *ngIf="loginService.isAdmin" class="dropdown-item" [routerLink]="'/admin/profile-edit'">User Profile</a>
+                      <a  *ngIf="!loginService.isAdmin" class="dropdown-item" [routerLink]="'/dashboard/profile-edit'">User Profile</a> -->
+                      <a  *ngIf="loginService.isAdmin" class="dropdown-item" [routerLink]="'/admin/preferences'">Preferences</a>
+                      <a  *ngIf="!loginService.isAdmin" class="dropdown-item" [routerLink]="'/dashboard/profile-edit'">User Profile</a>
+                      <!--<a  *ngIf="!loginService.isAdmin" class="dropdown-item" [routerLink]="'/dashboard/preferences'">User Preferences</a>-->
+                      <a  class="dropdown-item" [routerLink]="'/'">Home</a>
+                  </div>
+              </li>
+          </ul>
+        </div>
+        <span class="d-inline-block pl-0 rom-text-rolling-stone x-large">
+          <i class="rome-ico-question ico-action" aria-hidden="true" (click)="openDialog('https://noblelinx.com/channelchek_comment.htm')"></i>
+        </span>
+        <span class="font-weight-bold d-inline-block  x-small pr-1" *ngIf="!loginService.isAuthenticated"></span>
+        <button class="btn py-0 pr-0 rom-text-rolling-stone bg-transparent" (click)="showMenu()" #menuBtn>
+          MENU <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="quote-media-div" *ngIf="isScrolled" [@enterAnimationRight]>
+      <img src="assets/images/powered-quote-media.png" class="img quote-media"/>
+    </div>
+  </nav>
+  <rom-register-now [(isOpen)]="authService.isRegisterOpen"></rom-register-now>
+</ng-container>
+
+<ng-template #mobileNav>
+  <nav #nav id="nav-mobile" class="navbar navbar-expand navbar-light rom-bg-navy-blue pt-2 px-0 pb-0 flex-column">
+    <div class="d-flex w-100 mb-2">
+      <button class="btn btn-lg py-0 pr-0 rom-text-white bg-transparent" (click)="showMenu()" #menuBtn>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand ml-5 flex-grow-1" [routerLink]="'/home'">
+        <img class="logo-main mr-3" src="assets/images/channelchek_light_logo.png" #logo>
+        <img class="logo-beta" src="assets/images/beta3.png">
+      </a>
+    </div>
+    <h6 *ngIf="showDate" class="large text-white font-weight-normal py-2 pl-2 pr-4 mb-0 rounded-0 w-100 rom-bg-san-marino">
+      <div class="d-flex align-items-center font-weight-light line-height-font">
+        <div class="flex-fill">today</div>
+        <div class="x-small">{{todaysDate | date:'fullDate'}}</div>
+      </div>
+    </h6>
+  </nav>
+</ng-template>

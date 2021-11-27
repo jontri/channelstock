@@ -1,0 +1,66 @@
+//.news-div {
+//  padding-top: 5px;
+//  padding-bottom: 5px;
+//  cursor: pointer;
+//  font-size: 10px;
+//  white-space: nowrap;
+//
+//  p {
+//    margin-bottom: 0;
+//  }
+//
+//  &:hover {
+//    text-decoration: underline;
+//  }
+//
+//  .fa {
+//    color: #2f3280;
+//  }
+//}
+
+.btn-expand {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  padding: 1px;
+  color: white;
+  background: transparent;
+}
+
+.companies-header{
+  // background-color:  rgb(143, 136, 136);
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  //font-size: 90% !important;
+  height:22px;
+  line-height:10px;
+  //border-right:10px solid #fff;
+}
+
+
+.f1{
+  color:#fff;
+  background-color: #b2b2b2;
+  border-right:1px white solid;
+}
+
+.rome-table-body{
+  font-size:95%;
+}
+
+.b-right{
+  border-right:1px white solid;
+}
+
+
+.sortable:hover {
+  color: blue;
+}
+
+.sortable{
+  cursor: pointer;
+}
+
+.widget-blocker {
+  height:8vw;
+}

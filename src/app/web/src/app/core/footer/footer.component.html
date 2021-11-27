@@ -1,0 +1,140 @@
+<footer [ngClass]="{'footer-mobile': responsiveService.isMobile}">
+  <ng-container *ngIf="!responsiveService.isMobile; else footerMobile">
+    <div class="footer-header text-center rom-bg-silver" *ngIf="!isNoticeHidden">
+      <p>It's time to take notice.</p>
+    </div>
+    <div class="footer-main">
+      <div class="offset-md-1 row">
+        <div class="col">
+          <ul class="list-unstyled">
+            <li>
+              <a href="#termsofuse" class="footer-link" (click)="showDialog=!showDialog">Terms of Use</a>
+            </li>
+            <li>
+              <a href="#privacypolicy" class="footer-link" (click)="showDialog=!showDialog">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#conflicts" class="footer-link" (click)="showDialog=!showDialog">Conflicts of Interest</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <ul class="list-unstyled">
+            <li>
+              <a href="#relationships" class="footer-link" (click)="showDialog=!showDialog">Relationships</a>
+            </li>
+            <li>
+              <a href="#issuers" class="footer-link" (click)="showDialog=!showDialog">Participating Companies</a>
+            </li>
+            <li>
+              <a href="#disclosures" class="footer-link" (click)="showDialog=!showDialog">Disclosures & Disclaimers</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <ul class="list-unstyled">
+            <li>
+              <a href="#InvestmentDecision" class="footer-link" (click)="showDialog=!showDialog">Risk Considerations &
+                Suitability</a>
+            </li>
+            <li>
+              <a href="#accredited" class="footer-link" (click)="showDialog=!showDialog">Accredited Investors</a>
+            </li>
+            <li>
+              <a href="#researchreports" class="footer-link" (click)="showDialog=!showDialog">Research Reports</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul class="list-unstyled">
+            <li>
+              <a href="#thirdparty" class="footer-link" (click)="showDialog=!showDialog">Third Party Data</a>
+            </li>
+            <li>
+              <ng-container *ngTemplateOutlet="finraBroker"></ng-container>
+            </li>
+            <li class="footer-menu-line">
+              <ng-container *ngTemplateOutlet="finraSipcMsrb"></ng-container>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <ng-container *ngTemplateOutlet="footerSocial"></ng-container>
+    </div>
+
+    <div class="footer-footer text-center">
+      <ng-container *ngTemplateOutlet="footerFooter"></ng-container>
+    </div>
+  </ng-container>
+
+  <ng-template #footerMobile>
+    <div class="footer-main">
+      <ng-container *ngTemplateOutlet="footerSocial"></ng-container>
+    </div>
+    <div class="footer-footer text-center small">
+      <ng-container *ngTemplateOutlet="footerFooter"></ng-container>
+      <ul class="list-inline my-1">
+        <li class="list-inline-item mb-0 mr-3">
+          <a href="#termsofuse" class="footer-link" (click)="showDialog=!showDialog">Disclosures</a>
+        </li>
+        <li class="list-inline-item mb-0 mr-3">
+          <ng-container *ngTemplateOutlet="finraBroker"></ng-container>
+        </li>
+        <li class="footer-menu-line list-inline-item mb-0">
+          <ng-container *ngTemplateOutlet="finraSipcMsrb"></ng-container>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+</footer>
+
+<ng-template #footerSocial>
+  <div class="footer-social">
+    <ul>
+      <li>
+        <div class="link-copied" *ngIf="linkCopied" [@fadeInOut]>
+          <div class="arrow right"></div>
+          Link copied!
+        </div>
+        <a target="_blank" href="javascript:void(0)" (click)="copyLink('https://www.channelchek.com')"><img src="assets/images/footer-social/chain.png"></a>
+      </li>
+      <li>
+        <a target="_blank" href="https://twitter.com/channelchek"><img src="assets/images/footer-social/twitter.png"></a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.linkedin.com/company/channelchek/"><img src="assets/images/footer-social/linkedin.png"></a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.facebook.com/Channelchek-483731608770254"><img src="assets/images/footer-social/facebook.png"></a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.instagram.com/channelchek/"><img src="assets/images/footer-social/instagram.png"></a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.youtube.com/channel/UCEnOlnSG6bpqRaUqftBbCIQ"><img src="assets/images/footer-social/youtube.png"></a>
+      </li>
+
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #footerFooter>
+  <p>© 2019 Noble Financial Group, Inc. All Rights Reserved. Channelchek is provided at no cost to be used for
+    information purposes only and not as investment advisement.</p>
+</ng-template>
+
+<ng-template #finraBroker>
+  <a class="footer-link" (click)="openDialog('https://brokercheck.finra.org/')">FINRA Brokercheck</a>
+</ng-template>
+
+<ng-template #finraSipcMsrb>
+  <a class="footer-link" (click)="openDialog('https://www.finra.org/')">FINRA | </a>
+  <a class="footer-link" (click)="openDialog('https://www.sipc.org/')">SIPC | </a>
+  <a class="footer-link" (click)="openDialog('https://www.msrb.org/')">MSRB</a>
+</ng-template>
+
+<rom-disclosure-popup [disclosure]="disclosure" [(visible)]="showDialog"></rom-disclosure-popup>

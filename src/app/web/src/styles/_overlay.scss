@@ -1,0 +1,21 @@
+.cdk-overlay-container {
+  .cdk-overlay-backdrop {
+    &.rom-dark-overlay {
+      background-color: $black;
+      opacity: .7;
+    }
+
+    &.rom-clear-overlay {
+      opacity: 0;
+    }
+  }
+
+  .cdk-overlay-pane {
+    &.rom-search-panel {
+      .dropdown-item {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
+}

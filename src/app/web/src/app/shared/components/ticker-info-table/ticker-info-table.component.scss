@@ -1,0 +1,21 @@
+@import "~styles/variables";
+
+table {
+  tr {
+    td {
+      border-top: 0;
+    }
+
+    &:not(:first-child) {
+      border-top: .1vw solid $rom-alto;
+    }
+
+    &:last-child {
+      cursor: pointer;
+    }
+  }
+}
+
+.large-font {
+  font-size:105%
+}

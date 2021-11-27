@@ -1,0 +1,67 @@
+<table class="table x-small rom-text-alto">
+  <tbody>
+    <tr class="rom-bg-blue-marguerite">
+      <td class="p-1 text-truncate w-50" title="Ticker">Ticker</td>
+      <td class="p-1 text-center">
+        {{company?.symbol}}
+      </td>
+    </tr>
+    <tr class="rom-bg-blue-marguerite">
+      <td class="p-1 text-truncate w-50" title="Current Price">Current Price</td>
+      <td class="p-1 text-center">
+        {{company?.currentPrice | currency}} {{(company?.currentPrice - company?.previousPrice) > 0 ? "&#8593;" : "&#8595;"}} {{(company?.currentPrice - company?.previousPrice) | shortNum}}
+      </td>
+    </tr>
+    <tr class="rom-bg-blue-marguerite">
+      <td class="p-1 text-truncate w-50" title="Market Cap">Market Cap</td>
+      <td class="p-1 text-center">
+        {{company?.marketCap | shortNum}}
+      </td>
+    </tr>
+    <tr class="rom-bg-blue-marguerite" *ngIf="company?.participationLevel === 'Discover'">
+      <td class="p-1 text-truncate w-50" title="Price Target">Price Target</td>
+      <td class="p-1 text-center">
+        <ng-container *ngIf="loginService.isAuthenticated; else seeReport">
+          {{company?.priceTarget == 0 ? "--" : company?.priceTarget | currency}}
+        </ng-container>
+        <ng-template #seeReport>
+          <span class="xl-small">*Refer to Report*</span>
+        </ng-template>
+      </td>
+    </tr>
+    <tr class="rom-bg-blue-marguerite">
+      <td class="p-1 text-truncate w-50" title="Volume">Volume</td>
+      <td class="p-1 text-center">
+        {{company?.shareVolume | shortNum}}
+      </td>
+    </tr>
+    <tr class="rom-bg-blue-marguerite">
+      <td class="p-1 text-truncate w-50" title="52wk Range">52wk Range</td>
+      <td class="p-1 text-center">
+        {{company?.yearRange.lower | currency}} - {{company?.yearRange.upper | currency}}
+      </td>
+    </tr>
+    <tr class="rom-bg-gigas" (click)="showAdvancedMarketData()">
+    <!-- <tr *ngIf="company?.participationLevel === 'Explore'"> -->
+      <td class="large-font p-1" colspan="2">
+          <span class="align-middle d-inline-block medium" style="
+          position: relative;
+      "><i _ngcontent-c22="" class="rome-ico-play xx-large" style="
+          z-index: 100;
+      "></i><i _ngcontent-c22="" class="rom-text-silver-chalice rome-ico-play" style="
+          position:  absolute;
+          top: 17%;
+          left: 15%;
+      "></i></span>
+        ADVANCED MARKET DATA
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal Trigger -->
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#marketDataModal"
+  #marketDataTrigger></button>
+
+<!-- Market Data Modal -->
+<rom-advanced-market-data-modal [company]="company" [marketDataTrigger]="marketDataTrigger"></rom-advanced-market-data-modal>

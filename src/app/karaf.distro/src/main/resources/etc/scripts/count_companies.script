@@ -1,0 +1,22 @@
+count_companies = {
+	ticker:countCompaniesWithExchangeCode NDD
+	ticker:countCompaniesWithExchangeCode NSC
+	ticker:countCompaniesWithExchangeCode NSD
+	ticker:countCompaniesWithExchangeCode NGS
+	ticker:countCompaniesWithExchangeCode GIDS
+	ticker:countCompaniesWithExchangeCode NMF
+	ticker:countCompaniesWithExchangeCode OBB
+	ticker:countCompaniesWithExchangeCode OTCQB
+	ticker:countCompaniesWithExchangeCode OTCQX
+	ticker:countCompaniesWithExchangeCode OTO
+	ticker:countCompaniesWithExchangeCode GREY
+	ticker:countCompaniesWithExchangeCode CVEM
+	ticker:countCompaniesWithExchangeCode NYGIF
+	ticker:countCompaniesWithExchangeCode AMX
+	ticker:countCompaniesWithExchangeCode NYE
+	ticker:countCompaniesWithExchangeCode ARCA
+	ticker:countCompaniesWithExchangeCode TSX
+	ticker:countCompaniesWithExchangeCode TSI
+	ticker:countCompaniesWithExchangeCode TSIED
+	ticker:countCompaniesWithExchangeCode CDX
+	};

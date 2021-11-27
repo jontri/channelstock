@@ -1,0 +1,16 @@
+.btn-expand {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  padding: 1px;
+  color: white;
+  background: transparent;
+}
+
+.table-wrapper {
+  display: block;
+   height: 41vw;
+  overflow: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  font-size: 14px;
+}

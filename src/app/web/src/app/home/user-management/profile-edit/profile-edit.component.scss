@@ -1,0 +1,16 @@
+label.required:after {
+    content: " *";
+    color: red;
+}
+
+.btn-space {
+    margin-right: 5px;
+}
+
+.ng-invalid{
+    border-color: #a94442;  
+}
+
+.ng-valid{
+    border-color: rgb(5, 168, 27);  
+  }

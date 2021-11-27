@@ -1,0 +1,20 @@
+<div class="d-block">
+  <div class="d-flex justify-content-between mt-3 align-items-center">
+    <h4>Models</h4>
+    <button type="button" class="btn btn-primary mb-0" (click)="save()">Upload Model</button>
+  </div>
+  <hr/>
+  <form>
+    <div class="form-group">
+      <label>Select Model File</label>
+      <input type="file" class="form-control" id="customFile" (change)="bindFile($event)">
+    </div>
+    <div class="no-data d-flex justify-content-center align-items-center" *ngIf="!companyModel; else elseBlock">
+      <p>There are currently no models for this company.</p>
+    </div>
+    <ng-template #elseBlock>
+      <!-- content here -->
+    </ng-template>
+
+  </form>
+</div>

@@ -1,0 +1,44 @@
+.rom-tree-body {
+  p {
+    &:first-child {
+      font-weight: 500;
+    }
+
+    &:nth-child(2) {
+      letter-spacing: .06vw;
+    }
+  }
+}
+
+.center-div{
+    margin: 0 auto;
+    width:100%
+}
+
+.bgcolor-purple{
+    background-color: #2f3280;
+}
+
+.special-font{
+    color: #FFC900;
+    background-color: #2f3280;
+    text-align: center;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.normal-font{
+    color: #FFFFFF;
+    background-color: #2f3280;
+    text-align: justify;
+}
+
+.normal-font-2{
+    color: #FFFFFF;
+    background-color: #2f3280;
+    font-size: 20px;
+}

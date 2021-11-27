@@ -1,0 +1,81 @@
+<div class="modal fade" id="marketDataModal" role="dialog" aria-labelledby="marketDataModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img src="assets/images/channelchek_logo.png" class="channelcheck_logo">
+        <h4 class="modal-title" id="marketDataModal">Advanced Market Data</h4>
+        <strong>{{company?.companyName}} ({{company?.symbol}})</strong>
+      </div>
+
+      <div class="modal-body p-0">
+        <div class="item-div" (click)="showQMod('detailedquotetab')">
+          <i class="rom-text-silver-chalice rome-ico-play"></i> Detailed Quote
+        </div>
+        <div class="item-div" (click)="showQMod('interactivechart')">
+          <i class="rom-text-silver-chalice rome-ico-play"></i> Charts
+        </div>
+        <div class="item-div" (click)="showQMod('shareinfoperformance')">
+          <i class="rom-text-silver-chalice rome-ico-play"></i> Statistics
+        </div>
+        <div class="item-div" (click)="showQMod('financials')">
+          <i class="rom-text-silver-chalice rome-ico-play"></i> Financials
+        </div>
+        <div class="item-div" (click)="showQMod('pricehistory')">
+          <i class="rom-text-silver-chalice rome-ico-play"></i> Historical Quotes
+        </div>
+        <div class="item-div" (click)="showQMod('insiders')">
+          <i class="rom-text-silver-chalice rome-ico-play"></i> Insider Activity
+        </div>
+        <div class="item-div" (click)="showQMod('keyratios')">
+          <i class="rom-text-silver-chalice rome-ico-play"></i> Key Ratios
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-end">
+        <button class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<rom-expand *ngIf="isExpanded" [isExpanded]="isExpanded" (action)="closeQMod()" (viewInit)="openQmod()" openedIcon="fa-times">
+  <div class="qmod-container d-flex flex-column">
+    <div class="d-flex bg-white align-items-center channel-header">
+      <div class="channel-logo mx-4">
+        <img src="assets/images/channelchek_logo.png" class="img-fluid" />
+      </div>
+      <div class="d-flex flex-column company-name pr-3">
+        <div class="rom-text-rolling-stone x-large">Advanced Market Data</div>
+        <div class="font-weight-bold text-truncate" title="{{company?.companyName + '(' + company?.symbol + ')'}}">
+          {{company?.companyName}} ({{company?.symbol}})
+        </div>
+      </div>
+      <div class="flex-grow-1 rom-bg-silver-chalice pl-3 mr-2 my-2 align-items-center align-self-stretch d-flex">
+        <nav class="nav xs-large align-items-center">
+          <a class="nav-link" href="javascript:void(0)" [ngClass]="{'active': type === 'detailedquotetab'}" (click)="showQMod('detailedquotetab', false)">
+            Detailed Quote
+          </a>
+          <a class="nav-link" href="javascript:void(0)" [ngClass]="{'active': type === 'interactivechart'}" (click)="showQMod('interactivechart', false)">
+            Charts
+          </a>
+          <a class="nav-link" href="javascript:void(0)" [ngClass]="{'active': type === 'shareinfoperformance'}" (click)="showQMod('shareinfoperformance', false)">
+            Statistics
+          </a>
+          <a class="nav-link" href="javascript:void(0)" [ngClass]="{'active': type === 'financials'}" (click)="showQMod('financials', false)">
+            Financials
+          </a>
+          <a class="nav-link" href="javascript:void(0)" [ngClass]="{'active': type === 'pricehistory'}" (click)="showQMod('pricehistory', false)">
+            Historical Quotes
+          </a>
+          <a class="nav-link" href="javascript:void(0)" [ngClass]="{'active': type === 'insiders'}" (click)="showQMod('insiders', false)">
+            Insider Activity
+          </a>
+          <a class="nav-link" href="javascript:void(0)" [ngClass]="{'active': type === 'keyratios'}" (click)="showQMod('keyratios', false)">
+            Key Ratios
+          </a>
+        </nav>
+      </div>
+    </div>
+    <rom-qmod [type]="type" [company]="company" [isOpen]="isQmodOpen"></rom-qmod>
+  </div>
+</rom-expand>

@@ -1,0 +1,30 @@
+@import "~styles/variables";
+
+nav.nav {
+  border-radius: .5vw;
+  opacity: .9;
+  border: 1px solid $rom-navy-blue;
+
+  a {
+    color: white;
+
+    &:last-child {
+      margin-bottom: 2vw;
+    }
+
+    &:hover, &:focus, &.active {
+      background-color: $rom-navy-blue;
+      color: $rom-jordy-blue;
+    }
+  }
+
+  span, a {
+    border-bottom: 1px solid white;
+  }
+
+  &.nav-mobile {
+    a:last-child {
+      margin-bottom: 2vw * $mobile-multiplier;
+    }
+  }
+}

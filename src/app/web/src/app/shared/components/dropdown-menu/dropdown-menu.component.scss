@@ -1,0 +1,11 @@
+@import "~styles/variables";
+
+.dropdown-menu {
+  display: block;
+  top: initial;
+
+  .dropdown-item:hover, .dropdown-item:focus {
+    background-color: $rom-san-marino;
+    color: #fff;
+  }
+}

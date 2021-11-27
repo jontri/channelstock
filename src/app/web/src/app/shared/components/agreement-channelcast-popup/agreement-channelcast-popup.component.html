@@ -1,0 +1,19 @@
+<div [@fadeInOut] class="agreement-div">
+    <p class="pt-3 px-3">
+      In order to watch a<a href="#channelcasts" style="cursor: pointer;" class="d-inline-block pl-2 rom-text-kimberly x-medium" (click)= "showDialog=!showDialog">ChannelCAST</a>, you must agree <br>
+      and understand that no<a href="#disclosures" style="cursor: pointer;" class="d-inline-block pl-2 rom-text-kimberly x-medium" (click)= "showDialog=!showDialog">Investment Decision</a> should <br> 
+      be based upon watching the ChannelCAST, and that<br>
+      you understand that Company (issuer) is solely<br>
+      responsible for the content of the ChannelCAST.
+   </p>
+    <div class="response mb-3 px-3 py-2 large rom-bg-kimberly rom-text-alto">
+      <a (click)="data.agree(); overlayService.removeAll()" class="flex-fill">
+        <span class="d-inline-block rom-bg-alto rounded-circle rom-text-kimberly mr-2">
+          <i class="align-middle rome-ico-check xx-large"></i>
+        </span>
+        <span class="pr-2 border-right">I AGREE and UNDERSTAND</span>
+      </a>
+      <a (click)="data.disagree(); overlayService.removeAll()" class="disagree flex-fill">I DISAGREE</a>
+    </div>
+  </div>
+  <rom-disclosure-popup [(visible)]="showDialog"></rom-disclosure-popup>

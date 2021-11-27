@@ -1,0 +1,23 @@
+
+<rom-box-header romBgHeader="rom-bg-minsk">
+
+  <div class="rom-box-header-title d-flex align-items-center">
+
+    <div class="flex-fill">
+
+      <span class="rom-box-header-title"  id="topPage" #topPage>
+        {{company?.companyName}} - <span class="font-weight-light small">{{company?.sector}} ({{company?.industry}}) </span>
+      </span>
+    </div><!-- end of flex fill-->
+
+    <all-share class="row mr-0 py-0 my-0"></all-share>
+
+  </div><!-- end of rome box header -->
+
+  <div class="rom-box-header-body" id="company-body">
+    <rom-company-info [company]="company"></rom-company-info>
+  </div>
+
+
+  <!-- Button triggers for modals -->
+  <button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#reservationModal" #reservationTrigger></button>

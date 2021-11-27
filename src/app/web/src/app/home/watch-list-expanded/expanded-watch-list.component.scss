@@ -1,0 +1,137 @@
+@import "~styles/variables";
+@import "~styles/mixins";
+
+.btn-expand{
+    position: absolute;
+    top: 0;
+    right: 5px;
+    padding: 2px;
+    color: white;
+    background: transparent;
+}
+
+.sortable{
+  cursor: pointer;
+}
+
+.sortable:hover {
+  color: blue;
+}
+
+.container-fluid:nth-child(2) {
+  flex: 1 1 auto;
+  overflow-y: scroll;
+}
+
+.companies-body {
+  rom-rating {
+    width: 10%;
+  }
+
+  & > .row {
+    border-top: 1px solid $rom-alto;
+
+    &:last-child {
+      border-bottom: 1px solid $rom-alto;
+    }
+
+    &:first-child > div {
+      &:first-child, &:nth-child(n+1):not(:last-child) {
+        border-right: 1px #fff solid;
+      }
+    }
+  }
+
+  &:hover, &:focus {
+    & > .row {
+      &:last-child {
+        background-color: $rom-alto;
+      }
+
+      &:first-child div {
+        &:first-child, &:nth-child(2) {
+          background-color: $rom-dark-orchid !important;
+        }
+        &:nth-child(n+3) {
+          background-color: $rom-caribbean-green !important;
+        }
+      }
+
+      border-bottom-color: $rom-gray-suit !important;
+      border-top-color: $rom-gray-suit !important;
+    }
+  }
+}
+
+.companies-header, .companies-body {
+  & > .row:first-child > * {
+    &:nth-child(2) {
+      width: 15%;
+    }
+    &:nth-child(3) {
+      width: 12%;
+    }
+    &:nth-child(5) {
+      width: 12%;
+    }
+    &:nth-child(6) {
+      width: 12%;
+    }
+  }
+}
+
+.companies-header {
+  border-right: $rom-scrollbar-width solid #fff;
+  & > .row {
+    border-top: 1px solid $rom-alto;
+
+    &:last-child {
+      border-bottom: 1px solid $rom-alto;
+    }
+
+    &:first-child > div {
+      &:first-child, &:not(:last-child) {
+        border-right: 1px white solid;
+      }
+    }
+  }
+}
+
+img {
+  &.discover-logo, &.probe-logo {
+    width: 5.5vw;
+    margin-left: 5.5vw;
+  }
+  &.explore-logo {
+    width: 4.6vw;
+    margin-left: 6vw;
+  }
+}
+
+.f1{
+  //font-size: 13px;
+  //font-weight: bold;
+  color: #fff;
+  background-color: #B2B2B2;
+}
+.rating{
+  font-weight: bold;
+  font-size: .8vw;
+  color: #28a745;
+  //margin-top:5px;
+}
+
+
+.btn-market-data {
+  color: white;
+  font-size: 0.7vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.1vw 0.55vw !important;
+  z-index: 500;
+  i {
+    font-size: 1.2vw !important;
+    margin-right: 0.5vw;
+  }
+}

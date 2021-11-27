@@ -1,0 +1,22 @@
+@import "~styles/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  &, & > .card {
+    height: 100%;
+  }
+
+  & > .card {
+    & > .card-header {
+      border-bottom: 0;
+      padding-left: $grid-gutter-width / 2;
+    }
+
+    & > .card-body {
+      overflow-x: hidden;
+    }
+  }
+}

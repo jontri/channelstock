@@ -1,0 +1,22 @@
+<div class="d-block">
+  <div class="d-flex justify-content-between mt-3 align-items-center">
+    <h4>Headline / Bullet Points</h4>
+    <button type="button" class="btn btn-primary mb-0" (click)="save()">Save</button>
+  </div>
+  <hr/>
+  <form>
+    <div class="form-group">
+      <label>Headline</label>
+      <textarea class="form-control" rows="3"></textarea>
+    </div>
+    <div class="form-group" *ngFor="let bulletpoint of bulletpoints; index as idx">
+      <label class="d-flex justify-content-between">Bulletpoint {{idx + 1}}
+        <button class="btn btn-secondary float-right" (click)="removeBulletpoint(idx)" *ngIf="idx"><i class="fa fa-trash"></i></button>
+      </label>
+      <rom-textboxio [(value)]="bulletpoints[idx]" name="bulletpoint{{idx}}"></rom-textboxio>
+    </div>
+    <div class="d-block">
+      <button type="button" class="btn btn-secondary" (click)="addBulletpoint()" *ngIf="bulletpoints.length < 5">Add Bulletpoint</button>
+    </div>
+  </form>
+</div>

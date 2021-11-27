@@ -1,0 +1,15 @@
+.info-div {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    p {
+        margin-bottom: 5px;
+    }
+}
+
+:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}

@@ -1,0 +1,5 @@
+<rom-homepage *ngIf="!responsiveService.isMobile; else mobileHome"></rom-homepage>
+
+<ng-template #mobileHome>
+  <rom-news></rom-news>
+</ng-template>

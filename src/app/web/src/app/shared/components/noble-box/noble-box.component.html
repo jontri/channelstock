@@ -1,0 +1,22 @@
+<img class="w-100" src="{{imgSrc}}" *ngIf="imgSrc" />
+
+<div class="px-3">
+  <ng-content></ng-content>
+</div>
+<rom-disclosure-popup [disclosure]="isDisclosure" [(visible)]="showDialog"></rom-disclosure-popup>
+
+<div class="pt-2
+            pl-3
+            d-flex
+            flex-wrap
+            align-items-center
+            justify-content-center
+            flex-sm-row
+            flex-column" *ngIf="links && links.length">
+  <div *ngFor="let link of links; first as isFirst; last as isLast;" class="d-flex align-self-center mt-3"
+    [ngClass]="{'pr-2': isFirst, 'pl-2': isLast, 'px-2': !isFirst && !isLast}">
+    <a *ngIf="link.isDisclosure=='Y'" href="{{link.path}}" class="small line-height-font" style="cursor: pointer;" (click)="showDialog=!showDialog">{{link.label}}</a>
+    <a *ngIf="link.isDisclosure=='N'" class="small line-height-font" style="cursor: pointer;" (click)="openDialog(link.path)">{{link.label}}</a>
+  </div>
+
+</div>

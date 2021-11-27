@@ -1,0 +1,56 @@
+<rom-box-header romBgHeader="rom-bg-japanese-laurel" romTitle="Movers">
+  <rom-tabs [items]="items" tabId="moversTab" color="tab-japanese-laurel" class="rom-box-header-body">
+    <ng-template let-content="content" let-name="name">
+      <div class="rome-table hover pointer" *ngIf="name === 'actives'; else defaultTable">
+        <div class="container-fluid x-small rome-table-header">
+          <a *ngIf="!isExpanded" class="btn btn-expand" [routerLink]="['/aux', {outlets: {expanded: 'movers'}}]" [replaceUrl]="aux.hasEntered" data-toggle="tooltip" data-placement="top" title="Expand">
+            <i class="fa fa-expand"></i>
+          </a>
+          <button *ngIf="isExpanded" class="btn btn-expand" (click)="location.back()">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="row px-4">
+            <div class="col-4">Stock Name</div>
+            <div class="col">Ticker</div>
+            <div class="col text-nowrap">Share Vol</div>
+            <div class="col text-nowrap">% Vol</div>
+          </div>
+        </div>
+        <div class="container-fluid x-small rome-table-body">
+          <div class="row px-4" *ngFor="let item of content" routerLink="/company/{{item.ticker}}">
+            <div class="col-4 text-truncate" title="{{item.stockName}}">{{item.stockName}}</div>
+            <div class="col">{{item.ticker }}</div>
+            <div class="col">{{item.shareVolume | shortNum}}</div>
+            <div class="col">{{item.changePercent | percent}}</div>
+          </div>
+        </div>
+      </div>
+      <ng-template #defaultTable>
+        <div class="rome-table hover pointer">
+          <div class="container-fluid x-small rome-table-header">
+            <a *ngIf="!isExpanded" class="btn btn-expand" [routerLink]="['/aux', {outlets: {expanded: 'movers'}}]" [replaceUrl]="aux.hasEntered" data-toggle="tooltip" data-placement="top" title="Expand">
+              <i class="fa fa-expand"></i>
+            </a>
+            <button *ngIf="isExpanded" class="btn btn-expand" (click)="location.back()">
+              <i class="fa fa-times"></i>
+            </button>
+            <div class="row px-3">
+              <div class="col-4">Stock Name</div>
+              <div class="col">Ticker</div>
+              <div class="col text-nowrap">Price $</div>
+              <div class="col">+/- %</div>
+            </div>
+          </div>
+          <div class="container-fluid x-small rome-table-body">
+            <div class="row px-3" id="moversId" *ngFor="let item of content" routerLink="/company/{{item.ticker}}">
+              <div class="col-4 text-truncate" title="{{item.stockName}}">{{item.stockName}}</div>
+              <div class="col">{{item.ticker }}</div>
+              <div class="col">{{item.newPrice | romAbs | shortNum}}</div>
+              <div class="col" [ngClass]="{'text-success': item.percentMove > 0, 'text-danger': item.percentMove < 0}">{{item.percentMove | romAbs | shortNum}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-template>
+  </rom-tabs>
+</rom-box-header>

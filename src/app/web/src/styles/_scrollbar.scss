@@ -1,0 +1,21 @@
+/* width */
+::-webkit-scrollbar {
+  width: $rom-scrollbar-width;
+  height: $rom-scrollbar-height;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $rom-alto; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border: 1px solid $rom-rolling-stone;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f1f1f1; 
+}

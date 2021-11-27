@@ -1,0 +1,37 @@
+.box-shadow-none-focus {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.form-control.dark-input {
+  border: 0;
+  font-weight: bold;
+  box-shadow: $box-shadow-sm;
+  line-height: 1;
+
+  &, &:focus, &:disabled {
+    background-color: $rom-silver;
+    color: black;
+  }
+
+  &::-webkit-input-placeholder, &::placeholder {
+    color: black;
+    font-weight: bold;
+  }
+
+  &:-moz-placeholder, &::-moz-placeholder {
+    color: black;
+    opacity: 1;
+    font-weight: bold;
+  }
+
+  &:-ms-input-placeholder, &::-ms-input-placeholder {
+    color: black;
+    font-weight: bold;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}

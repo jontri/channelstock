@@ -1,0 +1,89 @@
+table {
+  td {
+    // apply max width for bootstrap text-truncate to work properly
+    &.text-truncate {
+      max-width: 0;
+    }
+  }
+}
+
+.rome-table {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  &.hover {
+    .rome-table-body .row:hover {
+      background-color: $rom-alto;
+    }
+  }
+
+  &.pointer .rome-table-body .row {
+    cursor: pointer;
+  }
+
+  .col, [class*="col-"] {
+    padding: .3rem .75vw;
+
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .rome-table-header {
+    font-weight: bold;
+    margin: 0;
+    border-right: $rom-scrollbar-width solid #fff;
+  }
+
+  .rome-table-body {
+    overflow-y: scroll;
+    flex: 1 1 auto;
+
+    .row {
+      transition: background-color linear .2s;
+
+      &:not(:first-child) {
+        .col, [class*="col-"] {
+          border-top: 1px solid $rom-alto;
+        }
+      }
+    }
+  }
+
+  thead th, tbody td {
+    padding-top: .3rem;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  thead {
+    th {
+      border: 0;
+      padding-bottom: .25rem;
+    }
+  }
+
+  tbody {
+    tr {
+      &:first-child {
+        td {
+          border-top: 0;
+        }
+      }
+
+      td {
+        padding-bottom: .3rem;
+      }
+    }
+  }
+}

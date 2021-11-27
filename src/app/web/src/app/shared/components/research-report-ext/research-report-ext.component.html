@@ -1,0 +1,12 @@
+<div class="font-weight-bold small rom-text-blue-marguerite mb-3">PAST REPORTS</div>
+<ul class="small">
+    <li *ngFor="let r of researchReports" class="mb-3">
+        <div (click)="gotoReport(r.id)">
+          <span class="small"><i class="rome-ico-play"></i></span>
+          <!--<a routerLink="/research-report/{{ r.id }}" class="rom-text-black">{{ r.publishedDate | date: 'MM.dd.yy' }}</a>-->
+          <a href="javascript:void(0)" class="rom-text-black" >
+            {{ r.publishedDate | date: 'MM.dd.yy' }}
+          </a>
+        </div>
+    </li>
+</ul>

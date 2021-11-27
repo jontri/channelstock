@@ -1,0 +1,24 @@
+<rom-box-header romBgHeader="rom-bg-cyan">
+  <div class="rom-box-header-title d-flex align-items-center">
+    <div class="flex-fill">
+        <span class="rom-box-header-title"  id="topPage" #topPage>
+          {{company?.companyName}} - {{company?.participationLevel}} Level
+        </span>
+    </div>
+
+    <all-share class="row mr-0 py-0 my-0"></all-share>
+  </div>
+  <div class="rom-box-header-body container-fluid p-0" #boxHeaderBody>
+    <div class="row no-gutters mt-1 mb-4">
+      <div class="col">
+        <rom-expand [(isExpanded)]="isExpanded" *ngIf="channelCast">
+          <div class="frame-container" [ngClass]="{'expanded': isExpanded, 'not-expanded': !isExpanded}">
+            <iframe [src]="channelCast!.videoUrl | sanitizeUrl" [ngClass]="{'expanded': isExpanded, 'not-expanded': !isExpanded}"></iframe>
+          </div>
+        </rom-expand>
+      </div>
+      <!--{{channelCast?.videoUrl}}-->
+    </div>
+    <rom-company-info [company]="company"></rom-company-info>
+  </div>
+</rom-box-header>

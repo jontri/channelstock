@@ -1,0 +1,100 @@
+@import "~styles/variables";
+
+*{
+    transition: 0.3s all linear;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.actions {
+    margin-left: 50px;
+}
+
+rom-textboxio {
+  height: 43vw;
+}
+
+.footer-social{
+  padding-bottom: 0px;
+  height: 20px;
+  ul{
+    display:table;
+    margin: 0;
+
+    li{
+      display:inline-block;
+      padding: 0 0.35vw;
+      margin-bottom: 0px;
+      a{
+        img{
+          width:1.3vw;
+
+        }
+      }
+    }
+  }
+}
+
+.link-copied {
+  background: white;
+  color: #454545;
+  padding: 0.1vw 0.5vw;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  margin-left: -8.5vw;
+
+  .right {
+    width: 0px;
+    height: 0px;
+    border-top: 0.5vw solid transparent;
+    border-bottom: 0.5vw solid transparent;
+    position: absolute;
+    border-left: 0.8vw solid #fff;
+    right: -0.5vw;
+    top: 0.3vw;
+
+  }
+}
+
+
+.fa-share-square-o {
+  font-size: 18px;
+}
+
+.btn-expand {
+  position:relative;
+  top:1px;
+  right:5px;
+  color: white;
+  background: transparent;
+}
+
+
+li.pin-it{
+  position:relative;
+  top:-6px;
+}
+li.fb {
+  position:relative;
+  top:-3px;
+}
+
+
+//div.bg-footer{
+//  //height:20px;
+//  position:relative;
+//  background-color:#2e2e82;
+//  //top: -25px;
+//
+//}
+//
+//rom-pagination{
+//  position:relative;
+//  top: 7px;
+//  color: #fff;
+//}

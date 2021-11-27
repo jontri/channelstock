@@ -1,0 +1,90 @@
+
+<div class="header-div d-flex justify-content-between align-items-center">
+  <h5 class="content-header">Add Email Template</h5>
+  <button class="btn btn-secondary" (click)="back()" type="button">< Back</button>
+</div>
+<hr>
+
+<form *ngIf="!isLoading" (ngSubmit)="onSubmit(templateForm)" #templateForm="ngForm">
+    <!-- Company -->
+    <!--<div class="col">-->
+      <!--<div class="form-group">-->
+        <!--<label for="issuer">Company:</label>-->
+        <!--<div class="input-group inner-addon left-addon">-->
+          <!--<select class="form-control" -->
+          <!--name="companyId"-->
+          <!--required=true-->
+          <!--[(ngModel)]="template.companyId"-->
+          <!--#companyId-->
+          <!--&gt;-->
+            <!--<option value="" selected disabled hidden>Select Company</option>-->
+            <!--<option *ngFor="let c of companies" [ngValue]="c.id">-->
+              <!--{{c.companyName }}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!-- Template Name -->
+    <div class="col">
+      <div class="form-group">
+        <label for="templateName">Template Name:</label>
+        <div class="input-group inner-addon left-addon">
+          <input
+          class="form-control"
+          name="templateName"
+          required=true
+          type="text"
+          [(ngModel)]="template.templateName"
+          #templateName
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Subject -->
+    <div class="col">
+      <div class="form-group">
+        <label for="emailSubject">Subject:</label>
+        <div class="input-group inner-addon left-addon">
+          <input class="form-control"
+          name="emailSubject"
+          required=true
+          type="text"
+          [(ngModel)]="template.emailSubject"
+          #emailSubject
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="col">
+      <div class="form-group">
+        <label for="emailBody">Body:</label>
+        <div>
+          <rom-textboxio
+          name="emailBody"
+          required=false
+          [(value)]="template.emailBody"
+          ></rom-textboxio>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <button class="btn btn-primary" [disabled]="!templateForm.valid "
+        type="submit">Submit</button>
+      </div>
+    </div>
+    <br />
+
+</form>
+
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading" id="loading">
+  <fa name="spinner" animation="pulse" size="5x"></fa>
+</div>
+
+

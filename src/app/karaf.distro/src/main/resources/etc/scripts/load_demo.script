@@ -1,0 +1,73 @@
+load_demo = {
+	ticker:loadCompany ACCO
+	ticker:loadCompany ADMS
+	ticker:loadCompany AGRX
+	ticker:loadCompany ARU:CA
+	ticker:loadCompany ASM
+	ticker:loadCompany AVXL
+	ticker:loadCompany CMLS
+	ticker:loadCompany CMTL
+	ticker:loadCompany CRBP
+	ticker:loadCompany CTG
+	ticker:loadCompany CVU
+	ticker:loadCompany DCO
+	ticker:loadCompany DLHC
+	ticker:loadCompany DPTLF
+	ticker:loadCompany DYAI
+	ticker:loadCompany EGLE
+	ticker:loadCompany ENOB
+	ticker:loadCompany EPIX
+	ticker:loadCompany EYEG
+	ticker:loadCompany ETM
+	ticker:loadCompany EVS
+	ticker:loadCompany EXK
+	ticker:loadCompany FLWS
+	ticker:loadCompany GLDD
+	ticker:loadCompany GNE
+	ticker:loadCompany GNK
+	ticker:loadCompany GNPX
+	ticker:loadCompany GPL
+	ticker:loadCompany GTN
+	ticker:loadCompany GPL
+	ticker:loadCompany HHS
+	ticker:loadCompany HTBX
+	ticker:loadCompany HRTX
+	ticker:loadCompany IEC
+	ticker:loadCompany III
+	ticker:loadCompany IVAC
+	ticker:loadCompany IPA:CA
+	ticker:loadCompany KEYW
+	ticker:loadCompany KTOS
+	ticker:loadCompany MNI
+	ticker:loadCompany MNKD
+	ticker:loadCompany OMCM
+	ticker:loadCompany ONCS
+	ticker:loadCompany ORN
+	ticker:loadCompany PANL
+	ticker:loadCompany PMN:CA
+	ticker:loadCompany PGLC
+	ticker:loadCompany PRZ:CA
+	ticker:loadCompany PXS
+	ticker:loadCompany SALM
+	ticker:loadCompany SALT
+	ticker:loadCompany SANW
+	ticker:loadCompany SEAC
+	ticker:loadCompany SMTS
+	ticker:loadCompany SSP
+	ticker:loadCompany TPCO
+	ticker:loadCompany TSQ
+	ticker:loadCompany TRCH
+	ticker:loadCompany UUUU
+	ticker:loadCompany VBIV
+	ticker:loadCompany VEC
+
+
+	userrepo:importNobleAnalysts  ../../../../../tmp/Analysts.json
+	report:importLegacyIds        ../../../../../tmp/LegacyIds.json
+	report:importNobleLinxReports ../../../../../tmp/RESEARCH_REPORTS.json
+
+	roadshow:insertRoadShows
+	channelcast:insertChannelCasts	
+    news:insertNews
+	newsdetails:insertNewsDetails
+};

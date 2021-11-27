@@ -1,0 +1,45 @@
+<h4>Roadshow Locations</h4>
+<div class="content-div" *ngIf="!isLoading">
+  <div class="table-actions row">
+    <!-- <div class="form-group">
+      <label for="firstName">Filter users</label>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...">
+    </div> -->
+    <button class="btn btn-primary" (click)="toAddLocation()">Add Location</button>
+  </div>
+  <div class="row content-header">
+    <div class="col">Name</div>
+    <div class="col">Contact Person</div>
+    <div class="col">Email</div>
+    <div class="col">Location</div>
+    <div class="col">No. of Seats</div>
+    <div class="col">Actions</div>
+  </div>
+  <div *ngIf="locations.length !== 0; else noData">
+    <div class="row content-body" *ngFor="let location of locations;">
+      <div class="col-2">{{location.locationName}}</div>
+      <div class="col-2">{{location.contact}}</div>
+      <div class="col-2">{{location.email}}</div>
+      <div class="col-2">{{location.address?.cityOrLocality}}</div>
+      <div class="col-2">{{location.maxSeats}}</div>
+      <div class="col-2">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button class="btn btn-secondary rounded" (click)="toEditLocation(location.id)">Edit</button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Second group">
+              <button class="btn btn-danger rounded" (click)="openConfirmationDialog(location.id, location.locationName)">Delete</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="text-center">No Data Found</p>
+  </ng-template>
+</div>
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading"
+     id="loading">
+  <fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

@@ -1,0 +1,198 @@
+<rom-box-header romBgHeader="rom-bg-minsk" class="research-report">
+
+  <div class="rom-box-header-title d-flex align-items-center">
+    <div class="flex-fill">
+        <span class="rom-box-header-title"  id="topPage" #topPage>
+          {{company?.companyName}} - {{company?.participationLevel}} Level
+        </span>
+    </div>
+
+    <all-share class="row mr-0 py-0 my-0"></all-share>
+  </div>
+
+  <button id="openModal" #openModal style="display: none; visibility: hidden" data-toggle="modal"  data-target="#reportBlockerModal"></button>
+
+
+  <div class="container-fluid rom-box-header-body p-0">
+    <div class="row rom-bg-minsk px-3 mt-1 no-gutters mb-3">
+      <div class="row">
+        <div class="col">
+          <img  *ngIf="company?.participationLevel == 'Discover'" class="img-fluid" src="assets/images/discover-report-header.png"/>
+          <img  *ngIf="company?.participationLevel == 'Probe'" class="img-fluid" src="assets/images/probe-report-header.png"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="col-3 mt-2 pl-3 pr-3">
+        <div class="d-flex flex-column left-col" >
+          <rom-company-img [company]="company"></rom-company-img>
+          <ng-container *ngIf="company">
+            <rom-ticker-info-table [company]="company"></rom-ticker-info-table>
+            <div class="address-content rom-text-gray-suit small font-weight-bold mt-2">
+              <p>{{ company?.address?.address1 }}
+              </p>
+              <p>{{ company?.address?.address2 }}
+              </p>
+              <p>{{ company?.address?.cityOrLocality }}, {{ company?.address?.postalCode }}
+              </p>
+              <p>{{ company?.address?.country }}
+              </p>
+              <p>{{ company?.telephone }}</p>
+              <p>
+                <a (click)="openDialog(company?.website)" target="_blank" class="rom-text-gray-suit" style="text-decoration: underline;  cursor: pointer;">{{ company?.website }}</a>
+              </p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div *ngIf="!showReport" [ngClass]="{'blur':!showReport}" class="col-9 mt-2 report-data-container">
+        <div class="row mx-1">
+
+          <div>
+            <div class="text-white float-right px-2 bg-sticky mt-0" style=" background-color: darkred;" >
+              <a  style="color: white; z-index:1000 " >Understand the RISK</a>
+            </div>
+            <div style="" class="col-md-9 px-0 mt-0">
+              <h2 class="mb-0 rom-text-minsk font-weight-normal">{{reportData?.title}}</h2>
+              <div class="small"><span *ngIf="reportData?.analyst">{{reportData?.analyst}},</span> {{reportData?.analystTitle}}
+              </div>
+            </div>
+
+            <div class="" style="white-space: nowrap;" *ngIf="company?.participationLevel == 'Discover'">
+              <div class="row mx-0 mt-3">
+                <div class="small90 mt-1 mb-1 mr-2"  >Fundamental Analysis </div>
+                <rom-rating class=""  style="" [value]="company?.fundamentalAnalysis"></rom-rating>
+                <div class="" style="">
+                  <span class="small90 ml-2" style="">Rating</span> <span class="rating ml-2" style="">{{ getCompanyRating(company?.rating) }} &nbsp;</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="rom-text-minsk ">
+              <a href="javascript:void(0)" (click)="toDisclosures()">
+                Refer to the end of the Report for Analyst Certification and Disclosures
+              </a>
+            </p>
+
+            <br>
+            <p>
+              IMPORTANT DISCLOSURES
+              This publication is confidential for the information of the addressee only and may not be reproduced in whole or in part, copies circulated, or discussed to another party, without the written consent of Noble Capital Markets, Inc. ("Noble"). Noble seeks to update its research as appropriate, but may be unable to do so based upon various regulatory constraints. Research reports are not published at regular intervals; publication times and dates are based upon the analyst's judgement. Noble professionals including traders, salespeople and investment bankers may provide written or oral market commentary, or discuss trading strategies to Noble clients and the Noble proprietary trading desk that reflect opinions that are contrary to the opinions expressed in this research report.
+              The majority of companies that Noble follows are emerging growth companies. Securities in these companies involve a higher degree of risk and more volatility than the securities of more established companies. The securities discussed in Noble research reports may not be suitable for some investors and as such, investors must take extra care and make their own determination of the appropriateness of an investment based upon risk tolerance, investment objectives and financial status.
+
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="showReport" class="col-9 mt-2 report-data-container">
+        <div class="row mx-1">
+          <div>
+            <div class="text-white float-right px-2 bg-sticky mt-0" style=" background-color: darkred;" >
+              <a href="#InvestmentDecision" style="color: white; z-index:1000 " (click)="showDialog=!showDialog">Understand the RISK</a>
+            </div>
+            <div style="" class="col-md-9 px-0 mt-0">
+            <h2 class="mb-0 rom-text-minsk font-weight-normal">{{reportData?.title}}</h2>
+            <div class="small"><span *ngIf="reportData?.analyst">{{reportData?.analyst}},</span> {{reportData?.analystTitle}}
+            </div>
+            </div>
+
+            <div class="" style="white-space: nowrap;" *ngIf="company?.participationLevel == 'Discover'">
+              <div class="row mx-0 mt-3">
+                <div class="small90 mt-1 mb-1 mr-2"  >Fundamental Analysis </div>
+                <rom-rating class=""  style="" [value]="company?.fundamentalAnalysis"></rom-rating>
+                <div class="" style="">
+                  <span class="small90 ml-2" style="">Rating</span> <span class="rating ml-2" style="">{{ getCompanyRating(company?.rating) }} &nbsp;</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="rom-text-minsk ">
+              <a href="javascript:void(0)" (click)="toDisclosures()">
+              Refer to the end of the Report for Analyst Certification and Disclosures
+              </a>
+            </p>
+            <p><i>Company sponsored equity research provided by Noble Capital Markets, Inc., 
+              a FINRA and S.E.C. registered broker-dealer (B/D). This report is provided 
+              on Channelchek for informational purposes only and should not be used to make 
+              investment decisions. B/D is not an investment advisor and as such, offers 
+              no advice or recommendation to buy or sell any securities. Consult an 
+              Investment advisor who has a fiduciary responsibility to manage your assets 
+              in your best interest and who can help determine investment suitability for you.
+              Refer to Disclosures & Disclaimers for more detail.</i>
+            </p>
+            <p>{{publishDate}} - ANALYST SUMMARY <span class="small rom-text-silver-chalice"></span></p>
+            <div  *ngFor="let obj of reportData?.bulletpoins" [innerHtml]="obj.bulletPoint"></div>
+            <div  [innerHTML]="reportData?.body"></div>
+            <br/>
+
+            <ng-container *ngIf="reportData?.companyProfile">
+              <h5>Company Profile</h5>
+              <div [innerHTML]="reportData?.companyProfile"></div>
+            </ng-container>
+            <br/>
+
+            <ng-container *ngIf="reportData?.valuation">
+              <h5>Valuation Summary</h5>
+              <div [innerHTML]="reportData?.valuation"></div>
+            </ng-container>
+
+            <ng-container *ngIf="models">
+              <div *ngFor="let modGraphic of models" class="px-2 mx-3">
+                <img class="py-2 my-3" src="https://www.noblelinx.com/files/cms2/assets/{{company.symbol}}/{{researchReport?.legacyId}}/Models/{{modGraphic}}"/>
+              </div>
+            </ng-container>
+
+
+            <div class="px-1 mx-3" *ngIf="reportData?.historicalPricesGraphURL != null"><img class="py-2 my-3" src="/images{{reportData?.historicalPricesGraphURL}}"/></div>
+
+            <br>
+            <rom-research-disclosure id="disclaimer" [company]="company" [report]="reportData"></rom-research-disclosure>
+
+            <div class="row container-fluid rom-box-header-body row"><a href="javascript:void(0)" (click)="toTopSection()">Back to Top</a></div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showAgreement" class="agreement-div">
+      <p class="pt-3 px-3">To obtain this report, you must agree and understand that no
+        <b>
+          <u>
+            <a href="#disclosures" style="cursor: pointer;" class="d-inline-block pl-2 rom-text-kimberly x-medium" (click)= "showDialog=!showDialog">
+              Investment Decision
+            </a>
+          </u>
+        </b> should be based upon the content of the report. You should also read disclosures and the analyst certification
+        which are included on the last pages of the report.</p>
+      <div class="response mb-3 px-3 py-2 large rom-bg-kimberly rom-text-alto">
+        <a (click)="agree(); overlayService.removeAll()" class="">
+          <span class="d-inline-block rom-bg-alto rounded-circle rom-text-kimberly mr-2">
+            <i class="align-middle rome-ico-check xx-large"></i>
+          </span>
+          <span class="pr-2 border-right">I AGREE and UNDERSTAND</span>
+        </a>
+        <a (click)="disagree(); overlayService.removeAll()" class="disagree flex-fill pl-0 ml-2">I DISAGREE</a>
+      </div>
+    </div>
+
+  </div>
+
+</rom-box-header>
+
+<rom-disclosure-popup [(visible)]="showDialog"></rom-disclosure-popup>

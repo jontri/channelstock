@@ -1,0 +1,254 @@
+<ul class="small">
+  <li>
+    <span><i class="rome-ico-play"></i></span>
+    <a href="javascript: void(0);" *ngIf="!company?.industryLink" (click)="showNoReportModal()">
+      Industry/Sector Report
+    </a>
+
+    <a *ngIf="company?.industryLink" href="javascript: void(0)" (click)="toggleIndustryReport()" class="font-weight-bold">
+      Industry/Sector Report
+    </a>
+
+  </li>
+  <li *ngIf="company?.participationLevel !== 'Explore'">
+    <span><i class="rome-ico-play"></i></span>
+    <!-- FIXME -->
+
+    <!--<div *ngIf="showAgreement; else agreementNotRequired">-->
+      <!--<div romContextMenu [component]="agreementCorporatePopupComponent" [events]="['click']" [data]="createAgreementData(company?.id)">-->
+        <!--<a href="javascript: void(0)" *ngIf="!company?.presentationFilename">-->
+          <!--Corporate Presentation-->
+        <!--</a>-->
+        <!--<a href="javascript: void(0)" *ngIf="company?.presentationFilename" class="font-weight-bold">-->
+          <!--Corporate Presentation-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<ng-template #agreementNotRequired>-->
+
+      <a href="javascript: void(0)" *ngIf="!company?.presentationFilename">
+        Corporate Presentation
+      </a>
+
+      <a *ngIf="company?.presentationFilename" href="javascript: void(0)" (click)="togglePdf()" class="font-weight-bold">
+        Corporate Presentation
+      </a>
+    <!--</ng-template>-->
+  </li>
+
+  <li>
+    <span><i class="rome-ico-play"></i></span>
+    <a href="javascript: void(0);" (click)="showPressReleasesModal()">Corporate Events</a>
+  </li>
+  <li>
+    <span><i class="rome-ico-play"></i></span>
+    <a href="javascript: void(0);" (click)="showNewsFeedModal()">
+      Press Releases/News Feed
+    </a>
+  </li>
+  <ng-container *ngIf="company?.participationLevel !== 'Explore'">
+    <li>
+      <span><i class="rome-ico-play"></i></span>
+      <a href="javascript: void(0);" (click)="showUpcomingChannelCasts()" [ngClass]="{'font-weight-bold': company?.channelCastCount > 0}">
+        ChannelCASTs
+        <span *ngIf="company?.channelCastCount > 0">[{{company?.channelCastCount}}]</span>
+      </a>
+    </li>
+    <li>
+      <span><i class="rome-ico-play"></i></span>
+      <a href="javascript: void(0);" (click)="showUpcomingRoadshows()" [ngClass]="{'font-weight-bold': company?.upcomingRoadshowCount > 0}">
+      <!-- <a [routerLink]="['/aux', {outlets: {expanded: 'road-shows'}}]" [ngClass]="{'font-weight-bold': company?.upcomingRoadshowCount > 0}"> -->
+        Meet The Management
+        <span *ngIf="company?.upcomingRoadshowCount > 0">[{{company?.upcomingRoadshowCount}}]</span>
+      </a>
+    </li>
+    <li>
+      <span><i class="rome-ico-play"></i></span>
+      <a href="javascript: void(0);" (click)="showResearchAnalystModal()">Senior Equity Research Analyst</a>
+    </li>
+  </ng-container>
+  <li>
+    <span><i class="rome-ico-play"></i></span>
+    <a href="javascript: void(0);" (click)="showCorporateFilingsModal()">Corporate Filings</a>
+  </li>
+</ul>
+
+<!-- Button triggers for modals -->
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#channelcastModal" #channelcastTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#roadshowModal" #roadshowTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#corporateFilingsModal" #corporateFilingsTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#pressReleasesModal" #pressReleasesTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#newsFeedModal" #newsFeedTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#newsStoryModal" #newsStoryTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#notAvailableModal" #notAvailableTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#noReportModal" #noReportTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#reasearchAnalystModal" #researchAnalystTrigger></button>
+
+
+<div *ngIf="showPdf" class="pdf-backdrop" [@fadeInOut]>
+  <div class="pdf-div">
+    <div class="pdf-header">
+      <button class="btn btn-danger" (click)="togglePdf()">Close</button>
+    </div>
+    <div class="pdf-body">
+      <pdf-viewer
+      src="{{'/docs/' + company.presentationFilename}}"
+      [fit-to-page]="true"
+      [autoresize]="true"
+      [render-text]="true"
+      style="display: block; max-width: 80vw;">
+      </pdf-viewer>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showIndustryReport" class="pdf-backdrop" [@fadeInOut]>
+  <div class="pdf-div">
+    <div class="pdf-header ">
+      <button class="btn btn-danger" (click)="toggleIndustryReport()">Close</button>
+    </div>
+    <div class="pdf-body">
+      <pdf-viewer
+        src="{{company?.industryLink}}"
+        [fit-to-page]="true"
+        [autoresize]="true"
+        [render-text]="true"
+        style="display: block; max-width: 80vw;" >
+      </pdf-viewer>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="corporateFilingsModal" role="dialog" aria-labelledby="corporateFilingsModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ company?.companyName }} Corporate Filings </h5>
+         <button type="button" class="close" (click)="closeModal()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <rom-qmod type="filings" [company]="company" [isOpen]="isFilingsOpen"></rom-qmod>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pressReleasesModal" role="dialog" aria-labelledby="pressReleasesModalLabel"
+  aria-hidden="true"  >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ company?.companyName }} Corporate Events </h5>
+        <button type="button" class="close" (click)="closeModal()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <rom-qmod type="corporateevents" [company]="company" [isOpen]="isEventsOpen"></rom-qmod>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal" #closePressReleasesModal>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="newsFeedModal" role="dialog" aria-labelledby="newsFeedModalLabel"
+     aria-hidden="true"  >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ company?.companyName }} Press Releases / News Feed </h5>
+        <button type="button" class="close" (click)="closeModal()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <rom-qmod type="fullnewssummary" [company]="company" [isOpen]="isNewsOpen"></rom-qmod>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal" #closeNewsFeedModal>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newsStoryModal" role="dialog" aria-labelledby="newsStoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ headline }}</h5>
+      </div>
+      <div class="modal-body">
+        <div [innerHTML]="newsStory"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" style="display: none; visibility: hidden" data-dismiss="modal" #closeNewsStoryModal></button>
+        <button type="button" class="btn btn-secondary" (click)="closeNewsStory()">Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="notAvailableModal" role="dialog" aria-labelledby="notAvailableModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Channelchek</h5>
+      </div>
+      <div class="modal-body">
+            <p align="center"><strong>Not available</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="noReportModal" role="dialog" aria-labelledby="noReportModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Channelchek</h5>
+      </div>
+      <div class="modal-body">
+        <p align="center"><strong>No reports available</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reasearchAnalystModal" role="dialog" aria-labelledby="reasearchAnalystModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Noble Capital Markets Analyst</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-4">
+        <div><b>{{company?.analystName}}</b></div>
+        <div>{{company?.analystEmail}}</div>
+        <br>
+        <div [innerHTML]="company?.analystCredentials"></div>
+        <br>
+    </div>
+  </div>
+</div>
+
+

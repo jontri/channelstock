@@ -1,0 +1,7 @@
+:host {
+  cursor: pointer;
+
+  &:hover, &:focus {
+    color: blue;
+  }
+}

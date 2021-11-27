@@ -1,0 +1,25 @@
+@import "~styles/variables";
+
+table {
+  tr {
+    td {
+      border-top: 0;
+    }
+
+    &:not(:first-child) {
+      border-top: .2vw dotted $rom-alto;
+    }
+
+    &:last-child {
+      cursor: pointer;
+    }
+  }
+
+  tbody {
+    tr td{
+      &:first-child{
+        padding-left: 0.5vw;
+      }
+    }
+  }
+}

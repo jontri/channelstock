@@ -1,0 +1,76 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;">
+    <rom-initial-tree class="rom-box-header-body">
+        <div class="rom-tree-body">
+          <h3 class="font-weight-normal line-height-font my-3 large-letter-spacing text-white px-2"><u>CONDITIONS of USE</u></h3>
+          <p class="font-weight-light xm-normal px-2 text-white">
+            To continue, you must agree to Channelchek
+            <a href="#termsofuse" (click)="showDialog=!showDialog">Terms of Use</a> and <a href="#privacypolicy" (click)= "showDialog=!showDialog">Privacy Policy</a> that you
+            understand that Channelchek uses <u>Cookies</u> for
+
+            functional and analytical purposes, that you
+            understand the <a href="#InvestmentDecision" (click)="showDialog=!showDialog">Risks associated with Investing in
+              Emerging Growth Companies</a>, that you have
+            reviewed the <a href="#disclosures" (click)="showDialog=!showDialog">Disclaimers and Disclosures</a>
+            associated with access to information available
+            on Channelchek, that you understand the
+            distinction between <a href="#accredited" (click)="showDialog=!showDialog">Accredited Investors</a> from
+            non-accredited Investors, and that you will not make
+            an <a href="#disclosures" (click)="showDialog=!showDialog">Investment Decision</a> based solely upon information
+            obtained through Channelchek.
+          </p>
+          <span class="form-control-feedback" *ngIf="errorOccured">
+            <div *ngIf="errorOccured" class="text-danger">{{ errorMsg }}</div>
+          </span>
+        </div>
+
+        <!-- <button class="text-white rom-bg-kimberly btn text-left rounded-0 pl-4 py-2 w-100 line-height-font">
+          <span class="rom-text-mischka mr-2 d-inline-block">
+            <ng-content select=".rom-ico-txt-content"></ng-content>
+          </span>
+          <span class="d-inline-block">
+            <ng-content select=".rom-ico-txt-label"></ng-content>
+          </span>
+        </button> -->
+
+        <!-- <rom-ico-txt-btn class="px-0 rom-tree-btn"> -->
+        <div class="response mb-3 px-3 py-2 rom-bg-kimberly rom-text-alto rom-tree-btn">
+          <a (click)="toggleAgreement(true)" class="flex-fill agree">
+            <span class="d-inline-block rom-bg-alto rounded-circle rom-text-kimberly mr-2">
+              <i class="align-middle rome-ico-check xx-large"></i>
+            </span>
+            <span class="pr-2 border-right">I AGREE and UNDERSTAND</span>
+          </a>
+          <a (click)="toggleAgreement(false)" class="disagree flex-fill">I DISAGREE</a>
+        </div>
+        <!-- </rom-ico-txt-btn> -->
+      </rom-initial-tree>
+</rom-box-header>
+
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal" data-target="#disagreeTermsConditionsModal"
+  #disagreeTermsConditionsTrigger></button>
+
+<div class="modal fade" id="disagreeTermsConditionsModal" role="dialog" aria-labelledby="disagreeTermsConditionsModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+         <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>We understand. Unfortunately you must agree with the Conditions of Use to access the Channelchek universe of emerging companies.
+            <br><br>Are you sure you want to leave Channelchek? </strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="logout()">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<rom-disclosure-popup [(visible)]="showDialog"></rom-disclosure-popup>

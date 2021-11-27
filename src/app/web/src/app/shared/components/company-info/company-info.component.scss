@@ -1,0 +1,94 @@
+@import "~styles/variables";
+
+*{
+    transition: 0.3s all linear;
+}
+
+.explore {
+  max-height: 15vw;
+}
+
+.overview-header {
+  border-bottom: .12vw solid $rom-kimberly;
+}
+
+.get-report {
+  width: 35%;
+  margin-right: 2vw;
+  position: relative;
+}
+
+.left-col {
+  width: 31%;
+
+  rom-rating {
+    width: 68%;
+  }
+}
+
+.address-content {
+
+    margin-left: .5vw;
+
+    p {
+        padding: 0;
+        margin: 0;
+        line-height: 1.5;
+    }
+}
+
+.rating {
+  font-weight: bold;
+  font-size: 1.0vw;
+  color: #28a745;
+}
+
+.related-companies-header {
+  background-image: url(/assets/images/related-comp-l.png),  url(/assets/images/related-comp-m.png), url(/assets/images/related-comp-m.png);
+  background-position: left, right, center;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: contain, contain, contain;
+  height:38px;
+}
+
+.btn-remove-watchlist-explore {
+  position: relative;
+  border: 0;
+  top: 8%;
+  right: 1%;
+  height:2.5vw;
+}
+
+.btn-remove-watchlist {
+  position: absolute;
+  border: 0;
+  right: 3%;
+  height:2.5vw;
+}
+
+.btn-remove-watchlist:hover, .btn-remove-watchlist-explore:hover {
+  background-color: #ba4f07 !important;
+}
+
+.btn-add-watchlist-explore {
+  position: relative;
+  border: 0;
+  top:8%;
+  left:5%;
+  height:2.5vw;
+
+}
+
+.btn-add-watchlist {
+  position: absolute;
+  border: 0;
+  right: 3%;
+  height:2.5vw;
+
+}
+
+.btn-add-watchlist-explore:hover, .btn-add-watchlist:hover {
+  background-color: #2e2e82 !important;
+}
+
+

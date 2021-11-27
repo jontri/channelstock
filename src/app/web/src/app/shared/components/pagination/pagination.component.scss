@@ -1,0 +1,47 @@
+form {
+  input {
+    width: 3.0vw;
+  }
+}
+.btn-space {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.btn {
+  border: 1px solid #cacaca;
+  background-color: #f2f2f2;
+  color: black;
+  padding: 6px 20px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 0 !important;
+}
+/* Gray */
+.default {
+  border-color: black;
+  color: black;
+}
+
+.btn:hover {
+  background: #e7e7e7;
+}
+.disabled {
+  border: 1px solid #e7e7e7 !important;
+  background-color: #f2f2f2;
+}
+.pagination a {
+  border-radius: 0 !important;
+  border: none;
+  text-decoration: none;
+  font-size: 10px;
+  padding: 4px 6px;
+}
+.pagination > .active > a
+{
+    color: black !important;
+    background-color: white !important;
+    font-weight: bold !important;
+    padding: 4px 6px;
+}

@@ -1,0 +1,20 @@
+<nav class="nav flex-column rom-bg-scampi line-height-font" [ngClass]="{'nav-mobile': responsiveService.isMobile}">
+  <span class="pt-4 pb-1 px-3 rom-text-australian-mint border-bottom">MENU</span>
+  <ng-container *ngIf="!responsiveService.isMobile; else mobileNav">
+    <a class="nav-link" routerLink="/about" routerLinkActive="active">About Channelchek</a>
+    <a class="nav-link" routerLink="/noble" routerLinkActive="active">Noble Capital Markets</a>
+    <a class="nav-link" routerLink="/analysts" routerLinkActive="active">Noble Analysts</a>
+    <a class="nav-link" routerLink="/risk-reward" routerLinkActive="active">Risk / Reward</a>
+    <a class="nav-link" routerLink="/noble-con" routerLinkActive="active">NobleCon Conference</a>
+    <!--a class="nav-link" routerLink="/college-contest" routerLinkActive="active">College Contest</a-->
+    <a class="nav-link" routerLink="/offerings" routerLinkActive="active">Offerings</a>
+  </ng-container>
+  <ng-template #mobileNav>
+    <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+    <a class="nav-link" routerLink="/news-channel" routerLinkActive="active">News</a>
+    <a class="nav-link" routerLink="/research-channel" routerLinkActive="active">Research</a>
+    <a class="nav-link" routerLink="/podcasts-channel" routerLinkActive="active">Podcasts</a>
+    <a class="nav-link" routerLink="/videos-channel" routerLinkActive="active">Videos</a>
+    <a class="nav-link" (click)="loggedOut.emit()">Logout</a>
+  </ng-template>
+</nav>

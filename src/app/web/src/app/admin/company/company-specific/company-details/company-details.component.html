@@ -1,0 +1,348 @@
+<div class="header-div">
+    <h5 class="content-header">Company Details</h5>
+
+    <div class="col-md-3">
+      <!-- <button class="btn btn-secondary" [routerLink]="['upload-list']">
+        Manage Uploads</button>
+      &nbsp; -->
+      <button class="btn btn-secondary" [routerLink]="['other-info']">
+        Edit Other Info</button>
+      &nbsp;
+      <button class="btn btn-secondary" (click)="back()">
+        < Back</button>
+    </div>
+
+  </div>
+  <hr>
+
+  <form class="form-horizontal" [formGroup]="companyForm">
+
+    <!--Company Name-->
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="name">Company Name:</label>
+
+        <input type="text" class="form-control" id="name" placeholder="Company Name" formControlName="name" [(ngModel)]="company.companyName" readonly="true">
+
+      </div>
+    </div>
+
+    <!--Company Profile-->
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="profile">Company Profile:</label>
+
+        <!--<input type="text" class="form-control" placeholder="Company Profile" formControlName="profile">-->
+        <textarea rows="4" class="form-control" id="profile" placeholder="Company Profile" formControlName="profile" [(ngModel)]="company.companyProfile"
+          readonly="true"></textarea>
+
+        <div *ngIf="companyForm.controls['profile'].errors && !companyForm.controls['profile'].pristine" class="error-message">
+
+          <div class="error" [hidden]="!companyForm.controls['profile'].errors.required">Company Profile is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <!--Alternate Company Profile-->
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="profile">Alternate Company Profile:</label>
+
+        <textarea rows="4" class="form-control" id="alternateProfile" placeholder="Alternate Company Profile" formControlName="alternateProfile" [(ngModel)]="company.alternateProfile"
+                  readonly="true"></textarea>
+
+        <div *ngIf="companyForm.controls['alternateProfile'].errors && !companyForm.controls['alternateProfile'].pristine" class="error-message">
+          <div class="error" [hidden]="!companyForm.controls['alternateProfile'].errors.required">Company Profile is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <!--Exchange-->
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="name">Exchange</label>
+
+        <input type="text" class="form-control" id="exchange" placeholder="Exchange" formControlName="exchange" [(ngModel)]="company.exchange"
+          readonly="true">
+        <div *ngIf="companyForm.controls['exchange'].errors && !companyForm.controls['exchange'].pristine" class="error-message">
+          <div class="error" [hidden]="!companyForm.controls['exchange'].errors.required">Exchange is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <!--NAICS-->
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="name">NAICS</label>
+
+        <input type="text" class="form-control" id="naics" placeholder="NAICS" formControlName="naics" [(ngModel)]="company.naics"
+          readonly="true">
+        <div *ngIf="companyForm.controls['naics'].errors && !companyForm.controls['naics'].pristine" class="error-message">
+          <div class="error" [hidden]="!companyForm.controls['naics'].errors.required">NAICS is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row container-fluid">
+      <!--NAICS Industry-->
+      <div class="col-md-6">
+        <div class="form-group">
+
+          <label for="name">Industry</label>
+
+          <input type="text" class="form-control" id="industry" placeholder="Industry" formControlName="industry" [(ngModel)]="company.industry"
+            readonly="true">
+          <div *ngIf="companyForm.controls['industry'].errors && !companyForm.controls['industry'].pristine" class="error-message">
+            <div class="error" [hidden]="!companyForm.controls['industry'].errors.required">Industry is required.</div>
+          </div>
+        </div>
+      </div>
+
+      <!--NAICS Sector-->
+      <div class="col-md-6">
+        <div class="form-group">
+
+          <label for="name">Sector</label>
+
+          <input type="text" class="form-control" id="sector" placeholder="Sector" formControlName="sector" [(ngModel)]="company.sector"
+            readonly="true">
+          <div *ngIf="companyForm.controls['sector'].errors && !companyForm.controls['sector'].pristine" class="error-message">
+            <div class="error" [hidden]="!companyForm.controls['sector'].errors.required">Sector is required.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Participation Level-->
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="name">Participation Level</label>
+
+        <input type="text" class="form-control" id="participationLvl" placeholder="Participation Level" formControlName="participationLvl"
+          [(ngModel)]="company.participationLevel" readonly="true">
+        <div *ngIf="companyForm.controls['participationLvl'].errors && !companyForm.controls['participationLvl'].pristine" class="error-message">
+          <div class="error" [hidden]="!companyForm.controls['participationLvl'].errors.required">Participation Level is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TICKER INFO -->
+    <br>
+    <h5 class="content-header">Ticker Information</h5>
+    <hr>
+
+    <div class="row container-fluid">
+      <!--Ticker-->
+      <div class="col-md-6">
+        <div class="form-group">
+
+          <label for="name">Tickery Symbol</label>
+
+          <input type="text" class="form-control" id="ticker" placeholder="Tickery Symbol" formControlName="ticker" [(ngModel)]="company.symbol"
+            readonly="true">
+          <div *ngIf="companyForm.controls['ticker'].errors && !companyForm.controls['ticker'].pristine" class="error-message">
+            <div class="error" [hidden]="!companyForm.controls['ticker'].errors.required">Ticker Symbol is required.</div>
+          </div>
+        </div>
+      </div>
+      <!--Market Cap-->
+      <div class="col-md-6">
+        <div class="form-group">
+
+          <label for="name">Market Capitalization</label>
+
+          <input type="text" class="form-control" id="marketCap" placeholder="Market Capitalization" formControlName="marketCap" [(ngModel)]="company.marketCap"
+            readonly="true">
+          <div *ngIf="companyForm.controls['marketCap'].errors && !companyForm.controls['marketCap'].pristine" class="error-message">
+            <div class="error" [hidden]="!companyForm.controls['marketCap'].errors.required">Market Capitalization is required.</div>
+          </div>
+        </div>
+      </div>
+      <!--Current Price-->
+      <div class="col-md-4">
+        <div class="form-group">
+
+          <label for="name">Current Price</label>
+
+          <input type="text" class="form-control" id="currentPrice" placeholder="Current Price" formControlName="currentPrice" [(ngModel)]="company.currentPrice"
+            readonly="true">
+          <div *ngIf="companyForm.controls['currentPrice'].errors && !companyForm.controls['currentPrice'].pristine" class="error-message">
+            <div class="error" [hidden]="!companyForm.controls['currentPrice'].errors.required">Price is required.</div>
+          </div>
+        </div>
+      </div>
+      <!--Previous Price-->
+      <div class="col-md-4">
+        <div class="form-group">
+
+          <label for="name">Current Price</label>
+
+          <input type="text" class="form-control" id="previousPrice" placeholder="Previous Price" formControlName="previousPrice" [(ngModel)]="company.previousPrice"
+            readonly="true">
+          <div *ngIf="companyForm.controls['previousPrice'].errors && !companyForm.controls['previousPrice'].pristine" class="error-message">
+            <div class="error" [hidden]="!companyForm.controls['previousPrice'].errors.required">Previous Price is required.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- % Change-->
+      <!--
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="name">% Change </label>
+          {{ percentChange | currency }}
+          <input type="text" class="form-control" id="percentChange" placeholder="Percent Change" ([ngModel])="percentChange" readonly="true">
+        </div>
+      </div>
+      -->
+    </div>
+
+
+      <!-- Contact INFO -->
+      <br>
+      <h5 class="content-header">Contact Information</h5>
+      <hr>
+
+      <!--Email-->
+      <div class="col-md-12">
+        <div class="form-group">
+
+          <label for="name">Email Address:</label>
+
+          <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email" [(ngModel)]="company.email"
+            readonly="true">
+          <!--<div *ngIf="companyForm.controls['email'].errors && !companyForm.controls['email'].pristine" class="error-message">
+
+            <div class="error" [hidden]="!companyForm.controls['email'].errors.required">Email required.</div>
+          </div>
+          -->
+        </div>
+      </div>
+
+      <!--Adress-->
+      <div class="row container-fluid">
+
+        <div class="col-md-6">
+          <label for="address1">Address:</label>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Street" formControlName="address1" [(ngModel)]="company.address.address1"
+              readonly="true">
+
+            <div *ngIf="companyForm.controls['address1'].errors && !companyForm.controls['address1'].pristine" class="error-message">
+              <div class="error" [hidden]="!companyForm.controls['address1'].errors.required">Street is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="address1">&nbsp;</label>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Building/Unit No" formControlName="address2" [(ngModel)]="company.address.address2"
+              readonly="true">
+
+            <div *ngIf="companyForm.controls['address2'].errors && !companyForm.controls['address2'].pristine" class="error-message">
+
+              <div class="error" [hidden]="!companyForm.controls['address2'].errors.required">Building/Unit No is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="City" formControlName="city" [(ngModel)]="company.address.cityOrLocality"
+              readonly="true">
+
+            <div *ngIf="companyForm.controls['city'].errors && !companyForm.controls['city'].pristine" class="error-message">
+
+              <div class="error" [hidden]="!companyForm.controls['city'].errors.required">City is required.</div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Zipcode" formControlName="zipCode" [(ngModel)]="company.address.postalCode"
+              readonly="true">
+
+            <div *ngIf="companyForm.controls['zipCode'].errors && !companyForm.controls['zipCode'].pristine" class="error-message">
+              <div class="error" [hidden]="!companyForm.controls['zipCode'].errors.required">Zipcode is required.</div>
+              <div class="error" [hidden]="!companyForm.controls['zipCode'].errors.pattern">Invalid input</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Country" formControlName="country" [(ngModel)]="company.address.country"
+              readonly="true">
+
+            <div *ngIf="companyForm.controls['country'].errors && !companyForm.controls['country'].pristine" class="error-message">
+              <div class="error" [hidden]="!companyForm.controls['country'].errors.required">Country is required.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br>
+
+
+      <!--Website -->
+      <div class="col-md-12">
+        <div class="form-group">
+
+          <label for="name">Website:</label>
+
+          <input type="text" class="form-control" placeholder="Website" formControlName="website" [(ngModel)]="company.website" readonly="true">
+
+          <div *ngIf="companyForm.controls['website'].errors && !companyForm.controls['website'].pristine" class="error-message">
+
+            <div class="error" [hidden]="!companyForm.controls['website'].errors.required">Contact Person is required.</div>
+
+          </div>
+          <!--End .error-message-->
+
+        </div>
+        <!-- END .form-group -->
+      </div>
+      <!--End .col-md-12 -->
+
+
+      <!-- Upload Info -->
+      <!--
+    <br>
+    <h5 class="content-header">Manage Uploads</h5>
+    <hr>
+
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="uploadChannelCasts">Channel CASTS:&nbsp;</label>
+        <input type="file" id="uploadChannelCasts" placeholder="uploadChannelCasts" formControlName="uploadChannelCasts" />
+
+        <div *ngIf="companyForm.controls['uploadChannelCasts'].errors && !companyForm.controls['uploadChannelCasts'].pristine" class="error-message">
+
+          <div class="error" [hidden]="!companyForm.controls['uploadChannelCasts'].errors.required">Channel Casts File is required.</div>
+        </div>
+
+      </div>
+    </div>
+    -->
+
+
+      <!--
+    <div class="col-md-12">
+      <div class="form-group">
+        <button class="btn btn-primary" [disabled]="companyForm.invalid" (click)="onSubmit(companyForm.value)">Submit</button>
+      </div>
+    </div>
+  -->
+      <br/>
+
+  </form>

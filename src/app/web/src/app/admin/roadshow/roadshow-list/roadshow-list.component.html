@@ -1,0 +1,44 @@
+<h4>Roadshows</h4>
+<div class="content-div" *ngIf="!isLoading">
+  <div class="table-actions row">
+    <!-- <div class="form-group">
+      <label for="firstName">Filter users</label>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...">
+    </div> -->
+    <button class="btn btn-primary" (click)="toAddRoadshow()">Add Roadshow</button>
+  </div>
+  <div class="row content-header">
+    <div class="col">Date</div>
+    <div class="col">Issuer</div>
+    <div class="col">Location</div>
+    <div class="col">Actions</div>
+  </div>
+  <div *ngIf="roadShows?.length !== 0; else noData">
+    <div class="row content-body" *ngFor="let roadshow of roadShows;">
+      <!-- <div class="col">{{roadshow?.date | date: 'short'}}</div> -->
+      <!-- remove date pipe because date is prepared from server  -->
+      <div class="col">{{roadshow?.date}}</div>
+      <div class="col">{{roadshow?.companyName}}</div>
+      <div class="col">{{roadshow?.locationName}}</div>
+      <div class="col">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button class="btn btn-secondary rounded" (click)="toEditRoadshow(roadshow.id)">Edit</button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Second group">
+              <button class="btn btn-danger rounded" (click)="openConfirmationDialog(roadshow.id, roadshow?.companyName)">Delete</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="text-center">No Data Found</p>
+  </ng-template>
+</div>
+
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading"
+     id="loading">
+  <fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

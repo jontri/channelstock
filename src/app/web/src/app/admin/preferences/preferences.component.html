@@ -1,0 +1,420 @@
+<h4>Personal Preferences</h4>
+
+<div style="text-align:center">
+  <div class="row center_div">
+    <div class="col-12 col-centered">
+      <span class="text-danger">{{ accountFailedMsg }}</span>
+      <span class="text-success">{{ accountSuccessMsg }}</span>
+      <p>&nbsp;</p>
+    </div>
+  </div>
+</div>
+
+<div class="form-group main-form-group" [formGroup]="preferenceForm">
+  <label>Participation Type:</label><br/>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" (change)="formInit()" name="participationType"
+           formControlName="participationType" id="basic" [value]="1" [(ngModel)]="userProfile.participationType">
+    <label class="form-check-label" for="basic">Basic </label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" (change)="formInit()" name="participationType"
+           formControlName="participationType" id="enhanced" [value]="2" [(ngModel)]="userProfile.participationType">
+    <label class="form-check-label" for="enhanced">Enhanced</label>
+  </div>
+</div>
+<hr/>
+
+<div class="content-div mt-4">
+
+  <!-- basic -->
+  <form [formGroup]="preferenceForm" *ngIf="userProfile.participationType === 1" [@fadeInOut]>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-6" [ngClass]="displayFieldCss('firstName')">
+        <label for="firstName" class="required">First Name</label>
+        <input type="text" class="form-control" id="firstName" #first_name formControlName="firstName"
+               placeholder="Enter First Name" [(ngModel)]="userProfile.firstName" >
+        <rom-field-error-display [displayError]="isFieldValid('firstName')"
+                                 errorMsg="First Name is Required"></rom-field-error-display>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="middleName">Middle Name</label>
+        <input type="text" class="form-control" id="middleName" formControlName="middleName"
+               placeholder="Enter Middle Name" [(ngModel)]="userProfile.middleName">
+      </div>
+      <div class="form-group col-md-6" [ngClass]="displayFieldCss('lastName')">
+        <label for="lastName" class="required">Last Name</label>
+        <input type="text" class="form-control" id="lastName"  formControlName="lastName"
+               placeholder="Enter Last Name" [(ngModel)]="userProfile.lastName">
+        <rom-field-error-display [displayError]="isFieldValid('lastName')"
+                                 errorMsg="Last Name is Required"></rom-field-error-display>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="displayFieldCss('emailAddress')">
+      <label for="emailAddress" class="required">Email Address</label>
+      <input type="email" class="form-control" id="emailAddress"  formControlName="emailAddress"
+             placeholder="Enter Email Address" [(ngModel)]="userProfile.emailAddress">
+      <rom-field-error-display [displayError]="isFieldValid('emailAddress')"
+                               errorMsg="Email is Required"></rom-field-error-display>
+    </div>
+
+
+    <div class="d-flex justify-content-end">
+      <!--<button class="btn btn-primary" [disabled]="preferenceForm.invalid" type="submit">Submit</button>-->
+      <button class="btn btn-primary" (click)="onSubmit(preferenceForm.value)">Submit</button>
+    </div>
+  </form>
+
+  <!-- enhanced -->
+  <form [formGroup]="preferenceForm" *ngIf="userProfile.participationType === 2" [@fadeInOut]>
+
+    <input type="hidden" class="form-control" formControlName="firstName" [(ngModel)]="userProfile.firstName">
+    <input type="hidden" class="form-control" formControlName="middleName" [(ngModel)]="userProfile.middleName">
+    <input type="hidden" class="form-control" formControlName="lastName" [(ngModel)]="userProfile.lastName">
+    <input type="hidden" class="form-control" formControlName="emailAddress" [(ngModel)]="userProfile.emailAddress">
+
+    <div class="form-group">
+      <!-- <label for="name">Address 1:</label> -->
+      <div class="row">
+
+        <div class="col-md-4" [ngClass]="displayFieldCss('address1')">
+          <label class="required">Address 1:</label>
+          <input type="text"
+                 class="form-control"
+                 placeholder="Address 1"
+                 formControlName="address1"
+                 [(ngModel)]="userProfile.address1">
+          <rom-field-error-display [displayError]="isFieldValid('address1')"
+                                   errorMsg="Address 1 is Required"></rom-field-error-display>
+        </div>
+        <div class="col-md-4">
+          <label>Address 2:</label>
+          <input type="text"
+                 class="form-control"
+                 placeholder="Address 2"
+                 formControlName="address2"
+                 [(ngModel)]="userProfile.address2">
+        </div>
+        <div class="col-md-4" [ngClass]="displayFieldCss('city')">
+          <label class="required">City or Locality:</label>
+          <input type="text"
+                 class="form-control"
+                 placeholder="City"
+                 formControlName="city"
+                 id="city"
+                 [(ngModel)]="userProfile.city">
+          <rom-field-error-display [displayError]="isFieldValid('city')"
+                                   errorMsg="City is Required"></rom-field-error-display>
+        </div>
+        <div class="col-md-4" [ngClass]="displayFieldCss('state')">
+          <label class="required">State or Province:</label>
+          <input type="text"
+                 class="form-control"
+                 placeholder="State or Province"
+                 formControlName="state"
+                 id="state"
+                 [(ngModel)]="userProfile.state">
+          <rom-field-error-display [displayError]="isFieldValid('state')"
+                                   errorMsg="State is Required"></rom-field-error-display>
+        </div>
+        <div class="col-md-4" [ngClass]="displayFieldCss('zipCode')">
+          <label class="required">Zip:</label>
+          <input type="text"
+                 class="form-control"
+                 placeholder="Zip"
+                 formControlName="zipCode"
+                 id="postalCode"
+                 [(ngModel)]="userProfile.zipCode">
+          <rom-field-error-display [displayError]="isFieldValid('zipCode')"
+                                   errorMsg="Zip is Required"></rom-field-error-display>
+        </div>
+        <div class="col-md-4" [ngClass]="displayFieldCss('country')">
+          <label class="required">Country:</label>
+          <input type="text"
+                 #country
+                 class="form-control"
+                 placeholder="Country"
+                 formControlName="country"
+                 [(ngModel)]="userProfile.country">
+          <rom-field-error-display [displayError]="isFieldValid('country')"
+                                   errorMsg="Country is Required"></rom-field-error-display>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4" [ngClass]="displayFieldCss('phoneNumber')">
+          <label for="phoneNumber" class="required">Phone Number</label>
+          <input type="tel" class="form-control" id="phoneNumber" formControlName="phoneNumber"
+                 placeholder="Enter Phone Number" [(ngModel)]="userProfile.phoneNumber">
+          <rom-field-error-display [displayError]="isFieldValid('phoneNumber')"
+                                   errorMsg="Phone Number is Required"></rom-field-error-display>
+        </div>
+
+        <div class="col-md-4" [ngClass]="displayFieldCss('otherNumber')">
+          <label for="otherNumber" class="required">Cell Phone Number</label>
+          <input type="tel" class="form-control" id="otherNumber" formControlName="otherNumber"
+                 placeholder="Enter Cell Phone Number" [(ngModel)]="userProfile.otherNumber">
+          <rom-field-error-display [displayError]="isFieldValid('otherNumber')"
+                                   errorMsg="Cell Phone Number is Required"></rom-field-error-display>
+        </div>
+
+      </div>
+    </div>
+    <hr/>
+    <div class="form-group">
+      <label>Sector Interest:</label><br/>
+      <div class="col-md-12">
+        <div class="row mb-2">
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox"  id="isNaturalResources" formControlName="isNaturalResources"
+                   [(ngModel)]="userProfile.isNaturalResources">
+            <label class="form-check-label" for="isNaturalResources">Natural Resources / Energy</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox"  id="isHealthCare" formControlName="isHealthCare"
+                   [(ngModel)]="userProfile.isHealthCare">
+            <label class="form-check-label" for="isHealthCare">Healthcare / BioTech</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox"  id="isGoodServices" formControlName="isGoodServices"
+                   [(ngModel)]="userProfile.isGoodServices">
+            <label class="form-check-label" for="isGoodServices">Consumer Goods & Services</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox"  id="isIndustrials" formControlName="isIndustrials"
+                   [(ngModel)]="userProfile.isIndustrials">
+            <label class="form-check-label" for="isIndustrials">Industrials</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox" id="isTechnology" formControlName="isTechnology"
+                   [(ngModel)]="userProfile.isTechnology">
+            <label class="form-check-label" for="isTechnology">Technology</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox" id="isEntertainment" formControlName="isEntertainment"
+                   [(ngModel)]="userProfile.isEntertainment">
+            <label class="form-check-label" for="isEntertainment">Media & Entertainment</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox"  id="isAllAny"  formControlName="isAllAny" [(ngModel)]="userProfile.isAllAny">
+            <label class="form-check-label" for="isAllAny">All / Any</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr/>
+
+
+    <div class="form-group">
+      <div class="row">
+        <div class="form-group col-md-4" [ngClass]="displayFieldCss('jobTitle')">
+          <label for="jobTitle" class="required">Title</label>
+          <input type="text" class="form-control" id="jobTitle" formControlName="jobTitle" placeholder="Enter Title"
+                 [(ngModel)]="userProfile.jobTitle">
+          <rom-field-error-display [displayError]="isFieldValid('jobTitle')"
+                                   errorMsg="Title is Required"></rom-field-error-display>
+        </div>
+        <div class="form-group col-md-4" [ngClass]="displayFieldCss('yrsOfInvestmentExp')">
+          <label class="required">Investment Experience (YRS)</label>
+          <input type="number" class="form-control" id="yrsOfInvestmentExp" formControlName="yrsOfInvestmentExp"
+                 placeholder="Enter Years of Investment Experience" [(ngModel)]="userProfile.yrsOfInvestmentExp">
+          <rom-field-error-display [displayError]="isFieldValid('yrsOfInvestmentExp')"
+                                   errorMsg="Years Of Investment Exp is Required"></rom-field-error-display>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Investor Type:</label>
+          <div class="input-group inner-addon left-addon">
+            <select class="form-control" formControlName="investorType">
+              <option value="0" selected disabled>Select Investor Type</option>
+              <option *ngFor="let r of _investorTypes">{{ r }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="form-group col-md-4">
+            <label>RIA/FINRA Registered:</label>
+            <div class="input-group inner-addon left-addon">
+              <select class="form-control" formControlName="isFinra" [(ngModel)]="userProfile.isFinra">
+                <option value="" selected disabled>Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+          <!-- <div class="form-check">
+            <input class="form-check-input"
+                   type="checkbox" name="isFinra" id="isFinra" formControlName="isFinra"
+                   [(ngModel)]="userProfile.isFinra">-->
+            <!-- (change)="toggleRegistered()" >-->
+            <!-- <label class="form-check-label">
+              Registered Investment Advisor / FINRA Registered Representative?
+            </label>
+          </div> -->
+        </div>
+      </div>
+
+
+      <div class="row" *ngIf="userProfile.isFinra=='yes'" [@fadeInOut]>
+        <div class="form-group col-md-12" [ngClass]="displayFieldCss('crd')">
+          <label for="crd" class="required">CRD</label>
+          <input type="text" class="form-control" id="crd" formControlName="crd" placeholder="Enter CRD"
+                 [(ngModel)]="userProfile.crd">
+          <rom-field-error-display [displayError]="isFieldValid('crd')"
+                                   errorMsg="CRD is Required"></rom-field-error-display>
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Experienced in the following investment types:</label><br/>
+      <div class="col-md-12">
+        <div class="row mb-2">
+          <div class="form-check form-check-inline col">
+            <!-- <input class="form-check-input" type="checkbox" [ngModelOptions]="{standalone: true}" id="bonds" [(ngModel)]="familiarity.bonds">-->
+            <input class="form-check-input" type="checkbox"  id="isBonds"  formControlName="isBonds"
+                   [(ngModel)]="userProfile.isBonds">
+            <label class="form-check-label" for="isBonds">Bonds</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <!-- <input class="form-check-input" type="checkbox" [ngModelOptions]="{standalone: true}" id="equities" [(ngModel)]="familiarity.equities"> -->
+            <input class="form-check-input" type="checkbox"  id="isEquities" formControlName="isEquities"
+                   [(ngModel)]="userProfile.isEquities">
+            <label class="form-check-label" for="isEquities">Equities/Stocks</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <!-- <input class="form-check-input" type="checkbox" [ngModelOptions]="{standalone: true}" id="privatePlacements" [(ngModel)]="familiarity.privatePlacements">
+            -->
+            <input class="form-check-input" type="checkbox" formControlName="isPrivatePlacements"
+                   id="isPrivatePlacements" [(ngModel)]="userProfile.isPrivatePlacements">
+            <label class="form-check-label" for="isPrivatePlacements">Private Placements</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-check form-check-inline col">
+            <!-- <input class="form-check-input" type="checkbox" [ngModelOptions]="{standalone: true}" id="annuities" [(ngModel)]="familiarity.annuities">
+            -->
+            <input class="form-check-input" type="checkbox"  id="isAnnuities" formControlName="isAnnuities"
+                   [(ngModel)]="userProfile.isAnnuities">
+            <label class="form-check-label" for="isAnnuities">Annuities</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <!-- <input class="form-check-input" type="checkbox" [ngModelOptions]="{standalone: true}" id="mutualFunds" [(ngModel)]="familiarity.mutualFunds">
+            -->
+            <input class="form-check-input" type="checkbox"  id="isMutualFunds" formControlName="isMutualFunds"
+                   [(ngModel)]="userProfile.isMutualFunds">
+            <label class="form-check-label" for="isMutualFunds">Mutual Funds</label>
+          </div>
+          <div class="form-check form-check-inline col">
+            <input class="form-check-input" type="checkbox"  id="isRealEstate" formControlName="isRealEstate"
+                   [(ngModel)]="userProfile.isRealEstate">
+            <label class="form-check-label" for="isRealEstate">Real Estate</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-4">
+      <label>Optional Additional Information:</label>
+      <hr/>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="assets">Investible Assets</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="text" class="form-control" id="assets" formControlName="investibleAssets"
+                   placeholder="Enter Investable Assets" [(ngModel)]="userProfile.investibleAssets">
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="horizons">Investment Time Horizons</label>
+          <input type="text" class="form-control" id="horizons" formControlName="investmentTime"
+                 placeholder="Enter Investment Time Horizons" [(ngModel)]="userProfile.investmentTime">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="horizons">Annual Return Expectation</label>
+          <div class="input-group">
+            <input type="tel" class="form-control" id="return_expectation" formControlName="annualReturn"
+                   placeholder="Enter Return Expectation Percentage" [(ngModel)]="userProfile.annualReturn">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="market_cap">Market Cap Restriction</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$mm</span>
+            </div>
+            <input type="text" class="form-control" id="market_cap" formControlName="marketCap"
+                   placeholder="Enter Market Cap Restriction" [(ngModel)]="userProfile.marketCap">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label>Risk Tolerance</label>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">High</span>
+                </div>
+                <input type="text" class="form-control" id="riskToleranceHigh" formControlName="riskToleranceHigh"
+                       placeholder="Enter High" [(ngModel)]="userProfile.riskToleranceHigh">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Medium</span>
+                </div>
+                <input type="number" class="form-control" id="riskToleranceMedium"
+                       formControlName="riskToleranceMedium" placeholder="Enter Medium"
+                       [(ngModel)]="userProfile.riskToleranceMedium">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Low</span>
+                </div>
+                <input type="text" class="form-control" id="riskToleranceLow" formControlName="riskToleranceLow"
+                       placeholder="Enter Low" [(ngModel)]="userProfile.riskToleranceLow">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-4">
+
+    </div>
+
+
+    <div class="d-flex justify-content-end">
+      <!--    <button class="btn btn-primary" [disabled]="preferenceForm.invalid" type="submit">Submit</button> -->
+
+      <button class="btn btn-primary" type="submit" (click)="onSubmit(preferenceForm.value)">Submits</button>
+    </div>
+
+  </form>
+
+
+</div>
+
+<!-- Loading Cog -->
+<!-- <div *ngIf="isLoading" id="loading">
+    <fa name="spinner" animation="pulse" size="5x"></fa>
+</div> -->

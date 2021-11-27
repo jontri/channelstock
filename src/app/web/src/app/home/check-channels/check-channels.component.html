@@ -1,0 +1,129 @@
+<rom-box-header romBgHeader="rom-bg-minsk" romTitle="{{romtTitle}}" alwaysScroll="true">
+  <div *ngIf="!isExpanded" class="container-fluid rom-box-header-body px-0 py-0">
+    <a class="btn btn-expand" [routerLink]="['/aux', {outlets: {expanded: 'check-channels'}}]"
+       [replaceUrl]="aux.hasEntered" data-toggle="tooltip" data-placement="top" title="Expand">
+      <i class="fa fa-expand"></i>
+    </a>
+    <div class="row no-gutters">
+      <div class="col">
+        <div class="search my-0 py-6 mx-1">
+          <rom-search-box class="d-block my-0 py-2 mx-3" type="name" [options]="{offsetWidth: 50}"></rom-search-box>
+          <!-- <rom-search-box class="d-block my-0 py-2 mx-3" type="profile" [options]="{offsetWidth: 50}"></rom-search-box> -->
+        </div>
+
+        <div class="px-3 large mb-2" style="color: #8d8989">Companies by Sector</div>
+        <div *ngFor="let channel of checkChannelsService.channels; let i = index;">
+          <div (click)="toggleSector(channel, i)" class="menu px-3"
+               [ngClass]="{'active': channel.sector === checkChannelsService.filteredSector}">
+            {{channel.sector}}
+          </div>
+          <div [@industryState]="channel.isOpened ? 'opened' : 'closed'" class="sub-menus">
+            <div *ngFor="let industry of channel.industries" class="menu pl-5 pr-3 d-flex"
+                 (click)="filterIndustry(industry.industry)"
+                 [ngClass]="{'active': industry.industry === checkChannelsService.filteredIndustry}">
+              <div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+              <div>{{industry.industry}}</div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="px-3 large my-2" style="color: #8d8989">Filters</div>-->
+        <!--<div *ngFor="let category of discoverFilters; let i = index;">-->
+          <!--<div (click)="toggleCategory(category, index)" class="menu px-3"-->
+               <!--[ngClass]="{'active': category.name === checkChannelsService.filteredCategory}">-->
+            <!--{{category.name}}-->
+          <!--</div>-->
+          <!--<div [@industryState]="category.isOpened ? 'opened' : 'closed'" class="sub-menus">-->
+            <!--<div *ngFor="let subCategory of category.subCategories" class="menu pl-5 pr-3 d-flex"-->
+                 <!--[ngClass]="{'active': subCategory.name === checkChannelsService.filteredSubCategory}"-->
+                 <!--(click)="filterSubCategory(category.name, subCategory.name);subCategory.action ? subCategory.action() : null">-->
+              <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+              <!--<div>{{subCategory.name}}</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isExpanded" class="container-fluid rom-box-header-body px-0 py-0">
+    <button  class="btn btn-expand" (click)="location.back()">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="row no-gutters">
+      <div class="col">
+        <div class="search my-0 py-6 mx-1">
+          <rom-search-box class="d-block my-0 py-2 mx-3" type="name_long" [options]="{clearResults: true, offsetWidth: -5}"></rom-search-box>
+          <!-- <rom-search-box class="d-block my-0 py-2 mx-3" type="profile_long" [options]="{clearResults: true, offsetWidth: -5}"></rom-search-box> -->
+        </div>
+
+        <!--<div *ngIf="isLoggedIn && userProfile?.sector1?.length != 0;">-->
+          <!--<div class="px-3 large mb-2" style="color: #8d8989">My Favorite Industries</div>-->
+          <!--<div *ngIf="userProfile?.sector1" class="menu pl-5 pr-3 d-flex" (click)="filterIndustry(userProfile.sector1)"-->
+               <!--[ngClass]="{'active': userProfile?.sector1 === checkChannelsService.filteredIndustry}">-->
+            <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+            <!--{{userProfile?.sector1}}-->
+          <!--</div>-->
+          <!--<div *ngIf="userProfile?.sector2" class="menu pl-5 pr-3 d-flex" (click)="filterIndustry(userProfile.sector2)"-->
+               <!--[ngClass]="{'active': userProfile?.sector2 === checkChannelsService.filteredIndustry}">-->
+            <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+            <!--{{userProfile?.sector2}}-->
+          <!--</div>-->
+          <!--<div *ngIf="userProfile?.sector3" class="menu pl-5 pr-3 d-flex" (click)="filterIndustry(userProfile.sector3)"-->
+               <!--[ngClass]="{'active': userProfile?.sector3 === checkChannelsService.filteredIndustry}">-->
+            <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+            <!--{{userProfile?.sector3}}-->
+          <!--</div>-->
+          <!--<div *ngIf="userProfile?.sector4" class="menu pl-5 pr-3 d-flex" (click)="filterIndustry(userProfile.sector4)"-->
+               <!--[ngClass]="{'active': userProfile?.sector4 === checkChannelsService.filteredIndustry}">-->
+            <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+            <!--{{userProfile?.sector4}}-->
+          <!--</div>-->
+          <!--<div *ngIf="userProfile?.sector5" class="menu pl-5 pr-3 d-flex" (click)="filterIndustry(userProfile.sector5)"-->
+               <!--[ngClass]="{'active': userProfile?.sector5 === checkChannelsService.filteredIndustry}">-->
+            <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+            <!--{{userProfile?.sector5}}-->
+          <!--</div>-->
+          <!--<div *ngIf="userProfile?.sector6" class="menu pl-5 pr-3 d-flex" (click)="filterIndustry(userProfile.sector6)"-->
+               <!--[ngClass]="{'active': userProfile?.sector6 === checkChannelsService.filteredIndustry}">-->
+            <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+            <!--{{userProfile?.sector6}}-->
+          <!--</div>-->
+          <!--<hr class="mx-3"/>-->
+        <!--</div>-->
+
+        <div class="px-3 large mb-2" style="color: #8d8989">Companies by Sector</div>
+        <div *ngFor="let channel of checkChannelsService.channels; let i = index;">
+          <div *ngIf="channel.sector" (click)="toggleSector(channel, i)" class="menu px-3"
+               [ngClass]="{'active': channel.sector === checkChannelsService.filteredSector}">
+            {{channel.sector}}
+          </div>
+          <div *ngIf="channel.sector" [@industryState]="'opened'" class="sub-menus">
+            <div *ngFor="let industry of channel.industries" class="menu pl-5 pr-3 d-flex"
+                 (click)="filterIndustry(industry.industry)"
+                 [ngClass]="{'active': industry.industry === checkChannelsService.filteredIndustry}">
+              <div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+              <div>{{industry.industry}}</div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="px-3 large my-2" style="color: #8d8989">Filters</div>-->
+        <!--<div *ngFor="let category of discoverFilters">-->
+          <!--<div (click)="toggleCategory(category)" class="menu px-3"-->
+               <!--[ngClass]="{'active': category.name === checkChannelsService.filteredCategory}">-->
+            <!--{{category.name}}-->
+          <!--</div>-->
+          <!--<div [@industryState]="'opened'" class="sub-menus">-->
+            <!--<div *ngFor="let subCategory of category.subCategories" class="menu pl-5 pr-3 d-flex"-->
+                 <!--[ngClass]="{'active': subCategory.name === checkChannelsService.filteredSubCategory}"-->
+                 <!--(click)="filterSubCategory(category.name, subCategory.name);subCategory.action ? subCategory.action() : null">-->
+              <!--<div class="pr-1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>-->
+              <!--<div>{{subCategory.name}}</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
+
+</rom-box-header>

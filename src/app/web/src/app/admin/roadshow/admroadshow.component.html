@@ -1,0 +1,92 @@
+<!-- <rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;">
+  <div class="row center_div rom-box-header-body">
+    <div class="col-5">
+      <div class="row bgcolor-purple">
+          <div class="col-12">
+            <span>&nbsp;</span>
+          </div>
+      </div>
+      <div class="row bgcolor-purple ">
+        <div class="col">
+            <img src="assets/images/channelcheck_login.png" class="img-fluid"/>
+        </div>
+     </div>
+      <div class="row bgcolor-purple">
+          <div class="row center_div">
+              <div class="col">
+                  <img src="assets/images/registration.png" class="img-fluid"/>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <span>&nbsp;</span>
+            </div>
+          </div>
+        <div class="col-12">
+            <form [formGroup]="registrationForm" (submit)=onRegisterUser($event)>
+                <div class="form-group">
+                    <input 
+                      type="text" 
+                      class="form-control form-control-sm" 
+                      placeholder="Name (First and Last)" 
+                      id="name"
+                      name="name"
+                      [(ngModel)]="name"
+                      formControlName="frmName"
+                      required>                            
+                    
+                      <div class="form-control-feedback" *ngIf="frmName.errors && (frmName.dirty || frmName.touched)">
+                        <p *ngIf="frmName.errors.required" style="color: #e60000">Name is required</p>
+                      </div>
+                </div>
+                <div class="form-group">
+                  <input 
+                    type="text" 
+                    class="form-control form-control-sm" 
+                    placeholder="Email" 
+                    id="username"
+                    name="username"
+                    [(ngModel)]="username"
+                    formControlName="frmUsername"
+                    required>
+
+                    <div class="form-control-feedback" *ngIf="frmUsername.errors && (frmUsername.dirty || frmUsername.touched)">
+                        <p *ngIf="frmUsername.errors.required" style="color: #e60000">Email is required</p>
+                        <p *ngIf="frmUsername.errors.pattern"  style="color: #e60000">Email address format is not valid</p>
+                    </div>
+                    <div class="form-control-feedback" *ngIf="errorOccured">
+                        <p *ngIf="errorOccured" style="color: #e60000">{{ errorMsg }}</p>
+                    </div>
+              </div>
+                <div class="row center_div">
+                  <div class="col">
+                      <img src="assets/images/registration_note.png" class="img-fluid" />
+                  </div>
+              </div>
+                <div class="row">
+                    <div class="col-4 col-centered">
+                        <button type="submit" class="btn btn-secondary">
+                            <Strong>SUBMIT</Strong>
+                        </button>
+                    </div>
+                </div>
+              </form>
+        </div>
+      </div>
+      <div class="row bgcolor-purple">
+        <div class="col-12">
+            <span>&nbsp;</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <img src="assets/images/tree.jpg" class="img-fluid" style="margin-left: 50px; margin-top: 15px;" />
+    </div>
+  </div>
+    <div class="row center_div">
+        <div class="col-xl-12">
+           
+        </div>
+    </div>
+</rom-box-header> -->
+<router-outlet></router-outlet>

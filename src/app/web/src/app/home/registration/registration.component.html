@@ -1,0 +1,144 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;">
+  <rom-initial-tree class="rom-box-header-body">
+    <div class="rom-tree-body">
+      <h3 class="font-weight-normal line-height-font my-3 rom-text-lightning-yellow text-center large-letter-spacing">Registration</h3>
+      <p class="font-weight-light xm-large px-2 text-white text-center line-height-xm-large">
+        All you need to submit is your name and email address. Never more, unless you want to customize your
+        channelchek experience.
+      </p>
+      <form [formGroup]="registrationForm" class="row justify-content-center no-gutters mb-2">
+        <div class="form-group col-8 mb-0">
+          <div class="input-group">
+            <div class="input-group-prepend large pl-2 pr-1 rom-bg-gray-suit rom-text-minsk rounded-left">
+              Name
+            </div>
+            <input type="text" class="form-control form-control-sm rom-bg-gray-suit pl-1 border-0" placeholder="(first and last)"
+              id="name" name="name" [(ngModel)]="name" formControlName="frmName" required>
+          </div>
+          <div class="form-control-feedback text-center" *ngIf="frmName.errors && (frmName.dirty || frmName.touched); else spacerName">
+            <div *ngIf="frmName.errors.required" class="text-danger">Name is required</div>
+          </div>
+          <ng-template #spacerName>
+            <div class="mb-4"></div>
+          </ng-template>
+        </div>
+        <div class="form-group col-8 mb-1">
+          <div class="input-group">
+            <div class="input-group-prepend large pl-2 pr-1 rom-bg-gray-suit rom-text-minsk rounded-left">
+              Email
+            </div>
+            <input type="text" class="form-control form-control-sm rom-bg-gray-suit pl-1 border-0" placeholder="Email"
+              id="username" name="username" [(ngModel)]="username" formControlName="frmUsername" required>
+          </div>
+        </div>
+        <div class="mb-3 text-center">
+          <span class="form-control-feedback" *ngIf="frmUsername.errors && (frmUsername.dirty || frmUsername.touched); else spacerEmail">
+            <div *ngIf="frmUsername.errors.required" class="text-danger">Email is required</div>
+            <div *ngIf="frmUsername.errors.pattern" class="text-danger">Email address format is not valid</div>
+          </span>
+          <span class="form-control-feedback" *ngIf="errorOccured">
+            <div *ngIf="errorOccured" class="text-danger">{{ errorMsg }}</div>
+          </span>
+          <ng-template #spacerEmail>
+            <div class="mb-3"></div>
+          </ng-template>
+
+          <span class="rom-text-lightning-yellow xs-large">
+            NOTE: A verification link will be sent to the email address you provide us. Please click on that link to
+            continue the registration process.
+          </span>
+        </div>
+      </form>
+
+    </div>
+    <!--
+    <rom-ico-txt-btn class="px-0 rom-tree-btn" (click)="onRegisterUser()">
+      <i class="rom-ico-txt-content rome-ico-play xx-large"></i>
+      <span class="rom-ico-txt-label xx-large">SUBMIT</span>
+    </rom-ico-txt-btn>
+    -->
+    <rom-ico-txt-btn class="px-0 rom-tree-btn" (click)="onRegisterUser()" #SubmitButton>
+      <i *ngIf="!isLoading" class="rom-ico-txt-content rome-ico-play xx-large"></i>
+      <span *ngIf="!isLoading" class="rom-ico-txt-label xx-large">SUBMIT</span>
+      <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw rom-ico-txt-content" style="margin-left:130px"></i>
+    </rom-ico-txt-btn>
+    
+  </rom-initial-tree>
+</rom-box-header>
+
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal" data-target="#userExistUnverifiedModal" #userExistUnverifiedTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal" data-target="#userExistVerifiedModal" #userExistVerifiedTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal" data-target="#errorMsgModal" #errorMsgTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal" data-target="#errorMsgModal" #tokenInvalidTrigger></button>
+
+<!-- Modals -->
+<div class="modal fade" id="userExistUnverifiedModal" role="dialog" aria-labelledby="userExistUnverifiedModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+         <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>Email address is already registered. <br>Please check your email to verify your account.</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resendVerification()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="userExistVerifiedModal" role="dialog" aria-labelledby="userExistVerifiedModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+         <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>Email address is already registered and verified.<br>Please use your email address to login.</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="redirectToResetPassword()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="errorMsgModal" role="dialog" aria-labelledby="errorMsgModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+         <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>{{ errorMsg }}</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<property-edits xmlns="http://karaf.apache.org/tools/property-edits/1.0.0">
+         <edits>
+          <edit>
+            <file>org.apache.karaf.features.cfg</file>
+            <operation>put</operation>
+            <key>serviceRequirements</key>
+            <value>disable</value>
+          </edit>
+<!--           
+          <edit>
+            <file>config.properties</file>
+            <operation>extend</operation>
+            <key>org.osgi.framework.system.capabilities</key>
+            <value>my-magic-capability</value>
+          </edit>
+          <edit>
+            <file>config.properties</file>
+            <operation prepend='true'>extend</operation>
+            <key>some-other-list</key>
+            <value>my-value-goes-first</value>
+            </edit>
+-->
+         </edits>
+      </property-edits>

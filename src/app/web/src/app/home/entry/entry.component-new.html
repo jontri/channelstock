@@ -1,0 +1,67 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;">
+  <rom-initial-tree class="rom-box-header-body">
+
+    <div class="align-items-center h-70 rom-tree-body row">
+      <div class="col pt-1">
+        <div class="text-danger" *ngIf="entryFailedMsg; else spacerFailedMsg">{{ entryFailedMsg }}</div>
+        <ng-template #spacerFailedMsg><div class="mb-4"></div></ng-template>
+        <form [formGroup]="entryForm" (submit)=onEnter()>
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              placeholder=""
+              name="email"
+              formControlName="frmEmail"
+              required #input>
+              <div class="form-control-feedback" *ngIf="entryForm.controls.frmEmail.errors && (entryForm.controls.frmEmail.dirty || entryForm.controls.frmEmail.touched); else spacerNew">
+                <span class="text-danger" *ngIf="entryForm.controls['frmEmail'].hasError('required')">Email is required.</span>
+                <span class="text-danger" *ngIf="entryForm.controls['frmEmail'].hasError('email')">Email format is invalid.</span>
+              </div>
+          </div>
+          <ng-template #spacerNew><div class="mb-4"></div></ng-template>
+          <div class="row justify-content-center">
+            <div class="col-8">
+              <button type="submit" class="btn btn-secondary btn-block">
+                ENTER
+              </button>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-12">
+              <p class="text-light small">Note: Channelchek is not optimized for<br/>
+              Internet Explorer or mobile devices (yet).</p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </rom-initial-tree>
+</rom-box-header>
+
+<button type="button" class="btn" style="display: none; visibility: hidden" data-backdrop="static" data-toggle="modal"
+        data-target="#errorMsgModal" #errorMsgTrigger></button>
+
+
+<div class="modal fade" id="errorMsgModal" role="dialog" aria-labelledby="errorMsgModalLabel"
+<div class="modal fade" id="errorMsgModal" role="dialog" aria-labelledby="errorMsgModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModal">Channelchek</h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="info-div">
+          <p align="center"><strong>{{ errorMsg }}</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

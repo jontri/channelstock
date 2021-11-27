@@ -1,0 +1,19 @@
+<rom-box-header   [ngClass]="{'recent-news': !isExpanded}"  romBgHeader="rom-bg-sea-buckthorn">
+  <div class="rom-box-header-title d-flex">
+    <div class="font-weight-light flex-fill">Recent News</div>
+    <div>
+      <a class="text-white" *ngIf="!isExpanded" [routerLink]="['/aux', {outlets: {expanded: 'recent-news/' + company.symbol}}]" [replaceUrl]="aux.hasEntered">
+        <i class="fa fa-expand"></i>
+      </a>
+      <a class="text-white" *ngIf="isExpanded" (click)="location.back()" href="javascript:void(0)">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+  </div>
+  <div class="rom-box-header-body small p-2 recent-news-body">
+    <div class="container-fluid">
+      <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw rom-ico-txt-content pt-10" style="margin-left:120px; margin-top:60px;"></i>
+      <div [innerHTML]="newsStory"></div>
+    </div>
+  </div>
+</rom-box-header>

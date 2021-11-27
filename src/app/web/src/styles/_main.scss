@@ -1,0 +1,87 @@
+html, body {
+  height: 100%;
+}
+
+rom-ico-txt-btn {
+  i.rome-ico-play {
+    display: inline-block;
+    @include transform(scale(1.6, 1.2));
+  }
+}
+
+.report-data-container {
+  img {
+    max-width: 100%;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.ticker-info-img-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 5vw;
+
+  .ticker-info-img {
+    -ms-grid-row-align: center;
+    align-self: center;
+    max-height: 100%;
+  }
+}
+
+company-list {
+  .container-fluid:nth-child(2) {
+    overflow-y: auto;
+  }
+
+  &.scroll {
+    .container-fluid:nth-child(2) {
+      overflow-y: scroll;
+    }
+  }
+}
+
+rom-change-password-form {
+  &.dark-password {
+    .form-control {
+      border: 0;
+      font-size: 110%;
+      background-color: $rom-gray-suit;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+rom-channel-cast-detail {
+  rom-company-info #companyInfo rom-company-list {
+    .companies-header {
+      border-right: 0;
+    }
+    .company-list {
+      overflow-y: hidden;
+    }
+  }
+}
+
+rom-news-channel-detail {
+  .news-content {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+rom-qmod {
+  .rom-qmod-marketsummary {
+    .qmod-block-wrapper-body.qmod-mrktcharts, h2.qmod-heading.qmod-hbg {
+      display: none;
+    }
+  }
+}

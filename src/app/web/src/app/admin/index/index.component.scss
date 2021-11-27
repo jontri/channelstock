@@ -1,0 +1,10 @@
+:host {
+  height: 200px;
+}
+
+.table-wrapper {
+  display: block;
+  max-height: 160px;
+  overflow-y: scroll;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}

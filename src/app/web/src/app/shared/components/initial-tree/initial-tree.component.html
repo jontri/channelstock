@@ -1,0 +1,62 @@
+<div class="container-fluid rom-box-header-body" *ngIf="!responsiveService.isMobile; else mobileTree">
+  <div class="row">
+    <div class="px-3 rom-bg-minsk">
+      <img *ngIf="!isHideLogo" class="img-fluid px-3" src="assets/images/channelchek_light_logo.png" />
+      <ng-content select=".rom-tree-body"></ng-content>
+      <div class="bottom-text x-large rom-text-white m-2">Never a cost to join.</div>
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <ng-content select=".rom-tree-btn"></ng-content>
+    </div>
+  </div>
+  <div class="row">
+    <h1 class="col font-weight-light rom-text-venice-blue notice-text">
+      It's time to take notice.
+    </h1>
+  </div>
+  <div class="intro-text">
+    <p class="rom-text-minsk">More than 6,000 emerging growth companies.
+      Get institutional-quality research, 
+      advanced market data, balanced news, 
+      webcasts, podcasts, and organize and 
+      track your favorites. </p>
+  </div>
+</div>
+
+<ng-template #mobileTree>
+  <div class="rom-box-header-body mobile-tree text-left">
+    <div class="border border-dark"></div>
+    <p class="rom-text-rolling-stone line-height-large mt-3">
+      Get the news, podcasts, videos and research
+      highlights on <b>Channelchek Mobile</b>. Dig deeper
+      on <b class="rom-text-navy-blue">Channelchek Desktop</b>. Full equity research
+      reports, advanced market data, HD video web-
+      casts, organize and track your favorites, arrange
+      meeting with management… featuring more
+      than 6,000 emerging growth companies.
+    </p>
+  </div>
+</ng-template>
+
+<!--<div class="container-fluid rom-box-header-body-mobile" *ngIf="this.isMobile">-->
+  <!--<div class="row">-->
+    <!--<div class="row">-->
+      <!--<div class="px-3">-->
+        <!--<img class="img-fluid px-3" src="assets/images/channelchek_light_logo.png" height="75" />-->
+        <!--<ng-content select=".rom-tree-body"></ng-content>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row">-->
+    <!--<div>-->
+      <!--<ng-content select=".rom-tree-btn"></ng-content>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row">-->
+    <!--<h1 class="col text-center font-weight-light my-4 rom-text-venice-blue">-->
+      <!--It's time to take notice.-->
+    <!--</h1>-->
+  <!--</div>-->
+<!--</div>-->

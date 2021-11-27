@@ -1,0 +1,46 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;">
+  <rom-initial-tree class="rom-box-header-body">
+    <div class="align-items-center h-50 rom-tree-body row">
+      <div class="col">
+        <div class="text-danger">{{ loginFailedMsg }}</div>
+        <form (submit)=onLogin($event)>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              placeholder="User Name"
+              id="username"
+              name="username"
+              [(ngModel)]="username"
+              #input>
+          </div>
+          <div class="form-group">
+            <input type="password"
+              class="form-control form-control-sm"
+              placeholder="Password"
+              id="password"
+              name="password"
+              [(ngModel)]="password">
+          </div>
+          <div class="row">
+            <div class="col-4 col-centered">
+              <button type="submit" class="btn btn-secondary" style="min-width: 6vw">
+                <!--img src="assets/images/submit_arrow.png" class="img-responsive" style="max-height: 25px;" /-->
+                <Strong *ngIf="!isLoading">SUBMIT</Strong>
+                <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <a routerLink="/forgot-password">
+                <small class="text-light cursor-point">Forgot Password</small>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </rom-initial-tree>
+</rom-box-header>

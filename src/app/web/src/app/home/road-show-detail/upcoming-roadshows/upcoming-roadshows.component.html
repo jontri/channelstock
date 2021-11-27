@@ -1,0 +1,30 @@
+<rom-box-header romBgHeader="rom-bg-caribbean-green">
+  <div class="rom-box-header-title d-flex">
+    <div class="font-weight-light flex-fill">Upcoming Meet the Management events</div>
+    <div>
+      <a href="javascript:void(0)" class="text-white" (click)="back()">
+        <i class="fa fa-arrow-left"></i>
+      </a>
+    </div>
+  </div>
+  <rom-tabs [items]="items" tabId="moversTab" color="tab-caribbean-green" class="rom-box-header-body">
+    <ng-template let-content="content">
+      <div class="rome-table hover pointer">
+        <div class="container-fluid rome-table-header">
+          <div class="row px-4">
+            <div class="col-3">Location</div>
+            <div class="col-2">Seats</div>
+            <div class="col">Date</div>
+          </div>
+        </div>
+        <div class="container-fluid rome-table-body">
+          <div class="row px-4" *ngFor="let item of content" routerLink="/roadshowdetail/{{item.id}}">
+            <div class="col-3 text-truncate" title="{{item.address.cityOrLocality}}">{{item.address.cityOrLocality}}</div>
+            <div class="col-2">{{item.seats}}</div>
+            <div class="col">{{item.date}}</div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </rom-tabs>
+</rom-box-header>

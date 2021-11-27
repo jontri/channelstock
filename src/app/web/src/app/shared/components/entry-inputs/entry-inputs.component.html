@@ -1,0 +1,70 @@
+<ng-container *ngIf="!isMobile; else mobileEntry">
+  <ng-container *ngIf="!isModal; else modalEntry">
+    <ng-container *ngTemplateOutlet="entryInputs"></ng-container>
+  </ng-container>
+  <ng-template #entryInputs>
+    <div class="text-danger" *ngIf="entryForm.controls.frmUsername.errors && entryFormDir.submitted">
+      <span *ngIf="entryForm.controls['frmUsername'].hasError('required') || entryForm.controls['frmUsername'].hasError('blank')">Email address is required.</span>
+      <span *ngIf="entryForm.controls['frmUsername'].hasError('customEmail')">Email address format is not valid!</span>
+    </div>
+    <form [formGroup]="entryForm" #entryFormDir="ngForm" (submit)=redirectUser($event)>
+      <div class="form-group">
+        <label class="text-white">Email</label>
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          placeholder=""
+          id="username"
+          name="username"
+          formControlName="frmUsername"
+          required #input>
+      </div>
+      <br/>
+      <div class="row justify-content-center">
+        <div>
+          <button type="submit" class="btn btn-secondary" style="min-width: 6vw" [ngClass]="{'btn-sm': isModal}">
+            ENTER
+          </button>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #modalEntry>
+    <div class="row text-white small pt-1">
+      For regulatory and data storage purposes, we must obtain your name and email address to allow access to
+      Research Reports and to retain information related to the companies you select in "My Favorites."
+    </div>
+    <div class="row py-3 rom-text-jordy-blue font-weight-bold large-letter-spacing small">
+      New User / Log In
+    </div>
+    <div class="row">
+      <div class="w-100 small">
+        <ng-container *ngTemplateOutlet="entryInputs"></ng-container>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+<ng-template #mobileEntry>
+  <div class="text-danger" *ngIf="entryForm.controls.frmUsername.errors && entryFormDir.submitted">
+    <span *ngIf="entryForm.controls['frmUsername'].hasError('required') || entryForm.controls['frmUsername'].hasError('blank')">Email address is required.</span>
+    <span *ngIf="entryForm.controls['frmUsername'].hasError('customEmail')">Email address format is not valid!</span>
+  </div>
+  <form [formGroup]="entryForm" #entryFormDir="ngForm" (submit)=redirectUser($event) class="pr-3">
+    <div class="form-group">
+      <input type="text"
+        class="form-control form-control-sm dark-input"
+        placeholder="Email"
+        id="username"
+        name="username"
+        formControlName="frmUsername"
+        required>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-sm btn-secondary rom-bg-japanese-laurel border-0 shadow line-height-xm-small" style="width: 23vw;">
+          ENTER
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>

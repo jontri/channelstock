@@ -1,0 +1,9 @@
+/* Background colors and utilities 
+ * Prefixing with rom to prevent unintentinal overwrite of bootstrap classes
+ */
+
+@each $name, $color in $rom-colors {
+  .rom-bg-#{$name} {
+    background-color: $color !important;
+  }
+}

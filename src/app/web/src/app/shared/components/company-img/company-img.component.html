@@ -1,0 +1,9 @@
+<a routerLink="/company/{{company?.symbol}}" class="px-4 mb-4 home-image">
+  <div class="home-image-wrap">
+    <img  *ngIf="company?.participationLevel == 'Discover' && company?.logoURL" class="img" src="{{ company?.logoURL }}" #companyLogo />
+    <img  *ngIf="company?.participationLevel == 'Discover' && !company?.logoURL" class="img" src="/assets/images/discover-logo.png" #companyLogo />
+    <img  *ngIf="company?.participationLevel == 'Probe'" class="img" src="/assets/images/probe-logo-profile.png" #companyLogo />
+    <img  *ngIf="company?.participationLevel == 'Explore'" class="img" src="/assets/images/explore-logo-profile.png" #companyLogo />
+  </div>
+</a>
+

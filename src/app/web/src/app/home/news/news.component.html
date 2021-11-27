@@ -1,0 +1,170 @@
+
+<!--<rom-box-header *ngIf="isHome" romBgHeader="rom-bg-blaze-orange">-->
+<!--{{featuredNews.id}}-->
+  <!--<div class="rom-box-header-title d-flex align-items-center">-->
+    <!--<div class="flex-fill">-->
+      <!--<span>News Channel - <b>FEATURE</b> - </span>-->
+      <!--<span *ngIf="featuredNews?.headerTitle" class="rom-box-header-title"  id="topPage" #topPage>{{featuredNews?.headerTitle}}</span>-->
+      <!--<span *ngIf="!isResearchReport(featuredNews) && !featuredNews?.headerTitle" class="rom-box-header-title"  id="topPage" #topPage>The Long Story Short</span>-->
+      <!--<span *ngIf="isResearchReport(featuredNews) && !featuredNews?.headerTitle" class="rom-box-header-title"  id="topPage" #topPage>Equity Research Report Release</span>-->
+    <!--</div>-->
+
+    <!--<all-share class="row mr-0 py-0 my-0"></all-share>-->
+  <!--</div>-->
+
+  <!--<div class="rom-box-header-body rome-table hover pointer">-->
+    <!--<div *ngIf="featuredNews" routerLink="/news-channel/{{featuredNews.id}}">-->
+      <!--<div class="px-3 pb-3">-->
+
+        <!--<div *ngIf="featuredNews.bannerUrl" class="col-12">-->
+          <!--<img src="{{ featuredNews.bannerUrl }}" class="img-fluid"/>-->
+        <!--</div>-->
+
+        <!--<div class="col-12 rom-text-rolling-stone text-truncate rom-text-black x-large">-->
+          <!--{{featuredNews.title}}-->
+        <!--</div>-->
+
+        <!--<rom-expand-collapse [collapseHeight]="75" [expandHeight]="100" class="px-0 mx-0">-->
+          <!--<div #bullsContent>-->
+            <!--<div  [innerHTML]="featuredNews.content"></div>-->
+          <!--</div>-->
+        <!--</rom-expand-collapse>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</rom-box-header>-->
+
+<rom-news-channel-detail *ngIf="isHome" [newsId]="featuredNews?.id" [isFeature]="true"></rom-news-channel-detail>
+
+
+<rom-box-header romBgHeader="rom-bg-blaze-orange" romTitle="NEWS Channel" *ngIf="!responsiveService.isMobile && !isHome;">
+
+  <div *ngIf="isExpanded" class="rom-box-header-body rome-table hover pointer">
+      <div class="companies-header">
+
+        <button *ngIf="isExpanded && !hideExpandClose" class="btn btn-expand" (click)="location.back()">
+          <i class="fa fa-times"></i>
+        </button>
+
+        <div class="row px-3 xl-small">
+          <div class="col-md-1 f1 sortable text-center" (click)="setOrder('newsItemType')">
+            Type
+            <span *ngIf="order === 'newsItemType'">
+                <i class="fa fa-chevron-up" *ngIf="reverse" ></i>
+                <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+            </span>
+          </div>
+          <div class="col-md-6 f1 sortable text-center" (click)="setOrder('title')">
+            Title
+            <span *ngIf="order === 'title'">
+                <i class="fa fa-chevron-up" *ngIf="reverse" ></i>
+                <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+            </span>
+          </div>
+          <div class="col-md-3 f1 sortable text-center" (click)="setOrder('category')">
+              Category
+              <span *ngIf="order === 'category'">
+                  <i class="fa fa-chevron-up" *ngIf="reverse" ></i>
+                  <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+              </span>
+            </div>
+          <div class="col-md-2 f1 text-nowrap sortable text-center" (click)="setOrder('date')">
+            Date
+            <span *ngIf="order === 'date'">
+                <i class="fa fa-chevron-up" *ngIf="reverse" ></i>
+                <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+            </span>
+          </div>
+        </div><!--end of row px-4 -->
+      </div><!-- end of rome-table-header-->
+
+      <div class="container-fluid rome-table-body" >
+
+          <div class="row px-3" *ngFor="let newscast of news;" routerLink="/news-channel/{{newscast.id}}">
+
+            <!-- <div class="col-md-2 text-truncate" title="{{newscast.newsItemType}}">
+                {{newscast?.newsItemType}}
+            </div>end of news itemtype -->
+            <div class="col-md-1 news-icon-holder">
+              <!-- TODO - change fixed height to something fluid... -->
+              <img class="image-thumbnail" align-items-center height="17" src="assets/images/{{newscast.newsItemType | lowercase}}_icon.png" />
+            </div>
+
+            <div class="col-md-6 text-truncate" title="{{newscast.title}}">
+              {{newscast?.title}}
+            </div><!--end of news cast -->
+
+            <div class="col-md-3 text-center" title="{{newscast.category}}">
+                {{newscast?.category}}
+            </div><!-- end of category-->
+
+            <div class="col-md-2 text-center " title="{{newscast.date}}">
+                <!--{{newscast?.date | date: 'MM dd / hh:mmaaaaa'}}-->
+                {{newscast?.date | date: 'MMMM dd yyyy'}}
+            </div><!--end of date -->
+
+            <ng-template #noDataDiv>
+              <div class="no-data-div text-center">
+                No News
+              </div>
+            </ng-template>
+
+          </div><!-- end of rw px-4 -->
+      </div><!-- rome-table-body -->
+    </div><!-- end of container fluid-->
+
+  <div *ngIf="!isExpanded" class="rom-box-header-body rome-table hover pointer">
+    <button *ngIf="!isExpanded && !hideExpandClose" class="btn btn-expand" [routerLink]="['/aux', {outlets: {expanded: 'news'}}]" [replaceUrl]="aux.hasEntered" data-toggle="tooltip" data-placement="top" title="Expand">
+      <i class="fa fa-expand"></i>
+    </button>
+    <div *ngIf="news && news.length !== 0; else noDataDiv" class="rome-table-body container-fluid">
+      <div class="row" *ngFor="let newscast of news;" routerLink="/news-channel/{{newscast.id}}">
+        <div class="col text-truncate px-2">
+          <!--i class="fa fa-caret-right"></i-->
+          <div class="mr-3 news-icon-holder">
+            <!-- TODO - change fixed height to something fluid... -->
+            <img class="image-thumbnail" height="17" src="assets/images/{{newscast.newsItemType | lowercase}}_icon.png" />
+            <small>&nbsp; {{newscast?.title}}, {{newscast?.date | date: 'MM/dd/yyyy'}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noDataDiv>
+      <div class="no-data-div text-center">
+        No News
+      </div>
+    </ng-template>
+  </div>
+</rom-box-header>
+
+<div *ngIf="responsiveService.isMobile" id="mobile-news" class="row no-gutters">
+  <div class="col">
+    <div class="py-3">
+      <div *ngIf="featuredNews" class="container-fluid" routerLink="/news-channel/{{featuredNews.id}}">
+        <div class="row no-gutters">
+
+
+          <div class="col-12 rom-text-rolling-stone pl-2">
+            <span class="large">FEATURE</span>&nbsp;<span class="small text-uppercase">{{featuredNews.newsItemType}}</span>
+          </div>
+
+
+          <div class="col-12">
+            <img src="{{ featuredNews.bannerUrl }}" class="img-fluid" />
+          </div>
+
+          <div class="col-12 rom-text-rolling-stone pl-2 text-truncate rom-text-black x-large">{{featuredNews.title}}</div>
+        </div>
+      </div>
+      <ng-container *ngIf="!news || news.length !== 0; else comingSoon">
+        <div class="d-flex align-items-center pt-3 px-3" *ngFor="let newscast of news;" routerLink="/news-channel/{{newscast.id}}">
+          <div class="mr-3 news-icon-holder"><img class="img-fluid" src="assets/images/{{newscast.newsItemType | lowercase}}_icon.png" /></div>
+          <div class=" news-title-holder flex-fill large rom-text-rolling-stone text-truncate" title="{{newscast?.title}}">{{newscast?.title}}</div>
+        </div>
+      </ng-container>
+      <ng-template #comingSoon>
+        <div class="pt-3 px-3 large">Coming Soon</div>
+      </ng-template>
+    </div>
+  </div>
+</div>

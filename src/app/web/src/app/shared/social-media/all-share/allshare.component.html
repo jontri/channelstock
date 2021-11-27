@@ -1,0 +1,29 @@
+<div [hidden]="!hidden" class="share-social py-0 my-0 mr-2" bb>
+  <ul class="mr-2">
+    <li class="tweet">
+      <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.channelchek.com%2F%23%2F&text=channelchek" target="_blank">
+        <img src="assets/images/footer-social/twitter.png" class="social-icon">
+      </a>
+    </li>
+    <li class="linkedin">
+      <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.channelchek.com%2F%23%2F&title=channelchek" target="_blank">
+        <img src="assets/images/footer-social/linkedin.png" class="social-icon">
+      </a>
+    </li>
+    <li class="fb">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.channelchek.com%2F%23%2F" target="_blank">
+        <img src="assets/images/footer-social/facebook.png" class="social-icon">
+      </a>
+    </li>
+    <li class="email">
+      <a  href="javascript:void(0)" (click)="mailTo()"><img src="/assets/images/footer-social/email.png" class="social-icon d-flex" /></a>
+    </li>
+  </ul>
+</div>
+
+<span>Share&nbsp;&nbsp;</span>
+
+<div>
+  <i class="fa fa-share-square-o" (click)="hidden =!hidden" title="Social Media"></i> &nbsp;
+</div>
+

@@ -1,0 +1,14 @@
+<rom-box-header romBgHeader="rom-bg-blaze-orange" romTitle="NEWS Channel">
+	<div class="container-fluid rom-box-header-body mt-2">
+		<div *ngIf= "news.length !== 0; else noDataDiv">
+			<div class="col row news-div x-small" *ngFor="let newscast of news;">
+				<p><i class="fa fa-caret-right"></i> {{newscast?.title}}</p>
+			</div>
+		</div>
+		<ng-template #noDataDiv>
+			<div class="no-data-div text-center">
+			No News
+			</div>
+		</ng-template>
+	</div>
+</rom-box-header>

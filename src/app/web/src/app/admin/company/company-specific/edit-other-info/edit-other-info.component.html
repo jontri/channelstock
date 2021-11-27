@@ -1,0 +1,276 @@
+<div class="header-div">
+	<h5>Edit Other Company Information</h5>
+	<div>
+		<button class="btn btn-secondary" (click)="back()">< Back</button>
+	</div>
+
+</div>
+<hr>
+
+<div class="col-md-12 shadow p-3 mb-5 bg-white rounded">
+	<form class="form-horizontal" [formGroup]="companyForm"
+		*ngIf="!isLoading">
+		<!--Logo URL-->
+		<div class="col-md-12">
+			<div class="form-group">
+
+				<label for="name">Logo URL:</label>
+				<div class="col-md-4 col-sm-6 col-xs-6">
+					<img class="w-100 h-auto mb-4 mt-4" *ngIf="company.logoURL"
+						[src]="company.logoURL" alt="Invalid URL" />
+				</div>
+				<input type="text" class="form-control" id="logoURL"
+					formControlName="logoURL" [(ngModel)]="company.logoURL" />
+			</div>
+    </div>
+
+    <!--Roadshow Logo URL-->
+		<div class="col-md-12">
+			<div class="form-group">
+
+				<label for="name">Roadshow Logo URL:</label>
+				<div class="col-md-4 col-sm-6 col-xs-6">
+					<img class="w-100 h-auto mb-4 mt-4" *ngIf="company.roadshowLogoURL"
+						[src]="company.roadshowLogoURL" alt="Invalid URL" />
+				</div>
+				<input type="text" class="form-control" id="roadshowLogoURL"
+					formControlName="roadshowLogoURL" [(ngModel)]="company.roadshowLogoURL" />
+			</div>
+		</div>
+
+		<!-- Alternate Company Profile -->
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="name">Alternate Company Profile:</label>
+				<textarea rows="4" class="form-control" id="alternateProfile" placeholder="Alternate Company Profile"
+					formControlName="alternateProfile" [(ngModel)]="company.alternateProfile"></textarea>
+			</div>
+		</div>
+
+		<!--Participation Level-->
+		<div class="col-md-12">
+			<div class="form-group">
+
+				<label for="name">Participation Level:</label> <select
+					class="form-control" id="participationLevel"
+					formControlName="participationLevel"
+					[(ngModel)]="company.participationLevel">
+					<option value="Explore">Explore</option>
+					<option value="Probe">Probe</option>
+					<option value="Discover">Discover</option>
+				</select>
+			</div>
+		</div>
+
+		<!--Analyst-->
+		<div class="col-md-12">
+			<div class="form-group">
+
+				<label for="name">Analyst:</label> <select class="form-control"
+					id="analystId" formControlName="analystId"
+					[(ngModel)]="company.analystId">
+					<option *ngFor="let user of analysts" [value]="user?.userId">{{user?.firstName}}&nbsp;{{user?.lastName}}</option>
+				</select>
+			</div>
+		</div>
+
+		<!--Associate Analyst-->
+		<div class="col-md-12">
+			<div class="form-group">
+
+				<label for="name">Associate Analyst:</label> <select
+					class="form-control" id="associateAnalystId"
+					formControlName="associateAnalystId"
+					[(ngModel)]="company.associateAnalystId">
+					<option *ngFor="let user of associateAnalysts"
+						[value]="user?.userId">{{user?.firstName}}&nbsp;{{user?.lastName}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<div class="form-group">
+
+        <label for="name">Company Deck/Presentation:</label>  &nbsp; <a target="_blank" href="/docs/{{company.presentationFilename}}">{{company.presentationFilename}}</a>
+        <input
+					type="file" accept="application/pdf" class="form-control"
+					id="presentation" (change)="readPresentationUrl($event)">
+
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<div class="form-group pull-right">
+				<button class="btn btn-primary" [disabled]="companyForm.invalid"
+					(click)="onSubmit()">Submit</button>
+			</div>
+		</div>
+	</form>
+	<br>
+<br>
+<br>
+<br>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div id="viewChannelCast"
+	class="col-md-12 shadow p-3 mb-5 bg-white rounded">
+	<div class="col-md-12">
+		<div class="form-group">
+			<button class="btn btn-secondary" (click)="viewChannelCast()">View
+				Channelcasts</button> &nbsp;
+			<button class="btn btn-primary" (click)="toAddChannelCast()">Add
+				Channelcast</button>
+		</div>
+	</div>
+	<br>
+	<div class="col-md-12">
+		<div class="row content-header">
+			<div class="col">Title</div>
+			<div class="col">Video Url</div>
+			<div class="col">Date</div>
+			<div class="col">Actions</div>
+			<div class="col">Delete</div>
+			<!--<div class="col">Current Price</div>
+        <div class="col">52wk Range</div>-->
+		</div>
+
+		<div *ngIf="channelCasts.length !== 0; else noData">
+			<div class="row content-body" *ngFor="let c of channelCasts;">
+				<div class="col">{{ c.subject }}</div>
+				<div class="col text-truncate">{{ c.videoUrl }}</div>
+				<div class="col">{{ c.date }}</div>
+				<div class="col">
+					<button class="btn btn-secondary rounded"
+						(click)="onChannelCastDetail(c.id)">Details</button>
+				</div>
+				<div class="col">
+					<button class="btn btn-secondary rounded"
+						(click)="onChannelCastDelete(c.id)">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<div *ngIf="isAddChannelCast" id="addChannelCast"
+	class="col-md-12 shadow p-3 mb-5 bg-white rounded">
+	<h5>Add Channel Cast</h5>
+	<form class="form-horizontal" [formGroup]="channelCastForm"
+		*ngIf="isAddChannelCast">
+		<!--Title-->
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="name">Title:</label> <input type="text"
+					class="form-control" id="title" placeholder="title"
+					formControlName="subject">
+			</div>
+		</div>
+
+		<!--Video URL-->
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="name">Video Url:</label> <input type="text"
+					class="form-control" id="videoUrl" placeholder="video url"
+					formControlName="videoUrl">
+			</div>
+		</div>
+
+		<!--Date-->
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="name">Date:</label>
+				<div class="input-group inner-addon left-addon">
+					<input placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"
+						class="form-control" #date formControlName="date">
+
+					<div class="input-group-append">
+						<button type="button" class="btn btn-outline-secondary"
+							(click)="d.toggle()">
+							<fa name="calendar"></fa>
+						</button>
+					</div>
+					<!-- END .input-group-append -->
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<div class="form-group pull-right">
+				<button class="btn btn-primary" [disabled]="companyForm.invalid"
+					(click)="submitChannelCast(channelCastForm.value)">Submit</button>
+			</div>
+		</div>
+		<br>
+		<br>
+	</form>
+</div>
+<div *ngIf="isEditChannelCast" id="editChannelCast"
+	class="col-md-12 shadow p-3 mb-5 bg-white rounded">
+	<h5>Edit Channel Cast</h5>
+	<form class="form-horizontal" [formGroup]="channelCastForm"
+		*ngIf="isEditChannelCast">
+		<!--Title-->
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="name">Title:</label> <input type="text"
+					class="form-control" id="title" placeholder="title"
+					formControlName="subject">
+			</div>
+		</div>
+
+		<!--Video URL-->
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="name">Video Url:</label> <input type="text"
+					class="form-control" id="videoUrl" placeholder="video url"
+					formControlName="videoUrl">
+			</div>
+		</div>
+
+		<!--Date-->
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="name">Date:</label>
+				<div class="input-group inner-addon left-addon">
+					<input placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"
+						class="form-control" #date formControlName="date">
+
+					<div class="input-group-append">
+						<button type="button" class="btn btn-outline-secondary"
+							(click)="d.toggle()">
+							<fa name="calendar"></fa>
+						</button>
+					</div>
+					<!-- END .input-group-append -->
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<div class="form-group pull-right">
+				<button class="btn btn-primary" [disabled]="companyForm.invalid"
+					(click)="updateChannelCast(channelCastForm.value)">Submit</button>
+			</div>
+		</div>
+		<br>
+		<br>
+	</form>
+</div>
+
+
+
+
+
+
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading" id="loading">
+	<fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

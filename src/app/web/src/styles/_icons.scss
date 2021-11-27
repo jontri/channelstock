@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Rome';
+  src:  url('#{$rome-font-path}/Rome.eot?xpzqi8');
+  src:  url('#{$rome-font-path}/Rome.eot?xpzqi8#iefix') format('embedded-opentype'),
+    url('#{$rome-font-path}/Rome.ttf?xpzqi8') format('truetype'),
+    url('#{$rome-font-path}/Rome.woff?xpzqi8') format('woff'),
+    url('#{$rome-font-path}/Rome.svg?xpzqi8#Rome') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="rome-ico-"], [class*=" rome-ico-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Rome' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.rome-ico-cog, .rome-ico-settings {
+  &:before {
+    content: $rome-ico-cog;
+  }
+}
+.rome-ico-check {
+  &:before {
+    content: $rome-ico-check; 
+  }
+}
+.rome-ico-question {
+  &:before {
+    content: $rome-ico-question; 
+  }
+}
+.rome-ico-check-9 {
+  &:before {
+    content: $rome-ico-check-9; 
+  }
+}
+.rome-ico-play {
+  &:before {
+    content: $rome-ico-play; 
+  }
+}
+.rome-ico-pause {
+  &:before {
+    content: $rome-ico-pause; 
+  }
+}
+
+.ico-action {
+  cursor: pointer;
+}

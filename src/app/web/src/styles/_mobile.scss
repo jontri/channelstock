@@ -1,0 +1,117 @@
+.mobile, .rom-mobile-panel {
+  font-size: $font-size-base * $mobile-multiplier;
+
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: $headings-margin-bottom * $mobile-multiplier;
+  }
+  h1, .h1 { font-size: $h1-font-size * $mobile-multiplier; }
+  h2, .h2 { font-size: $h2-font-size * $mobile-multiplier; }
+  h3, .h3 { font-size: $h3-font-size * $mobile-multiplier; }
+  h4, .h4 { font-size: $h4-font-size * $mobile-multiplier; }
+  h5, .h5 { font-size: $h5-font-size * $mobile-multiplier; }
+  h6, .h6 { font-size: $h6-font-size * $mobile-multiplier; }
+
+  .container-fluid {
+    padding-right: ($grid-gutter-width / 2) * $mobile-multiplier;
+    padding-left: ($grid-gutter-width / 2) * $mobile-multiplier;
+  }
+
+  .row {
+    margin-right: ($grid-gutter-width / -2) * $mobile-multiplier;
+    margin-left: ($grid-gutter-width / -2) * $mobile-multiplier;
+  }
+
+  .col, [class*="col-"] {
+    padding-right: ($grid-gutter-width / 2) * $mobile-multiplier;
+    padding-left: ($grid-gutter-width / 2) * $mobile-multiplier;
+  }
+
+  .no-gutters {
+    & > .col, & > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  .form-group {
+    margin-bottom: $form-group-margin-bottom * $mobile-multiplier;
+  }
+
+  .form-control {
+    padding: ($input-padding-y*$mobile-multiplier) ($input-padding-x*$mobile-multiplier);
+    font-size: $font-size-base * $mobile-multiplier;
+  }
+
+  .form-control-sm {
+    padding: ($input-padding-y-sm*$mobile-multiplier) ($input-padding-x-sm*$mobile-multiplier);
+    font-size: $font-size-sm * $mobile-multiplier;
+    @include border-radius($input-border-radius-sm * $mobile-multiplier);
+  }
+
+  .form-control-lg {
+    padding: ($input-padding-y-lg*$mobile-multiplier) ($input-padding-x-lg*$mobile-multiplier);
+    font-size: $font-size-lg * $mobile-multiplier;
+    @include border-radius($input-border-radius-lg * $mobile-multiplier);
+  }
+
+  .btn {
+    @include button-size($btn-padding-y*$mobile-multiplier, $btn-padding-x*$mobile-multiplier, $font-size-base*$mobile-multiplier, $btn-line-height, $btn-border-radius*$mobile-multiplier);
+  }
+
+  .btn-lg {
+    @include button-size($btn-padding-y-lg*$mobile-multiplier, $btn-padding-x-lg*$mobile-multiplier, $font-size-lg*$mobile-multiplier, $btn-line-height-lg, $btn-border-radius-lg*$mobile-multiplier);
+  }
+  
+  .btn-sm {
+    @include button-size($btn-padding-y-sm*$mobile-multiplier, $btn-padding-x-sm*$mobile-multiplier, $font-size-sm*$mobile-multiplier, $btn-line-height-sm, $btn-border-radius-sm*$mobile-multiplier);
+  }
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+  
+      @each $prop, $abbrev in (margin: m, padding: p) {
+        @each $size, $length in $spacers {
+  
+          .#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length * $mobile-multiplier !important; }
+          .#{$abbrev}t#{$infix}-#{$size},
+          .#{$abbrev}y#{$infix}-#{$size} {
+            #{$prop}-top: $length * $mobile-multiplier !important;
+          }
+          .#{$abbrev}r#{$infix}-#{$size},
+          .#{$abbrev}x#{$infix}-#{$size} {
+            #{$prop}-right: $length * $mobile-multiplier !important;
+          }
+          .#{$abbrev}b#{$infix}-#{$size},
+          .#{$abbrev}y#{$infix}-#{$size} {
+            #{$prop}-bottom: $length * $mobile-multiplier !important;
+          }
+          .#{$abbrev}l#{$infix}-#{$size},
+          .#{$abbrev}x#{$infix}-#{$size} {
+            #{$prop}-left: $length * $mobile-multiplier !important;
+          }
+        }
+      }
+    }
+  }
+
+  .nav-link {
+    padding: ($nav-link-padding-y*$mobile-multiplier) ($nav-link-padding-x*$mobile-multiplier);
+  }
+
+  .mobile-news {
+    $mobile-news-mult: $mobile-multiplier - 1;
+
+    h1, .h1 { font-size: $h1-font-size * $mobile-news-mult; }
+    h2, .h2 { font-size: $h2-font-size * $mobile-news-mult; }
+    h3, .h3 { font-size: $h3-font-size * $mobile-news-mult; }
+    h4, .h4 { font-size: $h4-font-size * $mobile-news-mult; }
+    h5, .h5 { font-size: $h5-font-size * $mobile-news-mult; }
+    h6, .h6 { font-size: $h6-font-size * $mobile-news-mult; }
+  }
+}
+
+.mobile {
+  height: 100%;
+}

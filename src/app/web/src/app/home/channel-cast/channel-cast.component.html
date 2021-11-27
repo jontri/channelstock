@@ -1,0 +1,120 @@
+<rom-box-header romBgHeader="rom-bg-cyan" romTitle="ChannelCASTS">
+
+  <div *ngIf="channelCasts?.length > 0; else loggedOut"
+       class="rom-box-header-body rome-table hover pointer flex-fill">
+
+    <button *ngIf="!isExpanded" class="btn btn-expand" [routerLink]="['/aux', {outlets: {expanded: 'channel-cast'}}]"
+            [replaceUrl]="aux.hasEntered" data-toggle="tooltip" data-placement="top" title="Expand">
+      <i class="fa fa-expand"></i>
+    </button>
+    <button *ngIf="isExpanded" class="btn btn-expand" (click)="location.back()">
+      <i class="fa fa-times"></i>
+    </button>
+
+    <div *ngIf="!isExpanded" class="container-fluid x-small rome-table-header">
+
+      <div class="row px-3">
+        <div class="col pr-1">Company</div>
+        <div class="col pl-0 text-nowrap">Title</div>
+        <!-- <div class="col-3 pl-0 pr-1 text-nowrap">Date</div> -->
+      </div>
+    </div>
+
+    <!-- <div *ngIf="isExpanded">
+      <rom-channel-cast-blocker></rom-channel-cast-blocker>
+    </div> -->
+
+    <div *ngIf="isExpanded" class="container-fluid xl-small rome-table-header">
+
+      <div class="row">
+        <div class="col-md-5 f1 sortable text-center" (click)="setOrder('companyName')">
+          Company
+          <span *ngIf="order === 'companyName'">
+              <i class="fa fa-chevron-up" *ngIf="reverse" ></i>
+              <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+          </span>
+        </div>
+        <div class="col-md-5 f1 sortable text-center" (click)="setOrder('subject')">
+          Title
+          <span *ngIf="order === 'subject'">
+              <i class="fa fa-chevron-up" *ngIf="reverse" ></i>
+              <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+          </span>
+        </div>
+        <div class="col-md-2 f1 text-nowrap sortable text-center" (click)="setOrder('date')">
+          Date
+          <span *ngIf="order === 'date'">
+              <i class="fa fa-chevron-up" *ngIf="reverse" ></i>
+              <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+          </span>
+        </div>
+
+      </div>
+    </div><!-- end of expanded-->
+
+    <div *ngIf="!isExpanded" class="container-fluid x-small rome-table-body">
+
+      <div class="row px-3" *ngFor="let channelcast of channelCasts;" routerLink="/channelcast-detail/{{channelcast.id}}">
+        <div class="col pr-1 text-truncate">{{channelcast?.companyName}}</div>
+        <div class="col pr-1 pl-0 text-truncate">{{channelcast?.subject}}</div>
+        <!-- <div class="text-nowrap col-3 pl-0">{{channelcast.date | date : "EEEE, MMMM dd yyyy, hh:mm a"}}</div> -->
+      </div>
+    </div><!-- end of not expanded-->
+
+    <div *ngIf="isExpanded" class="container-fluid rome-table-body">
+      <div *ngIf="showAgreement; else agreementNotRequired">
+        <div class="row" *ngFor="let channelcast of channelCasts;"
+             romContextMenu [component]="agreementChannelcastPopupComponent" [events]="['click']"
+             [data]="createAgreementData(channelcast?.id)">
+          <div class="col-md-5 text-center text-truncate" title="{{channelcast?.companyName}}">
+            {{channelcast?.companyName}}
+          </div>
+          <div class="col-md-5 text-center text-truncate" title="{{channelcast?.subject}}">
+            {{channelcast?.subject}}
+          </div>
+          <div class="col-md-2 text-center">{{channelcast.date | date : "MMMM dd yyyy"}}</div>
+        </div>
+      </div>
+      <ng-template #agreementNotRequired>
+        <div class="row" *ngFor="let channelcast of channelCasts;"
+             routerLink="/channelcast-detail/{{channelcast.id}}">
+          <div class="col-md-5 pl-2 text-center text-truncate" title="{{channelcast?.companyName}}">
+            {{channelcast?.companyName}}
+          </div>
+          <div class="col-md-5 text-center text-truncate" title="{{channelcast?.subject}}">
+            {{channelcast?.subject}}
+          </div>
+          <div class="col-md-2 pr-2 text-center text-nowrap">{{channelcast.date | date : "MMMM dd yyyy"}}</div>
+        </div>
+      </ng-template>
+    </div>
+
+
+  </div>
+
+  <ng-template #loggedOut>
+    <div class="">
+      <div class="container-fluid x-small rome-table-header">
+        <button *ngIf="!isExpanded" class="btn btn-expand"
+                [routerLink]="['/aux', {outlets: {expanded: 'channel-cast'}}]" [replaceUrl]="aux.hasEntered"
+                data-toggle="tooltip" data-placement="top" title="Expand">
+          <i class="fa fa-expand"></i>
+        </button>
+        <button *ngIf="isExpanded" class="btn btn-expand" (click)="location.back()">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+
+      <div *ngIf="!isExpanded" class="container-fluid x-small rome-table-body px-2 py-2">
+        <img class="img-fluid px-3 widget-blocker" src="assets/images/channel-casts.png" [routerLink]="['/aux', {outlets: {expanded: 'channel-cast'}}]"/>
+      </div>
+
+      <div *ngIf="isExpanded">
+        <rom-channel-cast-blocker></rom-channel-cast-blocker>
+      </div>
+
+    </div>
+  </ng-template>
+</rom-box-header>
+
+

@@ -1,0 +1,234 @@
+<rom-box-header romBgHeader="rom-bg-caribbean-green" >
+  <span class="rom-box-header-title">
+    Meet the Management | {{roadShow?.address.cityOrLocality}} | {{roadShow?.date| date: 'MMMM d, yyyy HH:mm aa'}}
+    <!--<span class="rom-text-australian-mint">{{roadShow?.seats}} SEATS REMAIN</span>-->
+  </span>
+
+  <div class="rom-box-header-body">
+    <div class="d-flex mt-3">
+      <div class="d-flex flex-column left-col pl-3">
+        <rom-company-img [company]="company"></rom-company-img>
+        <ng-container *ngIf="company">
+          <rom-ticker-info-table [company]="company"></rom-ticker-info-table>
+          <ng-container *ngIf="company?.participationLevel === 'Discover'">
+            <span  #topSection class="mt-1 ml-2">
+              FUNDAMENTALS
+              <a href="#fundamental" class="rom-text-gray-suit xm-small" (click)="showDialog=!showDialog"><u>DETAIL</u></a>
+            </span>
+            <rom-rating class="ml-2" [value]="company?.fundamentalAnalysis"></rom-rating>
+            <span class="mt-2 ml-2">
+              RATING
+              <a href="#ratings" class="rom-text-gray-suit xm-small" (click)="showDialog=!showDialog"><u>DETAIL</u></a>
+            </span>
+            <span class="rating pl-2">{{ getCompanyRating(company?.rating) }}</span>
+          </ng-container>
+          <div class="address-content rom-text-gray-suit small font-weight-bold mt-2">
+            <p>{{ company?.address?.address1 }}
+              <!--570 Granville Street-->
+            </p>
+            <p>{{ company?.address?.address2 }}
+              <!--Suite 900-->
+            </p>
+            <p>{{ company?.address?.cityOrLocality }}, {{ company?.address?.postalCode }}
+              <!--Vancouver, BC V6C 3P1-->
+            </p>
+            <p>{{ company?.address?.country }}
+              <!--Canada-->
+            </p>
+            <p>{{ company?.telephone }}</p>
+            <p>
+              <a href="{{ company?.website }}" target="_blank" class="rom-text-gray-suit" style="text-decoration: underline;">{{ company?.website }}</a>
+            </p>
+          </div>
+        </ng-container>
+      </div>
+
+
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-md-12">
+            <h5 class="pb-3 rom-text-gray-suit overview-header">{{roadShow?.locationName}}</h5>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-3">
+            <img src="{{roadshowLocation?.locationImageUrl}}" class="img-fluid" />
+          </div>
+          <div class="col-9 pl-3">
+            <div class="row no-gutters">
+              <div class="col">
+                <p class="small font-weight-bold m-0">
+                  {{ roadShow?.overview }}
+                </p>
+              </div>
+            </div>
+            <p></p>
+          </div>
+        </div>
+        <div class="row no-gutters small font-weight-bold actions align-items-center d-flex justify-content-center mt-2 mb-2">
+          <div class="col-auto mr-3">
+            <a href="javascript: void(0)" class="rom-text-blue-marguerite" (click)="toSpeakerDetail()">SPEAKER BIO / OVERVIEW</a>
+          </div>
+          <div class="col-auto mr-3">
+            <a href="javascript: void(0)" class="rom-text-blue-marguerite" (click)="openAddressModal()">ADDRESS</a>
+          </div>
+          <div class="col-auto mr-3">
+            <a href="javascript: void(0)" class="rom-text-blue-marguerite" (click)="togglePdf()">MENU</a>
+          </div>
+          <div class="col-auto mr-3">
+            <button class="text-white font-weight-normal p-1 rom-bg-pistachio border-0 large line-height-font cursor-point" (click)="showReservationModal()"><i class="rome-ico-play"></i>REQUEST ATTENDANCE</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="large rom-text-gray-suit">Research Reports</span>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="get-report" *ngIf="latestReport;else noReport">
+            <img src="assets/images/get-research-report.png" class="img-fluid" romContextMenu [component]="agreementPopupComponent"
+              [events]="['click']" [data]="agreementPopupData" />
+          </div>
+
+          <ng-template #noReport>
+            <div>
+              There are no available Reports
+            </div>
+          </ng-template>
+
+          <div *ngIf="latestReport" class="mr-3">
+            <rom-research-report-ext [researchReports]="researchReports" [ticker]="company?.symbol"></rom-research-report-ext>
+          </div>
+
+          <div>
+            <rom-company-links [companyId]="roadShow?.issuerId" [company]="company" [upcomingRoadShows]="upcomingRoadShows" [upcomingChannelCasts]="upcomingChannelCasts"></rom-company-links>
+          </div>
+        </div>
+      </div>
+        <div *ngIf="isShow" class="col-md-9">
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 15px;">
+                    <span class="h3" style="color: #bbbbbb; font-weight: normal;"></span>
+                    <!-- <span>Stetsons Modern Steak</span> -->
+                    <hr style="border: 1px solid #776e7f;margin-top: 15px;margin-bottom: 5px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="assets/images/avino-building.png" style="width: 100%" />
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="font-weight: bold; padding-right: 15px; letter-spacing: 1.1px;">
+                              {{roadShow?.overview}} - {{roadShow?.menuLink}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row actions">
+                    <div class="col-md-12">
+                        <ul class="company-menu-link">
+                            <li>
+                                <a href="javascript: void(0)" (click)="toSpeakerDetail()">SPEAKER BIO / OVERVIEW</a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0)">DIRECTIONS</a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0)" (click)="openMenu()">MENU</a>
+                            </li>
+                            <li>
+                                <button class=" text-white font-weight-normal p-2 rounded btn-reserve" (click)="showReservationModal()"><i class="rome-ico-play"></i>RESERVE</button>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="margin: 15px 0;">
+                    <span class="h3" style="color: #bbbbbb; font-weight: normal;">Research Reports</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" *ngIf="latestReport;else noReport">
+                    <img src="assets/images/get-research-report.png" class="img-fluid" romContextMenu [component]="agreementPopupComponent"
+                        [events]="['click']" [data]="agreementPopupData" />
+                </div>
+
+                <ng-template #noReport>
+                    <div class="col-md-6">
+                        There are no available Reports
+                    </div>
+                </ng-template>
+
+                <div *ngIf="latestReport" class="mr-3">
+                    <rom-research-report-ext [researchReports]="researchReports" [ticker]="company?.symbol"></rom-research-report-ext>
+                </div>
+
+                <div class="col-auto">
+                    <rom-company-links [companyId]="roadShow.issuerId" [company]="company" [upcomingRoadShows]="upcomingRoadShows" [upcomingChannelCasts]="upcomingChannelCasts"></rom-company-links>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+</rom-box-header>
+
+<!-- Button triggers for modals -->
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#reservationModal"
+  #reservationTrigger></button>
+<button type="button" class="btn" style="display: none; visibility: hidden" data-toggle="modal" data-target="#addressModal"
+  #addressTrigger></button>
+
+<!-- Modals -->
+<rom-reservation [(roadShow)]="roadShow"></rom-reservation>
+
+<!-- Address Modal -->
+<div class="modal fade" id="addressModal" role="dialog" aria-labelledby="addressModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="channelcastModal">Roadshow Address</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <p>{{roadShow?.address.address1}}
+          &nbsp;{{roadShow?.address.address2}}
+          &nbsp;{{roadShow?.address.cityOrLocality}}
+          &nbsp;{{roadShow?.address.country}}
+          &nbsp;{{roadShow?.address.postalCode}}</p>
+          <hr/>
+        </div>
+        <agm-map [latitude]="lat" [longitude]="lng">
+          <agm-marker [latitude]="lat" [longitude]="lng" animation="BOUNCE"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showPdf" class="pdf-backdrop" [@fadeInOut] #pdfBody>
+  <div class="pdf-div">
+    <div class="pdf-header">
+      <button class="btn btn-danger" (click)="togglePdf()">Close</button>
+    </div>
+    <!-- Update src to [src] and point to corporate presentation model when pdf access CORS blocking has been fixed -->
+    <div class="pdf-body">
+      <pdf-viewer
+      src="/docs/{{roadShow?.menuLink}}"
+      [fit-to-page]="true"
+      [autoresize]="true"
+      [render-text]="true"
+      style="display: block; max-width: 80vw;">
+      </pdf-viewer>
+    </div>
+  </div>
+</div>

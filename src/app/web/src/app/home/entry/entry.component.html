@@ -1,0 +1,34 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;" *ngIf="!responsiveService.isMobile; else mobileEntry">
+  <rom-initial-tree class="rom-box-header-body">
+
+    <div class="align-items-center h-70 rom-tree-body row">
+      <div class="col">
+
+        <div class="text-left x-large py-4 text-light" >
+          {{headerDescription}}
+        </div>
+
+        <rom-entry-inputs></rom-entry-inputs>
+      </div>
+
+    </div>
+  </rom-initial-tree>
+</rom-box-header>
+
+<ng-template #mobileEntry>
+  <div class="row mb-3">
+    <div class="col-12">
+      <h5 class="pt-3 rom-text-navy-blue">{{headerDescription}}</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <rom-entry-inputs [isMobile]="true"></rom-entry-inputs>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <rom-initial-tree></rom-initial-tree>
+    </div>
+  </div>
+</ng-template>

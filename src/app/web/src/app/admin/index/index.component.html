@@ -1,0 +1,24 @@
+<rom-box-header romBgHeader="rom-bg-blaze-orange" romTitle="NobleEG Index">
+  <div class="container-fluid rom-box-header-body">
+		<div class="row table-wrapper">
+			<div class="col">
+				<table class="table" style="font-size: 11px">
+					<thead class="text-left">
+						<tr>
+							<th scope="col">Stock Name</th>
+							<th scope="col">Price $</th>
+							<th scope="col">Change %</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let nobleIdx of nobleList">
+							<td>{{ nobleIdx.stockName }}</td>
+							<td class="text-left">{{ nobleIdx.currentPrice }}</td>
+							<td class="text-left" [ngClass]="{'text-success': nobleIdx.percentChange > 0, 'text-danger': nobleIdx.percentChange < 0}">{{ nobleIdx.percentChange | number:'1.2-2' }}</td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>
+		</div>
+	</div>
+</rom-box-header>

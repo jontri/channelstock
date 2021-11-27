@@ -1,0 +1,66 @@
+<rom-box-header romBgHeader="rom-bg-dark-purple" romTitle="&nbsp;">
+  <rom-initial-tree class="rom-box-header-body">
+
+    <div class="align-items-center h-70 rom-tree-body row">
+      <div class="col">
+
+        <div class="text-left x-large py-4 text-light" >
+          Session Expired
+        </div>
+
+
+        <div class="text-danger">{{ loginFailedMsg }}</div>
+        <form (submit)=onLogin($event)>
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              placeholder=""
+              id="username"
+              name="username"
+              [(ngModel)]="username"
+              #input>
+          </div>
+          <div class="form-group">
+            <label>Password / Authorization Code</label>
+            <input type="password"
+                   class="form-control form-control-sm"
+                   placeholder=""
+                   id="password"
+                   name="password"
+                   [(ngModel)]="password">
+          </div>
+          <br/>
+          <div class="row border-between">
+            <div class="col-4">
+              <button type="submit" class="btn btn-secondary" style="min-width: 6vw">
+                I'M BACK
+              </button>
+            </div>
+            <div class="col-4">
+              <button routerLink="/registration" class="btn btn-secondary" style="min-width: 6vw">
+                FIRST TIME
+              </button>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-12">
+              <a routerLink="/forgot-password">
+                <p class="text-light">Forgot / Change Password?</p>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="text-light small">Note: Channelchek is not optimized for<br/>
+                Internet Explorer or mobile devices (yet).</p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </rom-initial-tree>
+</rom-box-header>

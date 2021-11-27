@@ -1,0 +1,239 @@
+<rom-box-header romBgHeader="rom-bg-caribbean-green" romTitle="{{romTitle}}">
+
+    <div *ngIf="roadShows?.length > 0; else loggedOut" class="rom-box-header-body rome-table hover pointer">
+
+      <button *ngIf="!isExpanded" class="btn btn-expand" [routerLink]="['/aux', {outlets: {expanded: 'road-shows'}}]"
+              [replaceUrl]="aux.hasEntered" data-toggle="tooltip" data-placement="top" title="Expand">
+        <i class="fa fa-expand"></i>
+      </button>
+
+      <button *ngIf="isExpanded" class="btn btn-expand" (click)="location.back()">
+        <i class="fa fa-times"></i>
+      </button>
+
+      <div *ngIf="isExpanded" class="companies-header">
+        <div class="row px-3 xl-small">
+            <div class="col-md-2 sortable f1 text-center" (click)="setOrder('address.cityOrLocality')">
+                City
+                <span *ngIf="order === 'address.cityOrLocality'">
+                        <i class="fa fa-chevron-up" *ngIf="reverse"></i>
+                        <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+                    </span>
+              </div>
+          <div class="col-md-1 sortable f1 text-center" (click)="setOrder('address.stateUS')">
+            State
+            <span *ngIf="order === 'address.stateUS'">
+                    <i class="fa fa-chevron-up" *ngIf="reverse"></i>
+                    <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+                </span>
+          </div>
+          <div class="col-md-2 sortable f1 text-center" ng-hide="active"
+               (click)="setOrder('locationName')">
+            Location
+            <span *ngIf="order === 'locationName'">
+                    <i class="fa fa-chevron-up" *ngIf="reverse"></i>
+                    <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+                </span>
+          </div>
+
+          <div class="col-md-3  sortable f1 text-center" (click)="setOrder('companyName')">
+            Company
+            <span *ngIf="order === 'companyName'">
+                    <i class="fa fa-chevron-up" *ngIf="reverse"></i>
+                    <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+                </span>
+          </div>
+          <div class="col-md-2 sortable f1 text-center" (click)="setOrder('date')">
+            Date
+            <span *ngIf="order === 'date'">
+                    <i class="fa fa-chevron-up" *ngIf="reverse"></i>
+                    <i class="fa fa-chevron-down" *ngIf="!reverse"></i>
+                </span>
+          </div>
+          <div class="col-md-2 sortable f1 text-center" >
+              Time</div>
+        </div><!--if expanded-->
+      </div>
+
+      <div class="container-fluid">
+        <div *ngIf="!isExpanded" class="row px-3 x-small">
+          <div class="col-3 pr-1">City</div>
+          <div class="col pl-0 text-nowrap">Company</div>
+          <div class="col-3 pl-0 pr-1 text-nowrap">Date/Time</div>
+        </div>
+      </div>
+
+      <div *ngIf="!isExpanded" class="container-fluid x-small rome-table-body">
+        <div class="row px-3" *ngFor="let r of roadShows" routerLink="/roadshowdetail/{{r.id}}">
+          <div class="col-3 pr-0 text-truncate capitalize" title="{{r.address.cityOrLocality}}">
+
+            {{r.address.cityOrLocality}}
+
+          </div><!--end of cityorLocality -->
+          <div *ngIf="isExpanded" class="col pl-0 text-truncate capitalize" title="{{r.locationName}}">
+
+            {{r.locationName}}
+
+          </div><!--end of locationName -->
+          <div class="col pl-0 text-truncate capitalize" title="{{r.companyName}}">
+
+            {{r.companyName}}
+
+          </div><!-- end of companyName -->
+          <div class="text-nowrap col-3 pl-0">
+
+            <!-- {{r.date| date : "EEEE, MMMM dd yyyy, hh:mm a"}} -->
+            {{r.date| date : "MM-dd-y"}}
+
+          </div><!-- end of date -->
+        </div>
+        <!-- display past roadshows -->
+        <div class="row px-3 disabled" *ngFor="let rpast of pastRoadShows" routerLink="/roadshowdetail/{{rpast.id}}">
+          <div class="col-3 pr-0 text-truncate capitalize" title="{{rpast.address.cityOrLocality}}">
+
+            {{rpast.address.cityOrLocality}}
+
+          </div><!--end of cityorLocality -->
+          <div *ngIf="isExpanded" class="col pl-0 text-truncate capitalize" title="{{rpast.locationName}}">
+
+            {{rpast.locationName}}
+
+          </div><!--end of locationName -->
+          <div class="col pl-0 text-truncate capitalize" title="{{rpast.companyName}}">
+
+            {{rpast.companyName}}
+
+          </div><!-- end of companyName -->
+          <div class="text-nowrap col-3 pl-0">
+
+            <!-- {{r.date| date : "EEEE, MMMM dd yyyy, hh:mm a"}} -->
+            {{rpast.date| date : "MM-dd-y"}}
+
+          </div><!-- end of date -->
+        </div>
+        <!-- ENDOF display past roadshows -->
+      </div><!--not expanded-->
+
+      <div *ngIf="isExpanded" class="container-fluid rome-table-body">
+        <div *ngIf="showAgreement; else agreementNotRequired">
+          <div class="row px-3" *ngFor="let r of roadShows" romContextMenu [component]="agreementRoadshowPopupComponent"
+               [events]="['click']" [data]="createAgreementData(r.id)">
+            <div class="col-md-2 text-center" title="{{r.address.cityOrLocality}}">
+
+              {{r.address.cityOrLocality}}
+
+            </div><!--end of cityorLocality -->
+            <div *ngIf="isExpanded" class="col-md-3 text-center" title="{{r.locationName}}">
+
+              {{r.locationName}}
+
+            </div><!--end of locationName -->
+            <div class="col-md-3 text-center" title="{{r.companyName}}">
+
+              {{r.companyName}}
+
+            </div><!-- end of companyName -->
+            <div class="text-truncate col-md-4 text-center">
+
+              {{r.date| date : "EEEE, MMMM dd yyyy, hh:mm a"}}
+
+            </div><!-- end of date -->
+
+          </div>
+          <!-- display past roadshows -->
+          <div class="row px-3 disabled" *ngFor="let rpast of pastRoadShows" romContextMenu [component]="agreementRoadshowPopupComponent"
+               [events]="['click']" [data]="createAgreementData(rpast.id)">
+            <div class="col-md-2 text-center" title="{{rpast.address.cityOrLocality}}">
+
+              {{rpast.address.cityOrLocality}}
+
+            </div><!--end of cityorLocality -->
+            <div *ngIf="isExpanded" class="col-md-3 text-center" title="{{rpast.locationName}}">
+
+              {{rpast.locationName}}
+
+            </div><!--end of locationName -->
+            <div class="col-md-3 text-center" title="{{rpast.companyName}}">
+
+              {{rpast.companyName}}
+
+            </div><!-- end of companyName -->
+            <div class="text-truncate col-md-4 text-center">
+
+              {{rpast.date| date : "EEEE, MMMM dd yyyy, hh:mm a"}}
+
+            </div><!-- end of date -->
+
+          </div>
+          <!-- ENDOF display past roadshows -->
+        </div><!-- is expanded-->
+
+        <ng-template #agreementNotRequired>
+          <div class="row px-3" *ngFor="let r of roadShows" routerLink="/roadshowdetail/{{r.id}}">
+            <div class="col-md-2 pl-0 text-truncate text-left" title="{{r.address.cityOrLocality}}">
+              {{r.address.cityOrLocality}}
+            </div>
+            <div class="col-md-1 pl-0 text-truncate text-left" title="{{r.address.stateUS}}">
+                {{r.address.stateUS}}
+              </div>
+            <div *ngIf="isExpanded" class="col-md-2 pl-0 text-truncate capitalizev" title="{{r.locationName}}">
+
+              {{r.locationName}}
+
+            </div>
+            <div class="col-md-3 pl-0 text-truncate text-left" title="{{r.companyName}}">
+              {{r.companyName}}
+            </div>
+            <!-- <div class="text-nowrap col-3 pl-0">{{r.date | date : "MM.dd/hhaaaaa"}}</div> -->
+            <div class="text-nowrap col-md-2 pl-4 text-left">{{r.date | date : "MM-dd-y"}}</div>
+            <div class="text-nowrap col-md-2 pl-4 text-left">{{r.date | date : "hh:mm a"}}</div>
+          </div>
+
+          <!-- display past roadshows -->
+          <div class="row px-3 disabled" *ngFor="let rpast of pastRoadShows" routerLink="/roadshowdetail/{{rpast.id}}">
+            <div class="col-md-2 pl-0 text-truncate text-left" title="{{rpast.address.cityOrLocality}}">
+              {{rpast.address.cityOrLocality}}
+            </div>
+            <div class="col-md-1 pl-0 text-truncate text-left" title="{{rpast.address.stateUS}}">
+                {{rpast.address.stateUS}}
+              </div>
+            <div *ngIf="isExpanded" class="col-md-2 pl-0 text-truncate capitalizev" title="{{rpast.locationName}}">
+
+              {{rpast.locationName}}
+
+            </div>
+            <div class="col-md-3 pl-0 text-truncate text-left" title="{{rpast.companyName}}">
+              {{rpast.companyName}}
+            </div>
+            <!-- <div class="text-nowrap col-3 pl-0">{{r.date | date : "MM.dd/hhaaaaa"}}</div> -->
+            <div class="text-nowrap col-md-2 pl-4 text-left">{{rpast.date | date : "MM-dd-y"}}</div>
+            <div class="text-nowrap col-md-2 pl-4 text-left">{{rpast.date | date : "hh:mm a"}}</div>
+          </div>
+          <!-- ENDOF display past roadshows -->
+        </ng-template>
+      </div>
+    </div>
+
+    <ng-template #loggedOut>
+      <div class="">
+        <div class="container-fluid x-small rome-table-header">
+          <button *ngIf="!isExpanded" class="btn btn-expand"
+                  [routerLink]="['/aux', {outlets: {expanded: 'road-shows'}}]" [replaceUrl]="aux.hasEntered"
+                  data-toggle="tooltip" data-placement="top" title="Expand">
+            <i class="fa fa-expand"></i>
+          </button>
+          <button *ngIf="isExpanded" class="btn btn-expand" (click)="location.back()">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        <div *ngIf="!isExpanded" class="container-fluid x-small rome-table-body px-2 py-2">
+          <img class="img-fluid pl-4 pr-3 widget-blocker" src="assets/images/meet-management.png"  [routerLink]="['/aux', {outlets: {expanded: 'road-shows'}}]"/>
+        </div>
+
+        <div *ngIf="isExpanded">
+          <rom-meet-the-management-blocker></rom-meet-the-management-blocker>
+        </div>
+
+      </div>
+    </ng-template>
+  </rom-box-header>

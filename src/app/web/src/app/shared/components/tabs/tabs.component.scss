@@ -1,0 +1,38 @@
+@import "~styles/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+@each $name, $color in $rom-colors {
+  ul.nav.tab-#{$name} li.nav-item {
+    a.nav-link {
+      color: $color;
+
+      &.active {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+ul.nav {
+  &.nav-tabs {
+    border-bottom: 0;
+  }
+  li.nav-item {
+    margin-bottom: 0;
+
+    a.nav-link.active {
+      color: white;
+    }
+  }
+}
+
+.tab-content {
+  &, & > .tab-pane {
+    min-height: 0;
+  }
+}

@@ -1,0 +1,42 @@
+<h4>Companies</h4>
+<div class="content-div">
+  <div class="d-flex align-items-center justify-content-end">
+    <!-- <div class="form-group">
+      <label for="firstName">Filter users</label>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...">
+    </div> -->
+    <!--<button class="btn btn-primary" (click)="toAddLocation()">Add Location</button>-->
+    <rom-pagination class="rom-pagination" *ngIf="companyService.companies?.length !== 0;" (prev)="goPrev()" (next)="goNext()" (submit)="onSubmit($event)" [pages]="numOfPages" [currPage]="currPageNum">
+      <i class="fa fa-angle-double-left prev-ico" aria-hidden="true"></i>
+      <i class="fa fa-angle-double-right next-ico" aria-hidden="true"></i>
+    </rom-pagination>
+  </div>
+  <div class="row content-header">
+    <div class="col col-md-1">Symbol</div>
+    <div class="col col-md-5">Name</div>
+    <div class="col">Industry</div>
+    <div class="col">Sector</div>
+    <div class="col col-md-1">Actions</div>
+    <!--<div class="col">Current Price</div>
+    <div class="col">52wk Range</div>-->
+  </div>
+  <div *ngIf="companyService.companies.length !== 0; else noData">
+    <div class="row content-body" *ngFor="let company of companyService.companies;">
+      <div class="col col-md-1">{{ company?.symbol }}</div>
+      <div class="col col-md-5 text-truncate">{{ company?.companyName }}</div>
+      <div class="col">{{ company?.industry }}</div>
+      <div class="col ">{{ company?.sector}}</div>
+      <div class="col col-md-1"><button class="btn btn-secondary rounded" (click)="onCompanyDetail(company.id)">Details</button></div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="text-center">No Data Found</p>
+  </ng-template>
+</div>
+
+<!-- Loading Cog -->
+<div *ngIf="isLoading"
+     id="loading">
+  <fa name="spinner" animation="pulse" size="5x"></fa>
+</div>

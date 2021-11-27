@@ -1,0 +1,39 @@
+<div class="container-fluid rom-box-header-body">
+	<div class="row table-wrapper">
+		<div class="col menu-div">
+			<div class="section-div" *ngIf="loginService.isAdmin">
+				<p class="section-header">ADMINISTRATION</p>
+				<!-- <p class="section-sub-header">Users</p> -->
+				<ul class="list-unstyled">
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['users', 'list']"><a>Users</a></li>
+					<!-- <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['users', 'add']"><a>Add User</a></li> -->
+				</ul>
+			</div>
+			<div class="section-div"  *ngIf="loginService.isAdmin">
+				<p class="section-header">CONTENT MANAGEMENT</p>
+				<!-- <p class="section-sub-header">Roadshows</p> -->
+				<ul class="list-unstyled">
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['locations']"><a>Roadshow Locations</a></li>
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['roadshows']"><a>Roadshows</a></li>
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['research-reports']"><a>Research Reports</a></li>
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['company']"><a>Companies</a></li>
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['email-templates']"><a>Email Templates</a></li>
+                                        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['news']"><a>News</a></li>
+                                </ul>
+			</div>
+			<div class="section-div">
+				<p class="section-header">PROFILE</p>
+					<!-- <p class="section-sub-header">Users</p> -->
+				<ul class="list-unstyled">
+					<!--<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['user-view']"><a>Information</a></li>-->
+					<!-- <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['profile-edit']"><a>Personal Profile</a></li> -->
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" [routerLink]="['preferences']"><a>Personal Profile</a></li>
+				</ul>
+			</div>
+
+			<!--<ul class="list-unstyled">-->
+				<!--<li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['favorites']"><a>Favorites</a></li>-->
+			<!--</ul>-->
+		</div>
+	</div>
+</div>

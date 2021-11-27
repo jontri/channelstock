@@ -1,0 +1,116 @@
+<ng-container *ngIf="!responsiveService.isMobile; else mobileNewsDetails">
+  <ng-container *ngTemplateOutlet="newsDetails"></ng-container>
+</ng-container>
+
+<ng-template #mobileNewsDetails>
+  <div class="row no-gutters mobile-news">
+    <div class="col">
+      <ng-container *ngTemplateOutlet="newsDetails"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #newsDetails>
+  <rom-box-header romBgHeader="rom-bg-blaze-orange" [isMobile]="responsiveService.isMobile">
+
+    <div *ngIf="!responsiveService.isMobile; else mobileNewsHeader" class="rom-box-header-title d-flex align-items-center">
+      <div class="flex-fill text-truncate" title="{{news?.headerTitle}}">
+          <span *ngIf="isFeature">News Channel - <b>FEATURE</b> - </span>
+          <span *ngIf="news?.headerTitle" class="rom-box-header-title"  id="topPage" #topPage>{{news?.headerTitle}}</span>
+          <span *ngIf="news && !isResearchReport(news) && !news?.headerTitle" class="rom-box-header-title"  id="topPage" #topPage>The Long Story Short</span>
+          <span *ngIf="news && isResearchReport(news) && !news?.headerTitle" class="rom-box-header-title"  id="topPage" #topPage>Equity Research Report Release</span>
+      </div>
+
+      <all-share class="row mr-0 py-0 my-0 flex-nowrap text-nowrap"></all-share>
+    </div>
+
+    <ng-template #mobileNewsHeader>
+      <div class="rom-box-header-title">{{news?.newsItemType.toLowerCase()}}</div>
+    </ng-template>
+
+    <div class="container-fluid rom-box-header-body">
+
+
+      <!-- has banner-->
+      <!--<div *ngIf="news.bannerUrl; else showBannerTitle" class="row">-->
+      <div *ngIf="news?.bannerUrl;" class="row">
+        <div>
+          <!-- <img src="{{ news?.bannerUrl }}" class="header-img"/> -->
+          <img src="{{ news?.bannerUrl }}" class="img-fluid"/>
+        </div>
+      </div>
+
+      <!-- if there is no banner & no equities but has bull,bear and not generic then, display banner blue -->
+        <div *ngIf="news?.bannerTitle && !news?.bannerUrl && news && !isResearchReport(news) && isGeneric === false;" class="row">
+          <div class="header-title">
+            <span class="banner-title" [innerHTML]="news?.bannerTitle"></span>
+          </div>
+        </div>
+
+
+      <div *ngIf="!news?.bannerUrl && news && isResearchReport(news) && news?.bannerTitle" class="row">
+          <div class="header-title-green">
+            <span class="banner-title" [innerHTML]="news?.bannerTitle"></span>
+          </div>
+        </div>
+
+      <!-- if there is no banner & no equities & has no has bull,bear and generic then, display banner blue -->
+        <div *ngIf="news?.bannerTitle && !news.bannerUrl && news && !isResearchReport(news) && isGeneric === true" class="row">
+          <div class="header-title-blue">
+            <span class="banner-title" [innerHTML]="news?.bannerTitle"></span>
+          </div>
+        </div>
+
+
+      <p></p>
+
+
+      <div class="px-1">
+        <div [innerHTML]="news?.content | romMobileOrDesktop" class="news-content"></div>
+      </div>
+
+      <br/>
+
+      <div *ngIf="newsDetailsBull && newsDetailsBull.length>0" class="row item-background-bulls"></div>
+      <p *ngIf="newsDetailsBull && newsDetailsBull.length>0"></p>
+      <div *ngIf="newsDetailsBull && newsDetailsBull.length>0" class="container-fluid  pl-0 pr-1 mx-0">
+        <rom-expand-collapse [collapseHeight]="collapseHeightBulls" [expandHeight]="expandHeightBulls" class="px-0 mx-0">
+          <div #bullsContent>
+            <div *ngFor="let bull of newsDetailsBull;" class="news-content" [innerHTML]="bull.content | romMobileOrDesktop"></div>
+          </div>
+        </rom-expand-collapse>
+        <br/>
+      </div>
+
+
+      <div *ngIf="newsDetailsBear && newsDetailsBear.length>0" class="row item-background-bears"></div>
+      <p *ngIf="newsDetailsBear && newsDetailsBear.length>0"></p>
+      <div *ngIf="newsDetailsBear && newsDetailsBear.length>0" class="container-fluid pl-0 pr-1 mx-0">
+        <rom-expand-collapse [collapseHeight]="collapseHeightBears" [expandHeight]="expandHeightBears" class="px-0 mx-0">
+          <div #bearsContent>
+            <div *ngFor="let bear of newsDetailsBear;" class="news-content" [innerHTML]="bear.content | romMobileOrDesktop"></div>
+          </div>
+        </rom-expand-collapse>
+        <br/>
+      </div>
+
+      <div *ngIf="newsDetailsBalanced && newsDetailsBalanced.length>0" class="row item-background-balance"></div>
+      <p *ngIf="newsDetailsBalanced && newsDetailsBalanced.length>0"></p>
+      <div *ngIf="newsDetailsBalanced && newsDetailsBalanced.length>0" class="container-fluid pl-0 pr-1 mx-0" >
+        <rom-expand-collapse [collapseHeight]="collapseHeightBalanced" [expandHeight]="expandHeightBalanced" class="px-0 mx-0">
+          <div #balancedContent>
+            <div *ngFor="let balanced of newsDetailsBalanced;" class="news-content" [innerHTML]="balanced.content | romMobileOrDesktop"></div>
+          </div>
+        </rom-expand-collapse>
+      </div>
+
+
+      <br/>
+
+      <div *ngIf="relatedCompanies?.length>0 && !responsiveService.isMobile && !isFeature">
+        <div class="row related-companies-header py0 my0"></div>
+        <rom-company-list class="row d-flex flex-column mt-0"></rom-company-list>
+      </div>
+    </div>
+  </rom-box-header>
+</ng-template>

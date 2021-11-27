@@ -1,0 +1,15 @@
+<div *ngIf="!responsiveService.isMobile; else mobile">
+  <rom-nav></rom-nav>
+  <router-outlet></router-outlet>
+  <rom-footer></rom-footer>
+</div>
+
+<ng-template #mobile>
+  <div class="mobile">
+    <div class="nav-route-container">
+      <rom-nav></rom-nav>
+      <router-outlet></router-outlet>
+    </div>
+    <rom-footer></rom-footer>
+  </div>
+</ng-template>

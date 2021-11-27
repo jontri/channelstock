@@ -1,0 +1,46 @@
+@import "~styles/variables";
+
+.agreement-div{
+  width: 30vw;
+  border-radius: 1vw;
+  background-color: $rom-aquamarine-2;
+  box-shadow: .5vw .5vw 0 #666666be;
+  //bottom: 300px;
+  //left:50px;
+
+  position: absolute;
+  margin: -150px 0 150px -30px;
+  left: auto;
+  top: 50%;
+
+  p {
+      text-align: center;
+      align-items: center;
+  }
+
+  .response {
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+
+    a {
+        cursor: pointer;
+    }
+
+    a:hover{
+        text-decoration: underline;
+    }
+
+    img {
+        margin-right: 5px;
+    }
+    display: flex;
+
+    .disagree {
+        color: #e5648b;
+    }
+
+    .divider{
+        opacity: 0.5;
+    }
+  }
+}

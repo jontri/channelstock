@@ -1,0 +1,81 @@
+.card{
+    margin-bottom: 20px;
+}
+
+:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative;
+     
+}
+/* style icon */
+.input-group-append {
+    .btn {
+        position: absolute;
+        padding: 6px;
+        border-style: none;
+        border-radius: 0%;
+        right:  0px; 
+      }
+}
+
+
+#popContent {
+    text-align: center;
+}
+.popover-header {
+    text-align: center;
+    background-color: !important #4379b1;
+    font-size: 13px;
+}
+.btn-save {
+    float: none;
+    background-color: #4379b1;
+    font-size: 10px;
+    width: 50px;
+    height: 17px;
+    border-radius: 15%;
+    color: #ffffff;
+    border-style: none;
+}
+
+#loading {
+    text-align: center;
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message {
+    display: block;
+    position: absolute;
+}
+.error {
+    color: #FF0000;
+    font-size: 13px;
+    bottom: -2em;
+}
+
+.header-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .content-header {
+        margin-bottom: 0 !important;
+    }
+}
+
+.image-div {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}

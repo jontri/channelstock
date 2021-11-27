@@ -1,0 +1,270 @@
+@import "~styles/variables";
+@import "~styles/mixins";
+
+.col-md-4>.form-control {
+    border-style: none;
+    outline: none;
+    box-shadow: none;
+}
+
+#address {
+    margin: 0;
+    padding: 1px;
+}
+
+.error-message {
+    display: block;
+    position: absolute;
+}
+
+.error {
+    color: #FF0000;
+    font-size: 13px;
+    bottom: -2em;
+}
+
+.col-md-4>.form-control {
+    border-style: none;
+    outline: none;
+    box-shadow: none;
+}
+
+#address {
+    margin: 0;
+    padding: 1px;
+}
+
+.header-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .content-header {
+        margin-bottom: 0 !important;
+    }
+}
+
+.form-horizontal {
+  .item-background-balanced{
+      background-image: url(/assets/images/balanced.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 2.5vw;
+      margin-bottom: .5vw;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+  }
+  
+  .item-background-bears{
+      background-image: url(/assets/images/bears.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 2.5vw;
+      margin-bottom: .5vw;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+  }
+  
+  .item-background-bulls{
+      background-image: url(/assets/images/bulls.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 2.5vw;
+      margin-bottom: .5vw;
+      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
+  }
+}
+
+#loading {
+    text-align: center;
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+}
+
+
+.preview {
+    .header-img {
+        max-width: 100%;
+        max-height: 20vw;
+        width: 100%;
+        //object-fit: contain;
+        background: black;
+    }
+    
+    .header-title {
+      max-width: 100%;
+      max-height: 20vw;
+      width:100%;
+      text-align:center;
+      font-size:2.5vw;
+      //font-weight: bold;
+      color: white;
+      background-color: #0b5b94;
+      background-image: url("/assets/images/news-background.png");
+      background-size: cover;
+      background-position: center center;
+    }
+    
+    .bottom-bar {
+      max-width: 100%;
+      width:100%;
+      color:white;
+    }
+    
+    .inline-text {
+      display: inline;
+      float: left;
+    }
+    
+    .item-background-bulls {
+      background-image: url(/assets/images/bulll.png),  url(/assets/images/bullr.png), url(/assets/images/bullm.png);
+      background-position: left, right, center;
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: contain, contain, contain;
+      height:30px;
+    }
+    
+    .item-background-bears {
+      background-image: url(/assets/images/bearl.png),  url(/assets/images/bearr.png), url(/assets/images/bearm.png);
+      background-position: left, right, center;
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: contain, contain, contain;
+      height:30px;
+    }
+    
+    .item-background-balance {
+      background-image: url(/assets/images/balancel.png),  url(/assets/images/balancer.png), url(/assets/images/balancem.png);
+      background-position: left, right, center;
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: contain, contain, contain;
+      height:30px;
+    }
+    
+    .related-companies-header {
+      background-image: url(/assets/images/related-comp-l.png),  url(/assets/images/related-comp-m.png), url(/assets/images/related-comp-m.png);
+      background-position: left, right, center;
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: contain, contain, contain;
+      height:38px;
+    }
+    
+    .container-fluid:nth-child(2) {
+      flex: 1 1 auto;
+      overflow-y: scroll;
+    }
+    
+    .companies-body {
+      rom-rating {
+        width: 10%;
+      }
+    
+      & > .row {
+        border-top: 1px solid $rom-alto;
+    
+        &:last-child {
+          border-bottom: 1px solid $rom-alto;
+        }
+    
+        &:first-child > div {
+          &:first-child, &:nth-child(n+1):not(:last-child) {
+            border-right: 1px #fff solid;
+          }
+        }
+      }
+    
+      &:hover, &:focus {
+        & > .row {
+          &:last-child {
+            background-color: $rom-alto;
+          }
+    
+          &:first-child div {
+            &:first-child, &:nth-child(2) {
+              background-color: $rom-dark-orchid !important;
+            }
+            &:nth-child(n+3) {
+              background-color: $rom-caribbean-green !important;
+            }
+          }
+    
+          border-bottom-color: $rom-gray-suit !important;
+          border-top-color: $rom-gray-suit !important;
+        }
+      }
+    }
+    
+    .companies-header, .companies-body {
+      & > .row:first-child > * {
+        &:nth-child(2) {
+          width: 15%;
+        }
+        &:nth-child(3) {
+          width: 13%;
+        }
+        &:nth-child(5) {
+          width: 11%;
+        }
+        &:nth-child(6) {
+          width: 12%;
+        }
+      }
+    }
+    
+    .companies-header {
+      border-right: $rom-scrollbar-width solid #fff;
+      & > .row {
+        border-top: 1px solid $rom-alto;
+    
+        &:last-child {
+          border-bottom: 1px solid $rom-alto;
+        }
+    
+        &:first-child > rom-sort {
+          &:first-child, &:not(:last-child) {
+            border-right: 1px white solid;
+          }
+        }
+      }
+    }
+    
+    img {
+      &.discover-logo, &.probe-logo {
+        width: 5.5vw;
+        margin-left: 5.5vw;
+      }
+      &.explore-logo {
+        width: 4.6vw;
+        margin-left: 6vw;
+      }
+    }
+    
+    .f1{
+      color: #fff;
+      background-color: #B2B2B2;
+    }
+    
+    .rating{
+      font-weight: bold;
+      font-size: 12px;
+      color: #28a745;
+    }
+    
+    .btn-market-data {
+      color: white;
+      font-size: 0.7vw;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 0.1vw 0.55vw !important;
+      z-index: 500;
+      i {
+        font-size: 1.2vw !important;
+        margin-right: 0.5vw;
+      }
+    }
+}
